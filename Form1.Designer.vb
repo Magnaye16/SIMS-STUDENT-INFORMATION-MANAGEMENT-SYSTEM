@@ -22,10 +22,33 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "Form1"
+        Dim CustomizableEdges1 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges2 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        SuspendLayout()
+        ' 
+        ' Guna2Panel1
+        ' 
+        Guna2Panel1.BackColor = SystemColors.InfoText
+        Guna2Panel1.CustomizableEdges = CustomizableEdges1
+        Guna2Panel1.Location = New Point(476, 115)
+        Guna2Panel1.Name = "Guna2Panel1"
+        Guna2Panel1.ShadowDecoration.CustomizableEdges = CustomizableEdges2
+        Guna2Panel1.Size = New Size(200, 100)
+        Guna2Panel1.TabIndex = 0
+        ' 
+        ' Form1
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(1064, 681)
+        Controls.Add(Guna2Panel1)
+        Name = "Form1"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "Form1"
+        ResumeLayout(False)
     End Sub
+
+    Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
 
 End Class
