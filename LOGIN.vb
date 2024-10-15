@@ -9,25 +9,72 @@ Public Class LOGIN
     End Sub
 
     Private Sub Guna2GradientButton1_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton1.Click
-        Dim idcode As String = uid_txtbx.Text
-        If AuthenticateUser(idcode) Then
-            Dim userRole As String = GetUserRole(idcode)
-            If userRole = "emp" Then
-                con.Close()
-                'display empid in txtbox in login form
-                'SetEmpid()
-                'LOGIN.Hide()
-                Me.Hide()
-                'studpage.Show()
+        'Dim idcode As String = uid_txtbx.Text
+        'If AuthenticateUser(idcode) Then
+        '    Dim userRole As String = GetUserRole(idcode)
+        '    If userRole = "emp" Then
+        '        con.Close()
+        '        'display empid in txtbox in login form
+        '        'SetEmpid()
+        '        'LOGIN.Hide()
+        '        Me.Hide()
+        '        'studpage.Show()
 
-            ElseIf uid_txtbx.Text = "admin123" Then
-                'punta sa admin page    
-                'adminpage.Show()
-            Else
-                MsgBox("Invalid role for this user")
+        '    ElseIf uid_txtbx.Text = "admin123" Then
+        '        'punta sa admin page    
+        '        'adminpage.Show()
+        '    Else
+        '        MsgBox("Invalid role for this user")
 
-            End If
-        End If
+        '    End If
+        'End If
+
+        Try
+            openCon()
+
+            Using command As New MySqlCommand("SELECT * FROM user WHERE pword = @pass", con)
+                command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = uid_txtbx.Text
+
+                Dim adapter As New MySqlDataAdapter(command)
+                Dim table As New DataTable
+                adapter.Fill(table)
+
+                If uid_txtbx.Text = "" Then
+                    MsgBox("Please Fill UID Field!")
+                ElseIf table.Rows.Count = 0 Then
+                    MsgBox("Invalid username. Please try again.", MsgBoxStyle.Exclamation, "Login Error")
+                Else
+                    ' MsgBox("Login successful!", MsgBoxStyle.Information, "Success")
+                    Hide()
+                    'Dim imageData As Byte() = DirectCast(table.Rows(0)("picture"), Byte())
+
+                    Select Case table.Rows(0)("role").ToString
+                        'Case "Admin"
+                        '    con.Close()
+                        '    ADMIN_Homepage.Show()
+                        'Case "Member"
+                        '    con.Close()
+                        '    MEM_HOMEPAGE.memID = table.Rows(0)("uid").ToString
+                        '    MEM_HOMEPAGE.Show()
+                        'Case "Organizer"
+                        '    con.Close()
+                        '    ORG_HOMEPAGE.orgID = table.Rows(0)("uid").ToString
+                        '    ORG_HOMEPAGE.Show()
+
+                    End Select
+
+                    'Guna2TextBox1.Text = ""
+                    'Guna2TextBox2.Text = ""
+                End If
+            End Using
+        Catch ex As Exception
+            MsgBox("An error occurred: " & ex.Message, MsgBoxStyle.Critical, "Error")
+        Finally
+            con.Close()
+        End Try
+
+
+
     End Sub
 
     Private Function AuthenticateUser(qrcode As String) As Boolean
