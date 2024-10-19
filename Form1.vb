@@ -44,7 +44,7 @@ Public Class Form1
             Dim query As String = "INSERT INTO attendance (stud_id, stud_name, time_in) VALUES (@stud_id, @stud_name, @time_in)"
             Using command1 As New MySqlCommand(query, con)
                 command1.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
-                command1.Parameters.AddWithValue("@stud_name", Guna2TextBox2.Text)
+                command1.Parameters.AddWithValue("@stud_name", Guna2TextBox1.Text)
                 command1.Parameters.AddWithValue("@time_in", timenow)
 
                 command1.ExecuteNonQuery()
