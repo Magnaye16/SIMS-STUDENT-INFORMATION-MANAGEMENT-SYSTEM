@@ -128,7 +128,9 @@ Public Class admin_page
         End Try
     End Sub
 
+    Private Sub Guna2GradientButton2_Click(sender As Object, e As EventArgs) Handles Guna2GradientButton2.Click
 
+    End Sub
 End Class
 
 
