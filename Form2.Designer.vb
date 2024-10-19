@@ -43,25 +43,28 @@ Partial Class Form2
         ' 
         ' Guna2vSeparator1
         ' 
-        Guna2vSeparator1.Location = New Point(227, 90)
+        Guna2vSeparator1.Location = New Point(259, 120)
+        Guna2vSeparator1.Margin = New Padding(3, 4, 3, 4)
         Guna2vSeparator1.Name = "Guna2vSeparator1"
-        Guna2vSeparator1.Size = New Size(10, 576)
+        Guna2vSeparator1.Size = New Size(11, 768)
         Guna2vSeparator1.TabIndex = 0
         ' 
         ' Guna2Separator1
         ' 
-        Guna2Separator1.Location = New Point(12, 74)
+        Guna2Separator1.Location = New Point(14, 99)
+        Guna2Separator1.Margin = New Padding(3, 4, 3, 4)
         Guna2Separator1.Name = "Guna2Separator1"
-        Guna2Separator1.Size = New Size(1056, 10)
+        Guna2Separator1.Size = New Size(1207, 13)
         Guna2Separator1.TabIndex = 1
         ' 
         ' Guna2Panel1
         ' 
         Guna2Panel1.CustomizableEdges = CustomizableEdges1
-        Guna2Panel1.Location = New Point(243, 90)
+        Guna2Panel1.Location = New Point(278, 120)
+        Guna2Panel1.Margin = New Padding(3, 4, 3, 4)
         Guna2Panel1.Name = "Guna2Panel1"
         Guna2Panel1.ShadowDecoration.CustomizableEdges = CustomizableEdges2
-        Guna2Panel1.Size = New Size(826, 576)
+        Guna2Panel1.Size = New Size(944, 768)
         Guna2Panel1.TabIndex = 2
         ' 
         ' Guna2Button1
@@ -77,10 +80,11 @@ Partial Class Form2
         Guna2Button1.FillColor = Color.Black
         Guna2Button1.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button1.ForeColor = Color.White
-        Guna2Button1.Location = New Point(12, 105)
+        Guna2Button1.Location = New Point(14, 140)
+        Guna2Button1.Margin = New Padding(3, 4, 3, 4)
         Guna2Button1.Name = "Guna2Button1"
         Guna2Button1.ShadowDecoration.CustomizableEdges = CustomizableEdges4
-        Guna2Button1.Size = New Size(209, 41)
+        Guna2Button1.Size = New Size(239, 55)
         Guna2Button1.TabIndex = 6
         Guna2Button1.Text = "CRUD"
         Guna2Button1.TextAlign = HorizontalAlignment.Left
@@ -98,10 +102,11 @@ Partial Class Form2
         Guna2Button2.FillColor = Color.Black
         Guna2Button2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button2.ForeColor = Color.White
-        Guna2Button2.Location = New Point(12, 152)
+        Guna2Button2.Location = New Point(14, 203)
+        Guna2Button2.Margin = New Padding(3, 4, 3, 4)
         Guna2Button2.Name = "Guna2Button2"
         Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges6
-        Guna2Button2.Size = New Size(209, 41)
+        Guna2Button2.Size = New Size(239, 55)
         Guna2Button2.TabIndex = 7
         Guna2Button2.Text = "RECORDS"
         Guna2Button2.TextAlign = HorizontalAlignment.Left
@@ -109,10 +114,11 @@ Partial Class Form2
         ' Guna2HtmlLabel1
         ' 
         Guna2HtmlLabel1.BackColor = Color.Transparent
-        Guna2HtmlLabel1.Font = New Font("Bahnschrift", 12F, FontStyle.Bold)
-        Guna2HtmlLabel1.Location = New Point(84, 18)
+        Guna2HtmlLabel1.Font = New Font("Bahnschrift", 12.0F, FontStyle.Bold)
+        Guna2HtmlLabel1.Location = New Point(96, 24)
+        Guna2HtmlLabel1.Margin = New Padding(3, 4, 3, 4)
         Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
-        Guna2HtmlLabel1.Size = New Size(103, 21)
+        Guna2HtmlLabel1.Size = New Size(129, 26)
         Guna2HtmlLabel1.TabIndex = 8
         Guna2HtmlLabel1.Text = "SIM - SYSTEM"
         ' 
@@ -121,9 +127,10 @@ Partial Class Form2
         Guna2HtmlLabel2.BackColor = Color.Transparent
         Guna2HtmlLabel2.Font = New Font("Bahnschrift", 8.25F)
         Guna2HtmlLabel2.ForeColor = SystemColors.ControlDarkDark
-        Guna2HtmlLabel2.Location = New Point(84, 44)
+        Guna2HtmlLabel2.Location = New Point(96, 59)
+        Guna2HtmlLabel2.Margin = New Padding(3, 4, 3, 4)
         Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
-        Guna2HtmlLabel2.Size = New Size(199, 15)
+        Guna2HtmlLabel2.Size = New Size(252, 19)
         Guna2HtmlLabel2.TabIndex = 9
         Guna2HtmlLabel2.Text = "STUDENT INFORMATION" & vbCrLf & "MANAGEMENT"
         ' 
@@ -132,11 +139,12 @@ Partial Class Form2
         Guna2CirclePictureBox3.BackColor = Color.Transparent
         Guna2CirclePictureBox3.Image = CType(resources.GetObject("Guna2CirclePictureBox3.Image"), Image)
         Guna2CirclePictureBox3.ImageRotate = 0F
-        Guna2CirclePictureBox3.Location = New Point(25, 15)
+        Guna2CirclePictureBox3.Location = New Point(29, 20)
+        Guna2CirclePictureBox3.Margin = New Padding(3, 4, 3, 4)
         Guna2CirclePictureBox3.Name = "Guna2CirclePictureBox3"
         Guna2CirclePictureBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges7
         Guna2CirclePictureBox3.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
-        Guna2CirclePictureBox3.Size = New Size(50, 50)
+        Guna2CirclePictureBox3.Size = New Size(57, 67)
         Guna2CirclePictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
         Guna2CirclePictureBox3.TabIndex = 10
         Guna2CirclePictureBox3.TabStop = False
@@ -144,10 +152,10 @@ Partial Class Form2
         ' 
         ' Form2
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
-        ClientSize = New Size(1080, 678)
+        ClientSize = New Size(1234, 904)
         Controls.Add(Guna2CirclePictureBox3)
         Controls.Add(Guna2HtmlLabel2)
         Controls.Add(Guna2HtmlLabel1)
@@ -156,6 +164,7 @@ Partial Class Form2
         Controls.Add(Guna2Panel1)
         Controls.Add(Guna2vSeparator1)
         Controls.Add(Guna2Separator1)
+        Margin = New Padding(3, 4, 3, 4)
         Name = "Form2"
         ShowIcon = False
         StartPosition = FormStartPosition.CenterScreen
