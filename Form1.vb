@@ -7,11 +7,11 @@ Public Class Form1
         Dim datenow As String = currentDate.ToString("MMMM dd, yyyy")
         Try 'checks if already time in
             openCon()
-            Dim query As String = "SELECT COUNT(*) FROM attendance WHERE stud_id = @stud_id AND time_in = @time_in"
+            Dim query As String = "SELECT COUNT(*) FROM attendance WHERE stud_id = @stud_id AND a_date = @a_date"
 
             Using command As New MySqlCommand(query, con)
                 command.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
-                command.Parameters.AddWithValue("@time_in", currentDate)
+                command.Parameters.AddWithValue("@a_date", currentDate)
 
                 Dim count As Integer = CInt(command.ExecuteScalar())
 
@@ -41,11 +41,12 @@ Public Class Form1
 
         Try
             openCon()
-            Dim query As String = "INSERT INTO attendance (stud_id, stud_name, time_in) VALUES (@stud_id, @stud_name, @time_in)"
+            Dim query As String = "INSERT INTO attendance (stud_id, stud_name, time_in, a_date) VALUES (@stud_id, @stud_name, @time_in, @a_date)"
             Using command1 As New MySqlCommand(query, con)
                 command1.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
                 command1.Parameters.AddWithValue("@stud_name", Guna2TextBox1.Text)
                 command1.Parameters.AddWithValue("@time_in", timenow)
+                command1.Parameters.AddWithValue("@a_date", datenow)
 
                 command1.ExecuteNonQuery()
                 MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}", "Time in")
