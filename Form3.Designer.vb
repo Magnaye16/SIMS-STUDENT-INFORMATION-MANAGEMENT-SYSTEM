@@ -52,6 +52,8 @@ Partial Class Form3
         Dim CustomizableEdges28 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges29 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges30 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges31 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges32 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Guna2TextBox4 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox2 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -79,6 +81,7 @@ Partial Class Form3
         Guna2Separator2 = New Guna.UI2.WinForms.Guna2Separator()
         Guna2Separator3 = New Guna.UI2.WinForms.Guna2Separator()
         Guna2vSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
+        Guna2TextBox7 = New Guna.UI2.WinForms.Guna2TextBox()
         CType(Guna2PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -413,7 +416,7 @@ Partial Class Form3
         ' 
         Guna2HtmlLabel5.BackColor = Color.Transparent
         Guna2HtmlLabel5.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel5.Location = New Point(39, 395)
+        Guna2HtmlLabel5.Location = New Point(39, 385)
         Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
         Guna2HtmlLabel5.Size = New Size(173, 18)
         Guna2HtmlLabel5.TabIndex = 23
@@ -521,12 +524,37 @@ Partial Class Form3
         Guna2vSeparator1.Size = New Size(10, 196)
         Guna2vSeparator1.TabIndex = 34
         ' 
+        ' Guna2TextBox7
+        ' 
+        Guna2TextBox7.Animated = True
+        Guna2TextBox7.BackColor = Color.Transparent
+        Guna2TextBox7.BorderColor = Color.Black
+        Guna2TextBox7.BorderRadius = 2
+        Guna2TextBox7.CustomizableEdges = CustomizableEdges31
+        Guna2TextBox7.DefaultText = ""
+        Guna2TextBox7.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        Guna2TextBox7.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        Guna2TextBox7.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        Guna2TextBox7.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        Guna2TextBox7.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
+        Guna2TextBox7.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2TextBox7.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
+        Guna2TextBox7.Location = New Point(218, 375)
+        Guna2TextBox7.Name = "Guna2TextBox7"
+        Guna2TextBox7.PasswordChar = ChrW(0)
+        Guna2TextBox7.PlaceholderText = "Student ID"
+        Guna2TextBox7.SelectedText = ""
+        Guna2TextBox7.ShadowDecoration.CustomizableEdges = CustomizableEdges32
+        Guna2TextBox7.Size = New Size(149, 38)
+        Guna2TextBox7.TabIndex = 35
+        ' 
         ' Form3
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(826, 576)
+        Controls.Add(Guna2TextBox7)
         Controls.Add(Guna2vSeparator1)
         Controls.Add(Guna2Separator3)
         Controls.Add(Guna2Separator2)
@@ -589,4 +617,5 @@ Partial Class Form3
     Friend WithEvents Guna2Separator2 As Guna.UI2.WinForms.Guna2Separator
     Friend WithEvents Guna2Separator3 As Guna.UI2.WinForms.Guna2Separator
     Friend WithEvents Guna2vSeparator1 As Guna.UI2.WinForms.Guna2VSeparator
+    Friend WithEvents Guna2TextBox7 As Guna.UI2.WinForms.Guna2TextBox
 End Class

@@ -96,7 +96,7 @@ Partial Class Form1
         Guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox2.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox2.Location = New Point(373, 190)
+        Guna2TextBox2.Location = New Point(372, 190)
         Guna2TextBox2.Name = "Guna2TextBox2"
         Guna2TextBox2.PasswordChar = ChrW(0)
         Guna2TextBox2.PlaceholderText = "Section"
