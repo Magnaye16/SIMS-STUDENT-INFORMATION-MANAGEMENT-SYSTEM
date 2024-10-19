@@ -38,9 +38,9 @@ Partial Class Form1
         Dim CustomizableEdges13 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges17 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges18 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges16 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges15 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges14 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges15 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges16 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox2 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox3 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -49,14 +49,14 @@ Partial Class Form1
         Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
         Guna2GradientPanel1 = New Guna.UI2.WinForms.Guna2GradientPanel()
-        Guna2CirclePictureBox2 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
-        Guna2CirclePictureBox3 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Guna2CirclePictureBox4 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
+        Guna2CirclePictureBox3 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
+        Guna2CirclePictureBox2 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         CType(Guna2CirclePictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Guna2GradientPanel1.SuspendLayout()
-        CType(Guna2CirclePictureBox2, ComponentModel.ISupportInitialize).BeginInit()
-        CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         CType(Guna2CirclePictureBox4, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Guna2CirclePictureBox2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Guna2TextBox1
@@ -73,7 +73,7 @@ Partial Class Form1
         Guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox1.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox1.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox1.Location = New Point(276, 142)
+        Guna2TextBox1.Location = New Point(276, 146)
         Guna2TextBox1.Name = "Guna2TextBox1"
         Guna2TextBox1.PasswordChar = ChrW(0)
         Guna2TextBox1.PlaceholderText = "Student Name"
@@ -96,7 +96,7 @@ Partial Class Form1
         Guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox2.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox2.Location = New Point(373, 186)
+        Guna2TextBox2.Location = New Point(373, 190)
         Guna2TextBox2.Name = "Guna2TextBox2"
         Guna2TextBox2.PasswordChar = ChrW(0)
         Guna2TextBox2.PlaceholderText = "Section"
@@ -119,7 +119,7 @@ Partial Class Form1
         Guna2TextBox3.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox3.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox3.Location = New Point(276, 186)
+        Guna2TextBox3.Location = New Point(276, 190)
         Guna2TextBox3.Name = "Guna2TextBox3"
         Guna2TextBox3.PasswordChar = ChrW(0)
         Guna2TextBox3.PlaceholderText = "Year"
@@ -143,7 +143,7 @@ Partial Class Form1
         Guna2TextBox4.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox4.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox4.Location = New Point(276, 98)
+        Guna2TextBox4.Location = New Point(276, 102)
         Guna2TextBox4.Name = "Guna2TextBox4"
         Guna2TextBox4.PasswordChar = ChrW(0)
         Guna2TextBox4.PlaceholderText = "Student Number"
@@ -157,7 +157,7 @@ Partial Class Form1
         Guna2CirclePictureBox1.BackColor = Color.Transparent
         Guna2CirclePictureBox1.Image = CType(resources.GetObject("Guna2CirclePictureBox1.Image"), Image)
         Guna2CirclePictureBox1.ImageRotate = 0F
-        Guna2CirclePictureBox1.Location = New Point(324, 32)
+        Guna2CirclePictureBox1.Location = New Point(326, 34)
         Guna2CirclePictureBox1.Name = "Guna2CirclePictureBox1"
         Guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges9
         Guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -226,16 +226,21 @@ Partial Class Form1
         Guna2GradientPanel1.Size = New Size(800, 335)
         Guna2GradientPanel1.TabIndex = 7
         ' 
-        ' Guna2CirclePictureBox2
+        ' Guna2CirclePictureBox4
         ' 
-        Guna2CirclePictureBox2.ImageRotate = 0F
-        Guna2CirclePictureBox2.Location = New Point(149, 238)
-        Guna2CirclePictureBox2.Name = "Guna2CirclePictureBox2"
-        Guna2CirclePictureBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges16
-        Guna2CirclePictureBox2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
-        Guna2CirclePictureBox2.Size = New Size(64, 64)
-        Guna2CirclePictureBox2.TabIndex = 7
-        Guna2CirclePictureBox2.TabStop = False
+        Guna2CirclePictureBox4.BackColor = Color.Transparent
+        Guna2CirclePictureBox4.Image = CType(resources.GetObject("Guna2CirclePictureBox4.Image"), Image)
+        Guna2CirclePictureBox4.ImageRotate = 0F
+        Guna2CirclePictureBox4.Location = New Point(758, 292)
+        Guna2CirclePictureBox4.Name = "Guna2CirclePictureBox4"
+        Guna2CirclePictureBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges14
+        Guna2CirclePictureBox4.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
+        Guna2CirclePictureBox4.Size = New Size(30, 30)
+        Guna2CirclePictureBox4.SizeMode = PictureBoxSizeMode.StretchImage
+        Guna2CirclePictureBox4.TabIndex = 9
+        Guna2CirclePictureBox4.TabStop = False
+        Guna2CirclePictureBox4.UseTransparentBackground = True
+        Guna2CirclePictureBox4.Visible = False
         ' 
         ' Guna2CirclePictureBox3
         ' 
@@ -252,21 +257,16 @@ Partial Class Form1
         Guna2CirclePictureBox3.TabStop = False
         Guna2CirclePictureBox3.UseTransparentBackground = True
         ' 
-        ' Guna2CirclePictureBox4
+        ' Guna2CirclePictureBox2
         ' 
-        Guna2CirclePictureBox4.BackColor = Color.Transparent
-        Guna2CirclePictureBox4.Image = CType(resources.GetObject("Guna2CirclePictureBox4.Image"), Image)
-        Guna2CirclePictureBox4.ImageRotate = 0F
-        Guna2CirclePictureBox4.Location = New Point(758, 292)
-        Guna2CirclePictureBox4.Name = "Guna2CirclePictureBox4"
-        Guna2CirclePictureBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges14
-        Guna2CirclePictureBox4.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
-        Guna2CirclePictureBox4.Size = New Size(30, 30)
-        Guna2CirclePictureBox4.SizeMode = PictureBoxSizeMode.StretchImage
-        Guna2CirclePictureBox4.TabIndex = 9
-        Guna2CirclePictureBox4.TabStop = False
-        Guna2CirclePictureBox4.UseTransparentBackground = True
-        Guna2CirclePictureBox4.Visible = False
+        Guna2CirclePictureBox2.ImageRotate = 0F
+        Guna2CirclePictureBox2.Location = New Point(149, 238)
+        Guna2CirclePictureBox2.Name = "Guna2CirclePictureBox2"
+        Guna2CirclePictureBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges16
+        Guna2CirclePictureBox2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
+        Guna2CirclePictureBox2.Size = New Size(64, 64)
+        Guna2CirclePictureBox2.TabIndex = 7
+        Guna2CirclePictureBox2.TabStop = False
         ' 
         ' Form1
         ' 
@@ -284,9 +284,9 @@ Partial Class Form1
         Text = "Log-In Page"
         CType(Guna2CirclePictureBox1, ComponentModel.ISupportInitialize).EndInit()
         Guna2GradientPanel1.ResumeLayout(False)
-        CType(Guna2CirclePictureBox2, ComponentModel.ISupportInitialize).EndInit()
-        CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).EndInit()
         CType(Guna2CirclePictureBox4, ComponentModel.ISupportInitialize).EndInit()
+        CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).EndInit()
+        CType(Guna2CirclePictureBox2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
