@@ -11,7 +11,7 @@ Public Class Form1
 
             Using command As New MySqlCommand(query, con)
                 command.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
-                command.Parameters.AddWithValue("@a_date", currentDate)
+                command.Parameters.AddWithValue("@a_date", datenow)
 
                 Dim count As Integer = CInt(command.ExecuteScalar())
 
@@ -28,6 +28,9 @@ Public Class Form1
             ' Handle exceptions
 
         End Try
+    End Sub
+    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        Timeout()
     End Sub
 
 
@@ -94,4 +97,6 @@ Public Class Form1
         Guna2TextBox4.Clear()
 
     End Sub
+
+
 End Class
