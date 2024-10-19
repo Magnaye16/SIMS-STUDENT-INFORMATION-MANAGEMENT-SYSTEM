@@ -7,11 +7,11 @@ Public Class Form1
         Dim datenow As String = currentDate.ToString("MMMM dd, yyyy")
         Try 'checks if already time in
             openCon()
-            Dim query As String = "SELECT COUNT(*) FROM attendance WHERE empid = @empid AND a_date = @a_date"
+            Dim query As String = "SELECT COUNT(*) FROM attendance WHERE stud_id = @stud_id AND time_in = @time_in"
 
             Using command As New MySqlCommand(query, con)
-                'command.Parameters.AddWithValue("@empid", empid)
-                'command.Parameters.AddWithValue("@a_date", datenow)
+                command.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
+                command.Parameters.AddWithValue("@time_in", currentDate)
 
                 Dim count As Integer = CInt(command.ExecuteScalar())
 
@@ -41,13 +41,12 @@ Public Class Form1
 
         Try
             openCon()
-            Dim query As String = "INSERT INTO attendance (empid, fname, lname, a_date, t_in) VALUES (@empid, @fname, @lname, @a_date, @t_in)"
+            Dim query As String = "INSERT INTO attendance (stud_id, stud_name, time_in) VALUES (@stud_id, @stud_name, @time_in)"
             Using command1 As New MySqlCommand(query, con)
-                command1.Parameters.AddWithValue("@empid", LOGIN.Guna2TextBox2.Text)
-                'command1.Parameters.AddWithValue("@fname", Label9.Text)
-                'command1.Parameters.AddWithValue("@lname", Label12.Text)
-                command1.Parameters.AddWithValue("@t_in", timenow)
-                command1.Parameters.AddWithValue("@a_date", datenow)
+                command1.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
+                command1.Parameters.AddWithValue("@stud_name", Guna2TextBox2.Text)
+                command1.Parameters.AddWithValue("@time_in", timenow)
+
                 command1.ExecuteNonQuery()
                 MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}", "Time in")
 
@@ -66,14 +65,14 @@ Public Class Form1
         Try
             openCon()
             Dim query As String = "UPDATE attendance " &
-                      "SET t_out = @t_out " &
-                      "WHERE empid = @empid and a_date = @a_date"
+                      "SET time_out = @time_out " &
+                      "WHERE stud_id = @stud_id and a_date = @a_date"
 
 
             Using cmd As New MySqlCommand(query, con)
-                cmd.Parameters.AddWithValue("@empid", LOGIN.Guna2TextBox2.Text)
+                cmd.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
                 cmd.Parameters.AddWithValue("@a_date", datenow)
-                cmd.Parameters.AddWithValue("@t_out", timenow)
+                cmd.Parameters.AddWithValue("@time_out", timenow)
 
                 cmd.ExecuteNonQuery()
                 MessageBox.Show($"Time out recorded!{Environment.NewLine}Time out at: {timenow}", "Time out")
@@ -84,6 +83,14 @@ Public Class Form1
         Finally
             con.Close()
         End Try
+
+    End Sub
+
+    Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
+        Guna2TextBox1.Clear()
+        Guna2TextBox2.Clear()
+        Guna2TextBox3.Clear()
+        Guna2TextBox4.Clear()
 
     End Sub
 End Class

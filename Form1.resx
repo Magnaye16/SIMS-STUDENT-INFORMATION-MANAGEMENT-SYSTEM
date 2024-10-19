@@ -422,7 +422,7 @@
   <data name="Guna2CirclePictureBox4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAPgAAAEJCAYAAAC5aOoDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAA/7JJREFUeF7snQWcVdeS9W/cjbgQ4kaIQdw9JMQDwQnumgBBAsFd2/W2u9M0bo27
+        vQAADr0BR/uQrQAA/7JJREFUeF7snQWcVdeS9W/cjbgQ4kaIQdw9JMQDwQnumgBBAsFd2/W2u9M0bo27
         u7u76/rqvzsnk5fX7+XNN29m3szk/Cju7XOP7LN3rapVteX4JP0pf8qf8r9Uit35p/zrysKFC28cNWrU
         43FxcW8GBQV90qhRo461a9fu9s033wx67733op577rns+++/v/DWW29dcP311y+7/PLL11122WUbLrnk
         kk0XX3yxE76zj9845pZbbllw3333FT7zzDO577zzjv+rr74aUrNmzR7169fvPHz48C+419ixYx9dvHjx
@@ -2498,7 +2498,7 @@
   <data name="Guna2CirclePictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAA/7JJREFUeF7s/QVgFcm2NgxvixDcRhh31zNyxmcYYxhkcHd3G9w1xN3diKAhECRC
+        vQAADr0BR/uQrQAA/7JJREFUeF7s/QVgFcm2NgxvixDcRhh31zNyxmcYYxhkcHd3G9w1xN3diKAhECRC
         SALxhLhDhJCEuDvPv1b13hA4c+59v++/333PPZcKi5bdXV1d8tSzVq2qlj0O//tCauwJWeQ5A0X0+V16
         SRf2DIr2XDvk1KGfh50x/O2p5HDrF7Ozgr+MCrMZE+SybOp5m5mLr/j+uSPqzAGLiONbXS66L/EIspvu
         e9pi7OlTZr9cOG3yw6XTR78NOXXgqysBez6P8t358TXv7R/GeJF47/r4mt++T6+eOPTVldP634UFGn4f
@@ -5193,7 +5193,7 @@
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAADJ0RVh0Q29tbWVudAB4cjpkOkRBRmJUQUlOb1VNOjcsajo0MzAyNjYzODM3LHQ6
+        vAAADrwBlbxySQAAADJ0RVh0Q29tbWVudAB4cjpkOkRBRmJUQUlOb1VNOjcsajo0MzAyNjYzODM3LHQ6
         MjMwMjI1MTBSIrTSAAD/dElEQVR4Xuz9a88tTZKV6bYQHxCiG/EBhNiNkBD1/39i7bqq666ytPSYM+bh
         We8hE2kows3tOMzcY6616k3+r3/6f/94wv/4H//jH//f/9//+4//6T/9p+N++G//7b/94//6X//rH//z
         f/7Px334j//xP/7j//yf//OffQIb+p4b//W//td/ff8v/+W//HMO2x9b8v/wH/7Dv8r+3b/7d//s+7//
