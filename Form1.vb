@@ -30,12 +30,19 @@ Public Class Form1
         End Try
     End Sub
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        'timeout
         Timeout()
+    End Sub
+    Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
+        Guna2TextBox1.Clear()
+        Guna2TextBox2.Clear()
+        Guna2TextBox3.Clear()
+        Guna2TextBox4.Clear()
     End Sub
 
 
 
-
+    'funtionsssss
 
     Private Sub Timein()
         Dim currentDate As DateTime = DateTime.Now
@@ -44,19 +51,22 @@ Public Class Form1
 
         Try
             openCon()
-            Dim query As String = "INSERT INTO attendance (stud_id, stud_name, time_in, a_date) VALUES (@stud_id, @stud_name, @time_in, @a_date)"
+            Dim query As String = "INSERT INTO attendance (stud_id, student_name, time_in, time_out, a_date, status) VALUES (@stud_id, @student_name, @time_in, @time_out, @a_date, @status)"
             Using command1 As New MySqlCommand(query, con)
                 command1.Parameters.AddWithValue("@stud_id", Guna2TextBox4.Text)
-                command1.Parameters.AddWithValue("@stud_name", Guna2TextBox1.Text)
+                command1.Parameters.AddWithValue("@student_name", Guna2TextBox1.Text)
                 command1.Parameters.AddWithValue("@time_in", timenow)
+                command1.Parameters.AddWithValue("@time_out", timenow)
                 command1.Parameters.AddWithValue("@a_date", datenow)
+                command1.Parameters.AddWithValue("@status", datenow) 'placeholder for now
+
 
                 command1.ExecuteNonQuery()
                 MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}", "Time in")
 
             End Using
         Catch ex As Exception
-            MessageBox.Show("Error inserting employee: " & ex.Message)
+            MessageBox.Show("Error Time in: " & ex.Message)
 
         Finally
             con.Close()
@@ -89,14 +99,5 @@ Public Class Form1
         End Try
 
     End Sub
-
-    Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-        Guna2TextBox1.Clear()
-        Guna2TextBox2.Clear()
-        Guna2TextBox3.Clear()
-        Guna2TextBox4.Clear()
-
-    End Sub
-
 
 End Class
