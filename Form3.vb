@@ -78,7 +78,7 @@ Public Class Form3
             'Clear
             Return
         Else
-            ADDUSER()
+            'ADDUSER()
         End If
 
         'check if user already already exist
@@ -113,7 +113,7 @@ Public Class Form3
         'End Try
 
         Dim stud_ID = Guna2TextBox7.Text
-        Dim query = "SELECT COUNT(*) FROM crudstud WHERE stud_ID = @stud_ID"
+        Dim query = "SELECT COUNT(*) FROM crudStud WHERE stud_ID = @stud_ID"
         openCon() ' Open the connection
 
         Try
@@ -126,10 +126,11 @@ Public Class Form3
 
                 If count > 0 Then
                     ' If the count is greater than 0, the student already exists
-                    'MessageBox.Show("This user already exists.")
+                    MessageBox.Show("This user already exists.")
                     Return
                 Else
                     ' If the count is 0, proceed with adding the student
+                    con.Close()
                     ADDUSER() ' Call the method to insert user data
                     Dispose() ' Dispose of the current form if needed
                 End If
@@ -151,7 +152,7 @@ Public Class Form3
         ' , givenName, middleNAme, year, section, course, studentStatus, email, number, address, studentID, barCode
         Try
             openCon()
-            Dim query As String = "INSERT INTO crudstud (stud_ID, lname, gname, mname, year, section, course, studstat, email, contact, address, bcode) VALUES (@stud_ID, @lname, @gname, @mname, @year, @section, @course, @studstat, @email, @contact, @address, @bcode)"
+            Dim query As String = "INSERT INTO crudStud (stud_ID, lname, gname, mname, year, section, course, studstat, email, contact, address, bcode) VALUES (@stud_ID, @lname, @gname, @mname, @year, @section, @course, @studstat, @email, @contact, @address, @bcode)"
             Using command1 As New MySqlCommand(query, con)
                 command1.Parameters.AddWithValue("@stud_ID", Guna2TextBox7.Text)
                 command1.Parameters.AddWithValue("@lname", Guna2TextBox1.Text)
@@ -164,14 +165,14 @@ Public Class Form3
                 command1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
                 command1.Parameters.AddWithValue("@contact", Guna2TextBox9.Text)
                 command1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
-                command1.Parameters.AddWithValue("@bcode", Guna2PictureBox1.Text)
+                command1.Parameters.AddWithValue("@bcode", Guna2TextBox7.Text)
 
                 command1.ExecuteNonQuery()
                 MessageBox.Show($"Student recorded!")
 
             End Using
         Catch ex As Exception
-            MessageBox.Show($"Error inserting Student")
+            MessageBox.Show($"Error inserting Student" & ex.Message)
 
         Finally
             con.Close()
