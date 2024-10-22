@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports MySql.Data.MySqlClient
 
 Public Class Form1
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
@@ -39,10 +40,52 @@ Public Class Form1
         Guna2TextBox3.Clear()
         Guna2TextBox4.Clear()
     End Sub
+    Private Sub Guna2TextBox4_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox4.KeyDown
+        'search then autofill
+        If e.KeyCode = Keys.Enter Then
+            SearchonPress()
+        ElseIf guna2TextBox4.Text = "" Then
+            'clear
+        End If
+    End Sub
+
 
 
 
     'funtionsssss
+    Public Sub SearchonPress()
+        Dim txtid As String = Guna2TextBox4.Text.Trim
+
+        Try
+            openCon()
+            Dim query As String = "SELECT * FROM crudStud WHERE stud_ID LIKE @searchText "
+
+            Using command As New MySqlCommand(query, con)
+                command.Parameters.AddWithValue("@searchText", "%" & txtid & "%")
+
+                ' Execute the query and read the result
+                Using reader As MySqlDataReader = command.ExecuteReader()
+                    If reader.Read() Then
+
+
+                        ' Display the data in TextBoxes
+                        Guna2TextBox1.Text = reader("").ToString() 'lname + fname + mname
+                        Guna2TextBox2.Text = reader("year").ToString()
+                        Guna2TextBox3.Text = reader("section").ToString()
+
+
+
+                    End If
+                End Using
+            End Using
+
+        Catch ex As Exception
+            ' Handle exceptions, such as database connection issues or query errors
+            'MessageBox.Show("Error Searching data: " & ex.Message)
+        Finally
+            con.Close() ' Ensure to close the connection in the finally block if it is open
+        End Try
+    End Sub
 
     Private Sub Timein()
         Dim currentDate As DateTime = DateTime.Now
@@ -100,8 +143,5 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Guna2TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox4.KeyPress
-        'search then autofill
 
-    End Sub
 End Class
