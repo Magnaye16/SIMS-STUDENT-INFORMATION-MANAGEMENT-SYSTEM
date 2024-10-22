@@ -66,22 +66,24 @@ Public Class Form1
                 ' Execute the query and read the result
                 Using reader As MySqlDataReader = command.ExecuteReader()
                     If reader.Read() Then
+                        ' Safely concatenate the fields
+                        Dim lname As String = If(IsDBNull(reader("lname")), String.Empty, reader("lname").ToString())
+                        Dim gname As String = If(IsDBNull(reader("gname")), String.Empty, reader("gname").ToString())
+                        Dim mname As String = If(IsDBNull(reader("mname")), String.Empty, reader("mname").ToString())
 
+                        Guna2TextBox1.Text = lname & ", " & gname & " " & mname  ' Display lname, gname, and mname
 
-                        ' Display the data in TextBoxes
-                        Guna2TextBox1.Text = reader("").ToString() 'lname + fname + mname
-                        Guna2TextBox2.Text = reader("year").ToString()
-                        Guna2TextBox3.Text = reader("section").ToString()
-
-
-
+                        Guna2TextBox2.Text = If(IsDBNull(reader("section")), String.Empty, reader("section").ToString())
+                        Guna2TextBox3.Text = If(IsDBNull(reader("year")), String.Empty, reader("year").ToString())
+                    Else
+                        MessageBox.Show("No records found.")
                     End If
                 End Using
             End Using
 
         Catch ex As Exception
             ' Handle exceptions, such as database connection issues or query errors
-            'MessageBox.Show("Error Searching data: " & ex.Message)
+            MessageBox.Show("Error Searching data: " & ex.Message)
         Finally
             con.Close() ' Ensure to close the connection in the finally block if it is open
         End Try
