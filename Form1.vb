@@ -63,7 +63,7 @@ Public Class Form1
         Try
             openCon()
 
-            Dim query As String = "SELECT s.*, c.* FROM student_info s JOIN class_info c ON s.class_id = c.class_id WHERE s.student_number LIKE @searchText"
+            Dim query As String = "SELECT s.*, c.* FROM student_info s JOIN class_info c ON c.class_id = c.class_id WHERE s.student_number LIKE @searchText"
 
             Using command As New MySqlCommand(query, con)
                 command.Parameters.AddWithValue("@searchText", "%" & txtid & "%")
@@ -206,28 +206,28 @@ Public Class Form1
         Try
             openCon()
 
-        Dim selectQuery As String = "SELECT s.student_id, s.student_number FROM student_info s WHERE s.student_number = @student_number"
-        Using selectCommand As New MySqlCommand(selectQuery, con)
-            selectCommand.Parameters.AddWithValue("@student_number", STUDENT_NUMBER)
+            Dim selectQuery As String = "SELECT s.student_id, s.student_number FROM student_info s WHERE s.student_number = @student_number"
+            Using selectCommand As New MySqlCommand(selectQuery, con)
+                selectCommand.Parameters.AddWithValue("@student_number", STUDENT_NUMBER)
 
-            Using reader As MySqlDataReader = selectCommand.ExecuteReader()
-                If reader.Read() Then
-                    studentId = Convert.ToInt32(reader("studentId"))
-                Else
-                    Console.WriteLine("Student number: " & studentId & " does not exist.")
-                    Return
-                End If
+                Using reader As MySqlDataReader = selectCommand.ExecuteReader()
+                    If reader.Read() Then
+                        studentId = Convert.ToInt32(reader("studentId"))
+                    Else
+                        Console.WriteLine("Student number: " & studentId & " does not exist.")
+                        Return
+                    End If
+                End Using
             End Using
-        End Using
 
-        Dim updateQuery As String = "UPDATE attendce_log SET time_out = @time_out WHERE student_id = @student_id" 'add more to where statements to specify
-        Using updateCommand As New MySqlCommand(updateQuery, con)
-            updateCommand.Parameters.AddWithValue("@student_id", studentId)
-            updateCommand.Parameters.AddWithValue("@time_out", timenow)
+            Dim updateQuery As String = "UPDATE attendce_log SET time_out = @time_out WHERE student_id = @student_id" 'add more to where statements to specify
+            Using updateCommand As New MySqlCommand(updateQuery, con)
+                updateCommand.Parameters.AddWithValue("@student_id", studentId)
+                updateCommand.Parameters.AddWithValue("@time_out", timenow)
 
-            Dim rowsAffected As Integer = updateCommand.ExecuteNonQuery()
-            MessageBox.Show($"Time out recorded!{Environment.NewLine}Time out at: {timenow}", "Time out")
-        End Using
+                Dim rowsAffected As Integer = updateCommand.ExecuteNonQuery()
+                MessageBox.Show($"Time out recorded!{Environment.NewLine}Time out at: {timenow}", "Time out")
+            End Using
 
 
             'Dim currentDate As DateTime = DateTime.Now
