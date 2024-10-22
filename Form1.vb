@@ -44,9 +44,9 @@ Public Class Form1
         'search then autofill
         If e.KeyCode = Keys.Enter Then
             SearchonPress()
-        ElseIf guna2TextBox1.Text And guna2TextBox2.Text And guna2TextBox3.Text <> "" Then
+        ElseIf guna2TextBox4.Text = "" Then
             'clear
-            Timein()
+            'Timein()
         End If
     End Sub
 
