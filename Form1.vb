@@ -100,4 +100,8 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Guna2TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox4.KeyPress
+        'search then autofill
+
+    End Sub
 End Class
