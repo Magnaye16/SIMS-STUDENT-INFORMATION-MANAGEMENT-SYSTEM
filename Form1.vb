@@ -90,18 +90,26 @@ Public Class Form1
         'search then autofill
         If e.KeyCode = Keys.Enter Then
             SearchonPress()
+            checkandtimein()
         ElseIf Guna2TextBox4.Text = "" Then
             'clear
             'Timein()
         End If
     End Sub
-
+    Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
+        STUDENT_NUMBER = Guna2TextBox4.Text.Trim
+    End Sub
 
 
 
     'funtionsssss
     Public Sub SearchonPress()
-        Dim txtid As String = Guna2TextBox4.Text.Trim()
+        'Dim txtid As String = Guna2TextBox4.Text.Trim()
+
+        If String.IsNullOrEmpty(STUDENT_NUMBER) Then
+            MessageBox.Show("Please enter a valid student number.")
+            Return
+        End If
 
         Try
             openCon()
@@ -109,7 +117,7 @@ Public Class Form1
             Dim query As String = "SELECT s.*, c.* FROM student_info s JOIN class_info c ON c.class_id = c.class_id WHERE s.student_number LIKE @searchText"
 
             Using command As New MySqlCommand(query, con)
-                command.Parameters.AddWithValue("@searchText", "%" & txtid & "%")
+                command.Parameters.AddWithValue("@searchText", "%" & STUDENT_NUMBER & "%")
 
                 Using reader As MySqlDataReader = command.ExecuteReader()
                     If reader.Read() Then
@@ -139,55 +147,56 @@ Public Class Form1
 
     Private Sub Timein()
         Dim currentDate As DateTime = DateTime.Now
-        Dim timenow As String = currentDate.ToString("HH:mm:ss") ' Use 24-hour format for better comparison
+        Dim timenow As String = currentDate.ToString("HH:mm:ss") ' Use 24-hour format
         Dim datenow As String = currentDate.ToString("MMMM dd, yyyy")
 
         Dim studentId As Integer
         Dim classId As Integer
-        Dim classStartTime As TimeSpan ' Change this to TimeSpan to correctly retrieve time_start as TimeSpan
+        Dim classStartTime As TimeSpan ' Use TimeSpan to store class start time
         Dim studentStatus As String
-        Dim gracePeriodMinutes As Integer = 15 ' Define a grace period for being late
+        Dim gracePeriodMinutes As Integer = 15 ' Grace period for being late
 
         Try
-            openCon() ' Assuming this opens the database connection
+            openCon() ' Open the database connection
 
-            ' SQL query to select student and class ID, and class start time
+            ' SQL query to select student_id, class_id, and class start time
             Dim selectQuery As String = "SELECT s.student_id, c.class_id, c.time_start 
-                          FROM student_info s 
-                          INNER JOIN class_info c ON s.student_id = c.student_id
-                          WHERE s.student_number = @student_number"
+                                  FROM student_info s 
+                                  INNER JOIN class_info c ON s.student_id = c.student_id
+                                  WHERE s.student_number = @student_number"
 
             Using selectCommand As New MySqlCommand(selectQuery, con)
                 selectCommand.Parameters.AddWithValue("@student_number", STUDENT_NUMBER)
 
                 Using reader As MySqlDataReader = selectCommand.ExecuteReader()
-                    If reader.Read() Then
+                    If reader.Read Then ' Check if any rows were returned
                         studentId = Convert.ToInt32(reader("student_id"))
                         classId = Convert.ToInt32(reader("class_id"))
-                        classStartTime = CType(reader("time_start"), TimeSpan) ' Retrieve class start time as TimeSpan
+                        classStartTime = CType(reader("time_start"), TimeSpan) ' Ensure time_start is read as TimeSpan
                     Else
-                        ' Notify user if student is not found
-                        MessageBox.Show("Student number does not exist.")
-                        Return
+                        ' If the student number is not found, show a message
+                        MessageBox.Show("Student number does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return ' Exit if no student record is found
                     End If
                 End Using
             End Using
 
-            ' Convert current time to TimeSpan for comparison
+
+            ' Convert the current time to TimeSpan for comparison
             Dim timeInNow As TimeSpan = currentDate.TimeOfDay ' Get the current time as TimeSpan
 
             ' Calculate if the student is On Time, Late, or Absent
             If timeInNow <= classStartTime Then
-                studentStatus = "P" ' present
+                studentStatus = "P" ' Present
             ElseIf timeInNow <= classStartTime.Add(TimeSpan.FromMinutes(gracePeriodMinutes)) Then
-                studentStatus = "L" ' late
+                studentStatus = "L" ' Late
             Else
-                studentStatus = "A" ' absent
+                studentStatus = "A" ' Absent
             End If
 
-            ' Insert the time-in log into the attendance_log table with status
+            ' Insert the time-in log into the attendance_log table with the status
             Dim insertQuery As String = "INSERT INTO attendance_log (log_date, time_in, time_out, status, student_id, class_id) 
-                          VALUES (@log_date, @time_in, @time_out, @status, @student_id, @class_id)"
+                                  VALUES (@log_date, @time_in, @time_out, @status, @student_id, @class_id)"
 
             Using insertCommand As New MySqlCommand(insertQuery, con)
                 insertCommand.Parameters.AddWithValue("@log_date", datenow)
@@ -197,23 +206,25 @@ Public Class Form1
                 insertCommand.Parameters.AddWithValue("@student_id", studentId)
                 insertCommand.Parameters.AddWithValue("@class_id", classId)
 
-                ' Execute the insert query
+                ' Execute the insert query and show a success message
                 Dim rowsAffected As Integer = insertCommand.ExecuteNonQuery()
                 MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}{Environment.NewLine}Status: {studentStatus}", "Time in")
             End Using
 
+        Catch ex As MySqlException
+            ' Handle MySQL specific exceptions and show the error message
+            MessageBox.Show("MySQL Error: " & ex.Message)
         Catch ex As Exception
-            ' Handle errors
+            ' Handle general exceptions
             MessageBox.Show("Error during time in: " & ex.Message)
-
         Finally
             ' Ensure connection is closed
-            con.Close()
+            If con IsNot Nothing AndAlso con.State = ConnectionState.Open Then
+                con.Close()
+            End If
         End Try
 
-
     End Sub
-
 
     Private Sub Timeout()
 
@@ -256,7 +267,67 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
-        STUDENT_NUMBER = Guna2TextBox4.Text.Trim
+    Private Sub checkandtimein()
+        Dim currentDate As DateTime = DateTime.Now
+        Dim datenow As String = currentDate.ToString("MMMM dd, yyyy")
+        Dim studentId As Integer
+
+        ' Check if the student number is provided
+        Try
+            ' Open the database connection
+            openCon()
+
+            ' Query to retrieve the student_id based on the student_number
+            Dim selectQuery As String = "SELECT student_id FROM student_info WHERE student_number = @student_number"
+
+            Using selectCommand As New MySqlCommand(selectQuery, con)
+                ' Add the student_number parameter
+                selectCommand.Parameters.AddWithValue("@student_number", STUDENT_NUMBER)
+
+                ' Execute the reader to fetch the student_id
+                Using reader As MySqlDataReader = selectCommand.ExecuteReader()
+                    If reader.Read() Then
+                        studentId = Convert.ToInt32(reader("student_id")) ' Retrieve the student_id
+                    Else
+                        ' If the student number does not exist
+                        MessageBox.Show("Student number does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return ' Exit the function as the student number is invalid
+                    End If
+                End Using
+            End Using
+
+            ' Now that we have the student_id, check if the student has already timed in
+            Dim query As String = "SELECT COUNT(*) FROM attendance_log WHERE student_id = @student_id AND log_date = @log_date"
+
+            Using command As New MySqlCommand(query, con)
+                ' Add parameters for student_id and log_date
+                command.Parameters.AddWithValue("@student_id", studentId) ' Use the retrieved student_id
+                command.Parameters.AddWithValue("@log_date", datenow)
+
+                ' Execute the scalar query to check if there is already a time-in record
+                Dim count As Integer = CInt(command.ExecuteScalar())
+
+                If count > 0 Then
+                    ' If a record exists, notify the user
+                    MessageBox.Show("You have already timed in for today.", "Time-in Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Return ' Exit the function to prevent another time-in
+                Else
+                    ' If no record exists, proceed to log time-in
+                    con.Close()
+                    Timein() ' Call your time-in function here
+                End If
+            End Using
+
+        Catch ex As Exception
+            ' Handle exceptions and show the error message
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            ' Ensure the connection is closed in the Finally block to handle all cases
+            If con IsNot Nothing AndAlso con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+
     End Sub
 End Class
