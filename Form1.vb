@@ -9,17 +9,43 @@ Public Class Form1
         'Time in
         Dim currentDate As DateTime = DateTime.Now
         Dim datenow As String = currentDate.ToString("MMMM dd, yyyy")
+        Dim studentId As Integer
+        Dim studentNumber As String = Guna2TextBox4.Text ' Assuming the student number is input by the user
+
+        ' Check if the student number is provided
+        If String.IsNullOrEmpty(studentNumber) Then
+            MessageBox.Show("Please enter a valid student number.")
+            Return
+        End If
 
         Try
             ' Open the connection
             openCon()
 
-            ' Check if the student already timed in
-            Dim query As String = "SELECT COUNT(*) FROM attendance_log WHERE student_number = @student_number AND log_date = @log_date"
+            ' First, retrieve the student_id based on the student_number
+            Dim selectQuery As String = "SELECT student_id FROM student_info WHERE student_number = @student_number"
+
+            Using selectCommand As New MySqlCommand(selectQuery, con)
+                selectCommand.Parameters.AddWithValue("@student_number", studentNumber)
+
+                ' Execute the reader to fetch the student_id
+                Using reader As MySqlDataReader = selectCommand.ExecuteReader()
+                    If reader.Read() Then
+                        studentId = Convert.ToInt32(reader("student_id"))
+                    Else
+                        ' If the student number does not exist
+                        MessageBox.Show("Student number does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return ' Exit the function as the student number is invalid
+                    End If
+                End Using
+            End Using
+
+            ' Now that we have the student_id, check if the student has already timed in
+            Dim query As String = "SELECT COUNT(*) FROM attendance_log WHERE student_id = @student_id AND log_date = @log_date"
 
             Using command As New MySqlCommand(query, con)
-                ' Add parameters (fixed parameter name by removing extra space)
-                command.Parameters.AddWithValue("@student_number", Guna2TextBox4.Text)
+                ' Add parameters for student_id and log_date
+                command.Parameters.AddWithValue("@student_id", studentId) ' Use the retrieved student_id
                 command.Parameters.AddWithValue("@log_date", datenow)
 
                 ' Execute the scalar query to check if there is already a time-in record
@@ -30,7 +56,9 @@ Public Class Form1
                     MessageBox.Show("You have already timed in for today.", "Time-in Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Return ' Exit the function to prevent another time-in
                 Else
-                    ' If no record exists, call the Timein function
+                    ' If no record exists, call the Timein function or insert the time-in record
+                    con.Close()
+                    ' Call the function to log time-in here
                     Timein()
                 End If
             End Using
@@ -45,6 +73,7 @@ Public Class Form1
                 con.Close()
             End If
         End Try
+
         'Timein()
     End Sub
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
@@ -115,18 +144,25 @@ Public Class Form1
 
         Dim studentId As Integer
         Dim classId As Integer
+        Dim studentNumber As String = Guna2TextBox4.Text ' Assume the student number is entered in a TextBox
+
+        ' Check if the student number is provided
+        If String.IsNullOrEmpty(studentNumber) Then
+            MessageBox.Show("Please enter a valid student number.")
+            Return
+        End If
 
         Try
-            openCon()
+            openCon() ' Assuming this opens the database connection
 
-            ' SQL query to select student and class ID
+            ' SQL query to select student and class ID, updated with the correct column name
             Dim selectQuery As String = "SELECT s.student_id, c.class_id 
-                                     FROM student_info s 
-                                     INNER JOIN class_info c ON s.student_id = c.student_id
-                                     WHERE s.student_number = @student_number"
+                                   FROM student_info s 
+                                   INNER JOIN class_info c ON s.student_id = c.student_id
+                                   WHERE s.student_number = @student_number" ' Use the correct column name here
 
             Using selectCommand As New MySqlCommand(selectQuery, con)
-                selectCommand.Parameters.AddWithValue("@student_number", STUDENT_NUMBER)
+                selectCommand.Parameters.AddWithValue("@student_number", studentNumber)
 
                 Using reader As MySqlDataReader = selectCommand.ExecuteReader()
                     If reader.Read() Then
@@ -142,7 +178,7 @@ Public Class Form1
 
             ' Insert the time-in log into the attendance_log table
             Dim insertQuery As String = "INSERT INTO attendance_log (log_date, time_in, time_out, status, student_id, class_id) 
-                                     VALUES (@log_date, @time_in, @time_out, @status, @student_id, @class_id)"
+                                   VALUES (@log_date, @time_in, @time_out, @status, @student_id, @class_id)"
 
             Using insertCommand As New MySqlCommand(insertQuery, con)
                 insertCommand.Parameters.AddWithValue("@log_date", datenow)
@@ -210,6 +246,6 @@ Public Class Form1
     End Sub
 
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
-        STUDENT_NUMBER = Guna2TextBox4.Text
+        STUDENT_NUMBER = Guna2TextBox4.Text.Trim
     End Sub
 End Class
