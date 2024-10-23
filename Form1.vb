@@ -81,9 +81,9 @@ Public Class Form1
         Timeout()
     End Sub
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-        Guna2TextBox1.Clear()
-        Guna2TextBox2.Clear()
-        Guna2TextBox3.Clear()
+        Guna2TextBox1.Text = ""
+        Guna2TextBox2.Text = ""
+        Guna2TextBox3.Text = ""
         Guna2TextBox4.Clear()
     End Sub
     Private Sub Guna2TextBox4_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox4.KeyDown
