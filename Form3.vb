@@ -2,9 +2,12 @@
 Imports MySql.Data.MySqlClient
 Imports System.Drawing.Imaging
 Imports System.Runtime.ConstrainedExecution
+Imports System.Transactions
 Imports ZXing
 
 Public Class Form3
+    Private ReadOnly time_start As Object
+
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -113,13 +116,13 @@ Public Class Form3
         'End Try
 
         Dim stud_ID = Guna2TextBox7.Text
-        Dim query = "SELECT COUNT(*) FROM crudStud WHERE stud_ID = @stud_ID"
+        Dim query = "SELECT COUNT(*) FROM student_info WHERE student_number = @student_number"
         openCon() ' Open the connection
 
         Try
             Using command As New MySqlCommand(query, con)
                 ' Add parameter to prevent SQL injection and ensure proper casting
-                command.Parameters.AddWithValue("@stud_ID", stud_ID)
+                command.Parameters.AddWithValue("@student_number", stud_ID)
 
                 ' ExecuteScalar will return the count, cast it to Integer
                 Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
@@ -148,35 +151,84 @@ Public Class Form3
     End Sub
 
     Public Sub ADDUSER()
-        ' Dim lastName, givenName As Guna2TextBox1.Text Guna2TextBox4.Text
-        ' , givenName, middleNAme, year, section, course, studentStatus, email, number, address, studentID, barCode
+
+        Dim studentNumber = Guna2TextBox7.Text
+        Dim studentId As Integer
+
+
         Try
-            openCon()
-            Dim query As String = "INSERT INTO crudStud (stud_ID, lname, gname, mname, year, section, course, studstat, email, contact, address, bcode) VALUES (@stud_ID, @lname, @gname, @mname, @year, @section, @course, @studstat, @email, @contact, @address, @bcode)"
-            Using command1 As New MySqlCommand(query, con)
-                command1.Parameters.AddWithValue("@stud_ID", Guna2TextBox7.Text)
-                command1.Parameters.AddWithValue("@lname", Guna2TextBox1.Text)
-                command1.Parameters.AddWithValue("@gname", Guna2TextBox4.Text)
-                command1.Parameters.AddWithValue("@mname", Guna2TextBox2.Text)
-                command1.Parameters.AddWithValue("@year", Guna2TextBox6.Text)
-                command1.Parameters.AddWithValue("@section", Guna2TextBox5.Text)
-                command1.Parameters.AddWithValue("@course", Guna2ComboBox1.Text)
-                command1.Parameters.AddWithValue("@studstat", Guna2ComboBox2.Text)
-                command1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
-                command1.Parameters.AddWithValue("@contact", Guna2TextBox9.Text)
-                command1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
-                command1.Parameters.AddWithValue("@bcode", Guna2TextBox7.Text)
+            Dim insertStudentInfo As String = "INSERT INTO student_info (student_number, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status)
+                                               VALUES (@student_number, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status);
+                                               SELECT LAST_INSERT_ID();"
+            Dim insertStudentClass As String = "INSERT INTO class_info (school_year, year, section, time_start, time_end, student_id, professor_id, course_id)
+                                                VALUES (@school_year, @year, @section, @time_start, @time_end, @student_id, @professor_id, @course_id)"
 
-                command1.ExecuteNonQuery()
-                MessageBox.Show($"Student recorded!")
+            Using cmd1 As New MySqlCommand(insertStudentInfo, con)
+                cmd1.Parameters.AddWithValue("@student_number", studentNumber)
+                cmd1.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
+                cmd1.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
+                cmd1.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
+                cmd1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
+                cmd1.Parameters.AddWithValue("@contact_number", Guna2TextBox9.Text)
+                cmd1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
+                cmd1.Parameters.AddWithValue("@student_type", Guna2ComboBox2.Text)
+                cmd1.Parameters.AddWithValue("@student_status", "E")
+                cmd1.ExecuteNonQuery()
 
+                studentId = Convert.ToInt32(cmd1.ExecuteScalar())
             End Using
+
+
+            'add missing data
+            Using cmd2 As New MySqlCommand(insertStudentClass, con)
+                'cmd2.Parameters.AddWithValue("@school_year", school_year.Text)
+                'cmd2.Parameters.AddWithValue("@year", Year.Text)
+                'cmd2.Parameters.AddWithValue("@section", section.Text)
+                'cmd2.Parameters.AddWithValue("@time_start", time_start.Text)
+                'cmd2.Parameters.AddWithValue("@time_end", time_end.Text)
+                cmd2.Parameters.AddWithValue("@student_id", studentId)
+                'cmd2.Parameters.AddWithValue("@professor_id", professor_id.Text)
+                'cmd2.Parameters.AddWithValue("@course_id", course_id.Text)
+                cmd2.ExecuteNonQuery()
+            End Using
+
+            MessageBox.Show($"Student recorded!")
+
         Catch ex As Exception
             MessageBox.Show($"Error inserting Student" & ex.Message)
 
-        Finally
-            con.Close()
         End Try
+
+
+        ' Dim lastName, givenName As Guna2TextBox1.Text Guna2TextBox4.Text
+        ' , givenName, middleNAme, year, section, course, studentStatus, email, number, address, studentID, barCode
+        'Try
+        '    openCon()
+        '    Dim query As String = "INSERT INTO crudStud (stud_ID, lname, gname, mname, year, section, course, studstat, email, contact, address, bcode) VALUES (@stud_ID, @lname, @gname, @mname, @year, @section, @course, @studstat, @email, @contact, @address, @bcode)"
+        '    Using command1 As New MySqlCommand(query, con)
+        '        command1.Parameters.AddWithValue("@stud_ID", Guna2TextBox7.Text)
+        '        command1.Parameters.AddWithValue("@lname", Guna2TextBox1.Text)
+        '        command1.Parameters.AddWithValue("@gname", Guna2TextBox4.Text)
+        '        command1.Parameters.AddWithValue("@mname", Guna2TextBox2.Text)
+        '        command1.Parameters.AddWithValue("@year", Guna2TextBox6.Text)
+        '        command1.Parameters.AddWithValue("@section", Guna2TextBox5.Text)
+        '        command1.Parameters.AddWithValue("@course", Guna2ComboBox1.Text)
+        '        command1.Parameters.AddWithValue("@studstat", Guna2ComboBox2.Text)
+        '        command1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
+        '        command1.Parameters.AddWithValue("@contact", Guna2TextBox9.Text)
+        '        command1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
+        '        command1.Parameters.AddWithValue("@bcode", Guna2TextBox7.Text)
+
+        '        command1.ExecuteNonQuery()
+        '        MessageBox.Show($"Student recorded!")
+
+        '    End Using
+        'Catch ex As Exception
+        '    MessageBox.Show($"Error inserting Student" & ex.Message)
+
+        'Finally
+        '    con.Close()
+        'End Try
     End Sub
 
     Public Sub Clear()
