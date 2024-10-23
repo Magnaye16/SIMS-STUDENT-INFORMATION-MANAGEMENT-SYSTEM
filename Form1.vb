@@ -139,35 +139,32 @@ Public Class Form1
 
     Private Sub Timein()
         Dim currentDate As DateTime = DateTime.Now
-        Dim timenow As String = currentDate.ToString("hh:mm:ss")
+        Dim timenow As String = currentDate.ToString("HH:mm:ss") ' Use 24-hour format for better comparison
         Dim datenow As String = currentDate.ToString("MMMM dd, yyyy")
 
         Dim studentId As Integer
         Dim classId As Integer
-        Dim studentNumber As String = Guna2TextBox4.Text ' Assume the student number is entered in a TextBox
-
-        ' Check if the student number is provided
-        If String.IsNullOrEmpty(studentNumber) Then
-            MessageBox.Show("Please enter a valid student number.")
-            Return
-        End If
+        Dim classStartTime As TimeSpan ' Change this to TimeSpan to correctly retrieve time_start as TimeSpan
+        Dim studentStatus As String
+        Dim gracePeriodMinutes As Integer = 15 ' Define a grace period for being late
 
         Try
             openCon() ' Assuming this opens the database connection
 
-            ' SQL query to select student and class ID, updated with the correct column name
-            Dim selectQuery As String = "SELECT s.student_id, c.class_id 
-                                   FROM student_info s 
-                                   INNER JOIN class_info c ON s.student_id = c.student_id
-                                   WHERE s.student_number = @student_number" ' Use the correct column name here
+            ' SQL query to select student and class ID, and class start time
+            Dim selectQuery As String = "SELECT s.student_id, c.class_id, c.time_start 
+                          FROM student_info s 
+                          INNER JOIN class_info c ON s.student_id = c.student_id
+                          WHERE s.student_number = @student_number"
 
             Using selectCommand As New MySqlCommand(selectQuery, con)
-                selectCommand.Parameters.AddWithValue("@student_number", studentNumber)
+                selectCommand.Parameters.AddWithValue("@student_number", STUDENT_NUMBER)
 
                 Using reader As MySqlDataReader = selectCommand.ExecuteReader()
                     If reader.Read() Then
                         studentId = Convert.ToInt32(reader("student_id"))
                         classId = Convert.ToInt32(reader("class_id"))
+                        classStartTime = CType(reader("time_start"), TimeSpan) ' Retrieve class start time as TimeSpan
                     Else
                         ' Notify user if student is not found
                         MessageBox.Show("Student number does not exist.")
@@ -176,21 +173,33 @@ Public Class Form1
                 End Using
             End Using
 
-            ' Insert the time-in log into the attendance_log table
+            ' Convert current time to TimeSpan for comparison
+            Dim timeInNow As TimeSpan = currentDate.TimeOfDay ' Get the current time as TimeSpan
+
+            ' Calculate if the student is On Time, Late, or Absent
+            If timeInNow <= classStartTime Then
+                studentStatus = "P" ' present
+            ElseIf timeInNow <= classStartTime.Add(TimeSpan.FromMinutes(gracePeriodMinutes)) Then
+                studentStatus = "L" ' late
+            Else
+                studentStatus = "A" ' absent
+            End If
+
+            ' Insert the time-in log into the attendance_log table with status
             Dim insertQuery As String = "INSERT INTO attendance_log (log_date, time_in, time_out, status, student_id, class_id) 
-                                   VALUES (@log_date, @time_in, @time_out, @status, @student_id, @class_id)"
+                          VALUES (@log_date, @time_in, @time_out, @status, @student_id, @class_id)"
 
             Using insertCommand As New MySqlCommand(insertQuery, con)
                 insertCommand.Parameters.AddWithValue("@log_date", datenow)
                 insertCommand.Parameters.AddWithValue("@time_in", timenow)
                 insertCommand.Parameters.AddWithValue("@time_out", DBNull.Value) ' Placeholder for time_out, assuming they will check out later
-                insertCommand.Parameters.AddWithValue("@status", "P") ' "P" for Present. You can adjust this later.
+                insertCommand.Parameters.AddWithValue("@status", studentStatus) ' Status based on time comparison
                 insertCommand.Parameters.AddWithValue("@student_id", studentId)
                 insertCommand.Parameters.AddWithValue("@class_id", classId)
 
                 ' Execute the insert query
                 Dim rowsAffected As Integer = insertCommand.ExecuteNonQuery()
-                MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}", "Time in")
+                MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}{Environment.NewLine}Status: {studentStatus}", "Time in")
             End Using
 
         Catch ex As Exception
@@ -201,6 +210,8 @@ Public Class Form1
             ' Ensure connection is closed
             con.Close()
         End Try
+
+
     End Sub
 
 
