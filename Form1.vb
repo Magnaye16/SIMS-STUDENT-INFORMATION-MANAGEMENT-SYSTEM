@@ -142,7 +142,7 @@ Public Class Form1
 
                 ' Execute the insert query and show a success message
                 Dim rowsAffected As Integer = insertCommand.ExecuteNonQuery()
-                MessageBox.Show($"Time in recorded!{Environment.NewLine}Time in at: {timenow}{Environment.NewLine}Status: {studentStatus}", "Time in")
+                MessageBox.Show($"Recorded!{Environment.NewLine}Time in at: {timenow}{Environment.NewLine}Status: {studentStatus}", "Time in")
             End Using
 
         Catch ex As Exception
@@ -236,7 +236,7 @@ Public Class Form1
 
                 If count > 0 Then
                     ' If a record exists, notify the user
-                    MessageBox.Show("You have already timed in for today.", "Time-in Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("You're present today!'.", "Time-in Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Return ' Exit the function to prevent another time-in
                 Else
                     ' If no record exists, proceed to log time-in
