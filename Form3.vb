@@ -247,43 +247,42 @@ Public Class Form3
         Guna2ComboBox2.Text = ""
     End Sub
 
-    Public Sub Sendcreatedemail()
-        Dim name As String = Guna2TextBox1.Text + ", " + Guna2TextBox4.Text + " " + Guna2TextBox2.Text
+    'Public Sub Sendcreatedemail()
+    '    Dim name As String = Guna2TextBox1.Text + ", " + Guna2TextBox4.Text + " " + Guna2TextBox2.Text
 
-        Try
-            ' Set up the email configuration
-            Dim smtpClient As New SmtpClient
-            smtpClient.UseDefaultCredentials = False
-            smtpClient.Credentials = New System.Net.NetworkCredential("magnayejohnroi@gmail.com", "hynyggnexxswbcjm")
-            smtpClient.Port = 587 ' Use the appropriate port for your SMTP server
-            smtpClient.EnableSsl = True ' Enable SSL if required by your SMTP server
-            smtpClient.Host = "smtp.gmail.com"
+    '    Try
+    '        ' Set up the email configuration
+    '        Dim smtpClient As New SmtpClient
+    '        smtpClient.UseDefaultCredentials = False
+    '        smtpClient.Credentials = New System.Net.NetworkCredential("magnayejohnroi@gmail.com", "hynyggnexxswbcjm")
+    '        smtpClient.Port = 587 ' Use the appropriate port for your SMTP server
+    '        smtpClient.EnableSsl = True ' Enable SSL if required by your SMTP server
+    '        smtpClient.Host = "smtp.gmail.com"
 
-            ' Create the MailMessage object
-            Dim mail As New MailMessage()
-            mail.From = New MailAddress("magnayejohnroi@gmail.com")
-            If Not String.IsNullOrEmpty(Guna2TextBox8.Text) Then
-                mail.To.Add(Guna2TextBox8.Text)
-            Else
-                MessageBox.Show("Recipient's email address is empty.")
-                Exit Sub ' Exit the subroutine if the recipient's email address is empty
-            End If
-            mail.Subject = "Payslip for " + name
-            mail.Body = "Here is your payslip for this month" + Guna2TextBox1.Text
+    '        ' Create the MailMessage object
+    '        Dim mail As New MailMessage()
+    '        mail.From = New MailAddress("magnayejohnroi@gmail.com")
+    '        If Not String.IsNullOrEmpty(Guna2TextBox8.Text) Then
+    '            mail.To.Add(Guna2TextBox8.Text)
+    '        Else
+    '            MessageBox.Show("Recipient's email address is empty.")
+    '            Exit Sub ' Exit the subroutine if the recipient's email address is empty
+    '        End If
+    '        mail.Subject = "Payslip for " + name
+    '        mail.Body = "Here is your payslip for this month" + Guna2TextBox1.Text
 
-            ' Attach the image file
-            Dim filename As String = name
-            Dim attachment As New Attachment("C:\Users\John Roi\Documents\Visual Studio 2015\Projects\100+_Payroll\80+_Payroll\Payroll\Payroll\PAYSLIP PDF\" + employeeName + "_" + p_date + ".pdf")
-            mail.Attachments.Add(attachment)
+    '        ' Attach the image file
+    '        Dim filename As String = name
+    '        Dim attachment As New Attachment("C:\Users\John Roi\Documents\Visual Studio 2015\Projects\100+_Payroll\80+_Payroll\Payroll\Payroll\PAYSLIP PDF\" + employeeName + "_" + p_date + ".pdf")
+    '        mail.Attachments.Add(attachment)
 
 
-            ' Send the email
-            smtpClient.Send(mail)
+    '        ' Send the email
+    '        smtpClient.Send(mail)
 
-            MessageBox.Show("Email sent successfully.")
-        Catch ex As Exception
-            MessageBox.Show("Error sending email: " & ex.Message)
-        End Try
-    End Sub
+    '        MessageBox.Show("Email sent successfully.")
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error sending email: " & ex.Message)
+    '    End Try
 
 End Class
