@@ -20,8 +20,6 @@ Public Class Form3
         'generate qr
         Dim qrstring As String = Guna2TextBox2.Text
 
-
-
         ' Create a barcode writer
         Dim barcodeWriter As New BarcodeWriter
         barcodeWriter.Format = BarcodeFormat.CODE_128 ' < barcode
@@ -45,17 +43,6 @@ Public Class Form3
         Dim qrCodeBitmap As Bitmap = Guna2PictureBox1.Image
         qrCodeBitmap.Save(filePath, ImageFormat.Png)
         MsgBox("Code has been generated and saved as " & filePath)
-
-        'close
-        'Dim result = MessageBox.Show("Do you want to send Qr Code", "Send Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-        '' Check the user's response
-        'If result = DialogResult.No Then
-        '    Close()
-        'Else
-        '    'Sendcreatedemail()
-        '    Close()
-        'End If
     End Sub
 
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
@@ -81,39 +68,8 @@ Public Class Form3
             'Clear
             Return
         Else
-            'ADDUSER()
+            ADDUSER()
         End If
-
-        'check if user already already exist
-        'Dim stud_ID = Guna2TextBox7.Text
-        'Dim query = "SELECT COUNT(*) FROM crudsstud WHERE stud_ID = @stud_ID "
-        'openCon()
-
-        'Try
-
-        '    Using command As New MySqlCommand(query, con)
-        '        command.Parameters.AddWithValue("@stud_ID", stud_ID)
-
-        '        Dim count As Integer = command.ExecuteScalar
-
-        '        If count > 0 Then
-        '            MessageBox.Show("This user already already exists.")
-        '            con.Close()
-        '            'Clear
-        '            Return
-        '        ElseIf count = 0 Then
-
-        '            'insert all the info
-        '            ADDUSER()
-        '            Dispose()
-        '            'Form1.Show()
-        '        End If
-        '    End Using
-        'Catch ex As Exception
-        'Finally
-        '    'Clear()
-
-        'End Try
 
         Dim stud_ID = Guna2TextBox7.Text
         Dim query = "SELECT COUNT(*) FROM student_info WHERE student_number = @student_number"
@@ -157,14 +113,15 @@ Public Class Form3
 
 
         Try
-            Dim insertStudentInfo As String = "INSERT INTO student_info (student_number, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status)
-                                               VALUES (@student_number, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status);
+            Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status)
+                                               VALUES (@student_id, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status);
                                                SELECT LAST_INSERT_ID();"
+
             Dim insertStudentClass As String = "INSERT INTO class_info (school_year, year, section, time_start, time_end, student_id, professor_id, course_id)
                                                 VALUES (@school_year, @year, @section, @time_start, @time_end, @student_id, @professor_id, @course_id)"
 
             Using cmd1 As New MySqlCommand(insertStudentInfo, con)
-                cmd1.Parameters.AddWithValue("@student_number", studentNumber)
+                cmd1.Parameters.AddWithValue("@student_id", studentNumber)
                 cmd1.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
                 cmd1.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
                 cmd1.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
@@ -178,17 +135,9 @@ Public Class Form3
                 studentId = Convert.ToInt32(cmd1.ExecuteScalar())
             End Using
 
-
             'add missing data
             Using cmd2 As New MySqlCommand(insertStudentClass, con)
-                'cmd2.Parameters.AddWithValue("@school_year", school_year.Text)
-                'cmd2.Parameters.AddWithValue("@year", Year.Text)
-                'cmd2.Parameters.AddWithValue("@section", section.Text)
-                'cmd2.Parameters.AddWithValue("@time_start", time_start.Text)
-                'cmd2.Parameters.AddWithValue("@time_end", time_end.Text)
                 cmd2.Parameters.AddWithValue("@student_id", studentId)
-                'cmd2.Parameters.AddWithValue("@professor_id", professor_id.Text)
-                'cmd2.Parameters.AddWithValue("@course_id", course_id.Text)
                 cmd2.ExecuteNonQuery()
             End Using
 
@@ -198,37 +147,6 @@ Public Class Form3
             MessageBox.Show($"Error inserting Student" & ex.Message)
 
         End Try
-
-
-        ' Dim lastName, givenName As Guna2TextBox1.Text Guna2TextBox4.Text
-        ' , givenName, middleNAme, year, section, course, studentStatus, email, number, address, studentID, barCode
-        'Try
-        '    openCon()
-        '    Dim query As String = "INSERT INTO crudStud (stud_ID, lname, gname, mname, year, section, course, studstat, email, contact, address, bcode) VALUES (@stud_ID, @lname, @gname, @mname, @year, @section, @course, @studstat, @email, @contact, @address, @bcode)"
-        '    Using command1 As New MySqlCommand(query, con)
-        '        command1.Parameters.AddWithValue("@stud_ID", Guna2TextBox7.Text)
-        '        command1.Parameters.AddWithValue("@lname", Guna2TextBox1.Text)
-        '        command1.Parameters.AddWithValue("@gname", Guna2TextBox4.Text)
-        '        command1.Parameters.AddWithValue("@mname", Guna2TextBox2.Text)
-        '        command1.Parameters.AddWithValue("@year", Guna2TextBox6.Text)
-        '        command1.Parameters.AddWithValue("@section", Guna2TextBox5.Text)
-        '        command1.Parameters.AddWithValue("@course", Guna2ComboBox1.Text)
-        '        command1.Parameters.AddWithValue("@studstat", Guna2ComboBox2.Text)
-        '        command1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
-        '        command1.Parameters.AddWithValue("@contact", Guna2TextBox9.Text)
-        '        command1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
-        '        command1.Parameters.AddWithValue("@bcode", Guna2TextBox7.Text)
-
-        '        command1.ExecuteNonQuery()
-        '        MessageBox.Show($"Student recorded!")
-
-        '    End Using
-        'Catch ex As Exception
-        '    MessageBox.Show($"Error inserting Student" & ex.Message)
-
-        'Finally
-        '    con.Close()
-        'End Try
     End Sub
 
     Public Sub Clear()
