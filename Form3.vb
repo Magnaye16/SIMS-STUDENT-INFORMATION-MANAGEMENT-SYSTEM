@@ -104,7 +104,7 @@ Public Class Form3
         Dim address As String = Guna2TextBox3.Text
 
 
-        Dim imagePath As String = "C:\Users\John Roi\source\repos\tezt\docu\" + lastname + "_" + studID ' Path to the image file
+        Dim imagePath As String = "C:\Users\John Roi\source\repos\tezt\docu\" + lastname + "_" + studID' Path to the image file
 
         ' Generate a customized file name based on student's name and current date/time
         Dim sanitizedStudentName As String = lastname.Replace(" ", "_") ' Remove spaces in the file name
