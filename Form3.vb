@@ -42,7 +42,7 @@ Public Class Form3
     End Sub
 
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-        Dim filename = Guna2TextBox2.Text + "_" + Guna2TextBox1.Text ' <<< UID DAPAT (TEMPORARY)
+        Dim filename = Guna2TextBox1.Text + "_" + Guna2TextBox7.Text ' <<< UID DAPAT (TEMPORARY)
         Dim filePath = "C:\Users\John Roi\source\repos\SMS(Student Management System)\Generated QR\" + filename + ".jpg"
         Dim qrCodeBitmap As Bitmap = Guna2PictureBox1.Image
         qrCodeBitmap.Save(filePath, ImageFormat.Png)
@@ -104,7 +104,7 @@ Public Class Form3
         Dim address As String = Guna2TextBox3.Text
 
 
-        Dim imagePath As String = "C:\Users\John Roi\source\repos\tezt\docu\" + ' Path to the image file
+        Dim imagePath As String = "C:\Users\John Roi\source\repos\tezt\docu\" + lastname + "_" + studID ' Path to the image file
 
         ' Generate a customized file name based on student's name and current date/time
         Dim sanitizedStudentName As String = lastname.Replace(" ", "_") ' Remove spaces in the file name

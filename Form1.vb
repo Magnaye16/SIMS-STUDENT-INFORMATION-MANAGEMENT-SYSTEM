@@ -162,7 +162,7 @@ Public Class Form1
         Dim timenow As String = currentDate.ToString("HH:mm:ss") ' Use 24-hour format for MySQL TIME type
         Dim datenow As String = currentDate.ToString("yyyy-MM-dd")
 
-        Dim studentId As Integer
+
 
         Try
             openCon()
@@ -186,7 +186,7 @@ Public Class Form1
             ' Update attendance_log to set time_out for the retrieved student_id
             Dim updateQuery As String = "UPDATE attendance_log SET time_out = @time_out WHERE student_id = @student_id AND log_date = @log_date AND time_out IS NULL"
             Using updateCommand As New MySqlCommand(updateQuery, con)
-                updateCommand.Parameters.AddWithValue("@student_id", studentId) ' Use the retrieved studentId
+                updateCommand.Parameters.AddWithValue("@student_id", STUDENT_ID) ' Use the retrieved studentId
                 updateCommand.Parameters.AddWithValue("@time_out", timenow) ' Correctly formatted time
                 updateCommand.Parameters.AddWithValue("@log_date", datenow) ' Correctly formatted date
 
