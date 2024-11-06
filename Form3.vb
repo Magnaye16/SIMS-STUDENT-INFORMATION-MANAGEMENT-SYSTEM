@@ -1,4 +1,5 @@
-﻿Imports DocumentFormat.OpenXml.Packaging
+﻿Imports DocumentFormat.OpenXml.Drawing.Diagrams
+Imports DocumentFormat.OpenXml.Packaging
 Imports DocumentFormat.OpenXml.Wordprocessing
 Imports Guna.UI2.WinForms
 Imports MySql.Data.MySqlClient
@@ -6,6 +7,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Net.Mail
 Imports System.Runtime.ConstrainedExecution
+Imports System.Text.RegularExpressions
 Imports System.Transactions
 Imports ZXing
 
@@ -72,7 +74,14 @@ Public Class Form3
             Return
         Else
             ADDUSER()
+            Dim email As String = Guna2TextBox8.Text
 
+            If Not IsValidEmail(email) Then
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            Else
+                SendEmail(email)
+            End If
         End If
         checkerforadduser()
 
@@ -382,4 +391,46 @@ Public Class Form3
     Private Sub Guna2TextBox7_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox7.TextChanged
         Autogencode()
     End Sub
+
+    Private Function IsValidEmail(email As String) As Boolean
+        Dim emailPattern As String = "^[^@\s]+@[^@\s]+\.[^@\s]+$"
+        Return Regex.IsMatch(email, emailPattern)
+    End Function
+
+    Private Sub SendEmail(email As String)
+        Try
+            Dim smtpClient As New SmtpClient("smtp.gmail.com")
+            smtpClient.Port = 587
+            smtpClient.Credentials = New Net.NetworkCredential("email@gmail.com", "app-password") 'Gmail and App Password
+            smtpClient.EnableSsl = True
+
+            Dim usernameText As String = Guna2TextBox1.Text + "_" + Guna2TextBox4.Text
+            Dim passwordText As String = GenerateRandomString(8)
+
+            Dim mail As New MailMessage()
+            mail.From = New MailAddress("email@gmail.com") ' Replace
+            mail.To.Add(email)
+            mail.Subject = "QCU Account"
+            mail.Body = "You can now log in." & vbCrLf & "Username: " & usernameText & vbCrLf & "Password: " & passwordText
+
+            smtpClient.Send(mail)
+            MessageBox.Show("Email sent successfully to " & email, "Email Sent", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Failed to send email: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Function GenerateRandomString(length As Integer) As String
+        Dim characters As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        Dim random As New Random()
+        Dim result As New System.Text.StringBuilder()
+
+        For i As Integer = 1 To length
+            Dim index As Integer = random.Next(0, characters.Length)
+            result.Append(characters(index))
+        Next
+
+        Return result.ToString()
+    End Function
 End Class
