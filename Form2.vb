@@ -10,6 +10,7 @@
     End Sub
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
         switchPanel(Form4)
+        Form4.LoadAttendanceTable()
         Guna2Button1.FillColor = Color.White
         Guna2Button1.ForeColor = Color.Black
         Guna2Button1.Font = New Font(Guna2Button1.Font, FontStyle.Regular)
