@@ -30,6 +30,8 @@ Partial Class Form2
         Dim CustomizableEdges6 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Dim CustomizableEdges7 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges8 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges9 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Guna2vSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
         Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
@@ -38,6 +40,7 @@ Partial Class Form2
         Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2CirclePictureBox3 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
+        Guna2Button3 = New Guna.UI2.WinForms.Guna2Button()
         CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -98,7 +101,7 @@ Partial Class Form2
         Guna2Button2.FillColor = Color.Black
         Guna2Button2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button2.ForeColor = Color.White
-        Guna2Button2.Location = New Point(12, 152)
+        Guna2Button2.Location = New Point(12, 199)
         Guna2Button2.Name = "Guna2Button2"
         Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges6
         Guna2Button2.Size = New Size(209, 41)
@@ -142,12 +145,34 @@ Partial Class Form2
         Guna2CirclePictureBox3.TabStop = False
         Guna2CirclePictureBox3.UseTransparentBackground = True
         ' 
+        ' Guna2Button3
+        ' 
+        Guna2Button3.Animated = True
+        Guna2Button3.BackColor = Color.Transparent
+        Guna2Button3.BorderRadius = 6
+        Guna2Button3.CustomizableEdges = CustomizableEdges8
+        Guna2Button3.DisabledState.BorderColor = Color.DarkGray
+        Guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray
+        Guna2Button3.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        Guna2Button3.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        Guna2Button3.FillColor = Color.Black
+        Guna2Button3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2Button3.ForeColor = Color.White
+        Guna2Button3.Location = New Point(12, 152)
+        Guna2Button3.Name = "Guna2Button3"
+        Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges9
+        Guna2Button3.Size = New Size(209, 41)
+        Guna2Button3.TabIndex = 11
+        Guna2Button3.Text = "ENLISTMENT"
+        Guna2Button3.TextAlign = HorizontalAlignment.Left
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(1080, 662)
+        Controls.Add(Guna2Button3)
         Controls.Add(Guna2CirclePictureBox3)
         Controls.Add(Guna2HtmlLabel2)
         Controls.Add(Guna2HtmlLabel1)
@@ -173,4 +198,5 @@ Partial Class Form2
     Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2HtmlLabel2 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2CirclePictureBox3 As Guna.UI2.WinForms.Guna2CirclePictureBox
+    Friend WithEvents Guna2Button3 As Guna.UI2.WinForms.Guna2Button
 End Class

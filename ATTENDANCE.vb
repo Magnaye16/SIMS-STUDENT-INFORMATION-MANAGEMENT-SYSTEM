@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports MySql.Data.MySqlClient
 
-Public Class Form1
+Public Class ATTENDANCE
 
     Private STUDENT_ID As String
     Dim currentDate As DateTime = DateTime.Now
@@ -83,45 +83,6 @@ Public Class Form1
         Catch ex As Exception
             MessageBox.Show("Error Searching data: " & ex.Message)
         End Try
-
-
-        'If String.IsNullOrEmpty(STUDENT_ID) Then
-        '    MessageBox.Show("Please enter a valid student number.")
-        '    Return
-        'End If
-
-        'Try
-        '    openCon()
-
-        '    Dim query As String = "SELECT s.*, c.* FROM student_info s JOIN class_info c ON s.class_id = c.class_id WHERE s.student_id LIKE @searchText"
-
-        '    Using command As New MySqlCommand(query, con)
-        '        command.Parameters.AddWithValue("@searchText", "%" & STUDENT_ID & "%")
-
-        '        Using reader As MySqlDataReader = command.ExecuteReader()
-        '            If reader.Read() Then
-
-        '                Dim lname As String = If(IsDBNull(reader("last_name")), String.Empty, reader("last_name").ToString())
-        '                Dim gname As String = If(IsDBNull(reader("first_name")), String.Empty, reader("first_name").ToString())
-        '                Dim mname As String = If(IsDBNull(reader("middle_name")), String.Empty, reader("middle_name").ToString())
-
-        '                Guna2TextBox1.Text = lname & ", " & gname & " " & mname
-
-        '                Guna2TextBox2.Text = If(IsDBNull(reader("section")), String.Empty, reader("section").ToString())
-        '                Guna2TextBox3.Text = If(IsDBNull(reader("year")), String.Empty, reader("year").ToString())
-        '            Else
-        '                MessageBox.Show("No records found.")
-        '            End If
-        '        End Using
-        '    End Using
-
-        'Catch ex As Exception
-        '    MessageBox.Show("Error Searching data: " & ex.Message)
-        'Finally
-        '    If con IsNot Nothing AndAlso con.State = ConnectionState.Open Then
-        '        con.Close()
-        '    End If
-        'End Try
     End Sub
 
     Private Sub TimeIn()

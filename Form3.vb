@@ -20,9 +20,9 @@ Public Class Form3
 
     End Sub
 
-    Private Sub Guna2Button5_Click(sender As Object, e As EventArgs) Handles Guna2Button5.Click
+    Private Sub Guna2Button5_Click(sender As Object, e As EventArgs)
         'generate qr
-        Dim qrstring As String = Guna2TextBox2.Text
+        Dim qrstring = Guna2TextBox2.Text
 
         ' Create a barcode writer
         Dim barcodeWriter As New BarcodeWriter
@@ -76,8 +76,6 @@ Public Class Form3
         End If
         checkerforadduser()
 
-
-
     End Sub
 
 
@@ -85,6 +83,27 @@ Public Class Form3
 
 
     'funtionss
+
+    Private Sub Autogencode()
+        'generate qr
+        Dim qrstring As String = Guna2TextBox2.Text
+
+        ' Create a barcode writer
+        Dim barcodeWriter As New BarcodeWriter
+        barcodeWriter.Format = BarcodeFormat.CODE_128 ' < barcode
+
+        ' Set encoding properties (optional)
+        barcodeWriter.Options = New Common.EncodingOptions With {
+            .Width = 300,
+            .Height = 300
+        }
+
+        ' Generate the QR code bitmap
+        Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
+
+        ' Display the QR code bitmap in a PictureBox or save it to a file
+        Guna2PictureBox1.Image = qrCodeBitmap
+    End Sub
 
     Private Sub insertdatatodocu()
         ' Path to the template document
@@ -104,7 +123,7 @@ Public Class Form3
         Dim address As String = Guna2TextBox3.Text
 
 
-        Dim imagePath As String = "C:\Users\John Roi\source\repos\tezt\docu\" + lastname + "_" + studID' Path to the image file
+        Dim imagePath As String = "C:\Users\John Roi\source\repos\tezt\docu\" + lastname + "_" + studID ' Path to the image file
 
         ' Generate a customized file name based on student's name and current date/time
         Dim sanitizedStudentName As String = lastname.Replace(" ", "_") ' Remove spaces in the file name
@@ -360,5 +379,7 @@ Public Class Form3
         End Try
     End Sub
 
-
+    Private Sub Guna2TextBox7_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox7.TextChanged
+        Autogencode()
+    End Sub
 End Class
