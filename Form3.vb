@@ -108,10 +108,10 @@ Public Class Form3
         }
 
         ' Generate the QR code bitmap
-        Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
+        'Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
 
         ' Display the QR code bitmap in a PictureBox or save it to a file
-        Guna2PictureBox1.Image = qrCodeBitmap
+        'Guna2PictureBox1.Image = qrCodeBitmap
     End Sub
 
     Private Sub insertdatatodocu()
@@ -298,6 +298,8 @@ Public Class Form3
 
 
         Try
+            openCon()
+
             Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status)
                                                VALUES (@student_id, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status);
                                                SELECT LAST_INSERT_ID();"
@@ -329,8 +331,9 @@ Public Class Form3
             MessageBox.Show($"Student recorded!")
 
         Catch ex As Exception
-            MessageBox.Show($"Error inserting Student" & ex.Message)
-
+            MessageBox.Show($"Error inserting Student: " & ex.Message)
+        Finally
+            con.Close()
         End Try
     End Sub
 
@@ -401,14 +404,14 @@ Public Class Form3
         Try
             Dim smtpClient As New SmtpClient("smtp.gmail.com")
             smtpClient.Port = 587
-            smtpClient.Credentials = New Net.NetworkCredential("email@gmail.com", "app-password") 'Gmail and App Password
+            smtpClient.Credentials = New Net.NetworkCredential("qcuschool98@gmail.com", "fscr zkhn jzef etmd")
             smtpClient.EnableSsl = True
 
             Dim usernameText As String = Guna2TextBox1.Text + "_" + Guna2TextBox4.Text
             Dim passwordText As String = GenerateRandomString(8)
 
             Dim mail As New MailMessage()
-            mail.From = New MailAddress("email@gmail.com") ' Replace
+            mail.From = New MailAddress("qcuschool98@gmail.com")
             mail.To.Add(email)
             mail.Subject = "QCU Account"
             mail.Body = "You can now log in." & vbCrLf & "Username: " & usernameText & vbCrLf & "Password: " & passwordText

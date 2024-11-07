@@ -1,19 +1,21 @@
 ﻿Imports DocumentFormat.OpenXml.Bibliography
+Imports DocumentFormat.OpenXml.ExtendedProperties
 Imports MySql.Data.MySqlClient
 
 Public Class Form4
     Public Sub LoadAttendanceTable()
         Try
+
             openCon()
 
             Dim query As String = "
-                    SELECT (s.last_name + ', ' + s.first_name + ' ' + a.middle_name) AS Name,
-                            a.log_date AS Date, a.time_in AS Time In, a.time_out AS Time Out, a.status AS Status,
+                    SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', s.middle_name) AS 'Full Name',
+                            a.log_date AS Date, a.time_in AS 'Time In', a.time_out AS 'Time Out', a.status,
                             c.year AS Year, c.section AS Section, c.class_day
                     FROM attendance_log AS a
                     INNER JOIN student_info AS s ON a.student_id = s.student_id
                     INNER JOIN class_info AS c ON a.class_id = c.class_id
-                    ORDER BY t1.DateAdded DESC;
+                    ORDER BY a.log_date DESC;
                 "
 
             Using adapter As New MySqlDataAdapter(query, con)
@@ -22,13 +24,19 @@ Public Class Form4
                 adapter.Fill(dataTable)
 
                 dataTable.Columns.Add("Day", GetType(String))
+                dataTable.Columns.Add("Remark", GetType(String))
 
                 For Each row As DataRow In dataTable.Rows
                     Dim dayNumber As Integer = Convert.ToInt32(row("class_day"))
                     row("Day") = GetDayName(dayNumber)
+
+                    Dim statusChar As Char = Convert.ToChar(row("status"))
+                    row("Remark") = CharToWord(statusChar)
                 Next
 
                 attendanceDGV.DataSource = dataTable
+                attendanceDGV.Columns("status").Visible = False
+                attendanceDGV.Columns("class_day").Visible = False
             End Using
         Catch ex As Exception
             MessageBox.Show("An error occurred: " & ex.Message)
@@ -50,5 +58,14 @@ Public Class Form4
         End Select
     End Function
 
+    Function CharToWord(ByVal character As Char) As String
+        Select Case character
+            Case "A"c : Return "Absent"
+            Case "P"c : Return "Present"
+            Case "L"c : Return "Late"
+            Case Else
+                Return "Unknown"
+        End Select
+    End Function
 
 End Class

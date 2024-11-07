@@ -5,7 +5,7 @@ Module Module1
 
     Sub openCon()
         'con.ConnectionString = "server=100.24.17.9; username=root; password=Alex0987654321!; database=SMS_DB"
-        con.ConnectionString = "Localhost; username=root; password=; database=SMS_DB"
+        con.ConnectionString = "server=Localhost; username=root; password=; database=SMS_DB"
         con.Open()
 
     End Sub
