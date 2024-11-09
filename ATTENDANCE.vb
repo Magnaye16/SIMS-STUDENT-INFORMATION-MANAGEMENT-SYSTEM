@@ -8,9 +8,6 @@ Public Class ATTENDANCE
     Dim timenow As String = currentDate.ToString("HH:mm:ss") ' 24-hour format
     Dim datenow As String = currentDate.ToString("yyyy-MM-dd")
 
-    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
-        'Timein()
-    End Sub
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
         'timeout
         Timeout()
