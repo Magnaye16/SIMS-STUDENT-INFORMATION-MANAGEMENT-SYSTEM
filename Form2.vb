@@ -36,5 +36,17 @@
         panel.Show()
     End Sub
 
+    Private Sub Guna2HtmlLabel3_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel3.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to log out?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
+        If result = DialogResult.Yes Then
+
+            Form1.Show()
+            Me.Hide()
+        End If
+    End Sub
+
+    Private Sub Guna2ImageButton1_Click(sender As Object, e As EventArgs) Handles Guna2ImageButton1.Click
+        Me.Close()
+    End Sub
 End Class

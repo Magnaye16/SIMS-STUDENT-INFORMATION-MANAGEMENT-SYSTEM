@@ -67,5 +67,52 @@ Public Class Form4
                 Return "Unknown"
         End Select
     End Function
+    Private Sub LoadResidentInformation(searchTerm As String)
+
+        Dim query As String = "
+                    SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', s.middle_name) AS 'Full Name',
+                            a.log_date AS Date, a.time_in AS 'Time In', a.time_out AS 'Time Out', a.status,
+                            c.year AS Year, c.section AS Section, c.class_day
+                    FROM attendance_log AS a
+                    INNER JOIN student_info AS s ON a.student_id = s.student_id
+                    INNER JOIN class_info AS c ON a.class_id = c.class_id
+                    ORDER BY a.log_date DESC;
+                "
+
+        Try
+            openCon()
+
+            Using command As New MySqlCommand(query, con)
+
+                command.Parameters.AddWithValue("@searchTerm", "%" & searchTerm & "%")
+
+                Using reader As MySqlDataReader = command.ExecuteReader()
+                    attendanceDGV.Rows.Clear()
+                    '
+                    If reader.Read() Then
+                        Dim fullname As String
+                        fullname = reader("last_name") + "," + reader("first_name") + " " + reader("middle_name")
+
+                        'insert to table
+                        While reader.Read()
+                            ' Add a new row to the DataGridView
+                            attendanceDGV.Rows.Add(reader(fullname), reader(""), reader("given_Name"), reader("middle_Name"), reader("address"))
+                        End While
+                    Else
+
+                        'loadform()
+                    End If
+                End Using
+            End Using
+
+        Catch ex As Exception
+            ' Handle any errors that may have occurred
+            'MessageBox.Show("An error occurred: " & ex.Message)
+        Finally
+            con.Close()
+        End Try
+
+    End Sub
+
 
 End Class

@@ -32,6 +32,7 @@ Partial Class Form2
         Dim CustomizableEdges7 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges8 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges9 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges10 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Guna2vSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
         Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
@@ -41,6 +42,8 @@ Partial Class Form2
         Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2CirclePictureBox3 = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Guna2Button3 = New Guna.UI2.WinForms.Guna2Button()
+        Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Guna2ImageButton1 = New Guna.UI2.WinForms.Guna2ImageButton()
         CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -166,12 +169,39 @@ Partial Class Form2
         Guna2Button3.Text = "ENLISTMENT"
         Guna2Button3.TextAlign = HorizontalAlignment.Left
         ' 
+        ' Guna2HtmlLabel3
+        ' 
+        Guna2HtmlLabel3.BackColor = Color.Transparent
+        Guna2HtmlLabel3.Font = New Font("Bahnschrift", 12F, FontStyle.Bold)
+        Guna2HtmlLabel3.ForeColor = Color.Red
+        Guna2HtmlLabel3.Location = New Point(84, 438)
+        Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
+        Guna2HtmlLabel3.Size = New Size(60, 21)
+        Guna2HtmlLabel3.TabIndex = 12
+        Guna2HtmlLabel3.Text = "LOGOUT"
+        ' 
+        ' Guna2ImageButton1
+        ' 
+        Guna2ImageButton1.CheckedState.ImageSize = New Size(64, 64)
+        Guna2ImageButton1.HoverState.ImageSize = New Size(64, 64)
+        Guna2ImageButton1.Image = CType(resources.GetObject("Guna2ImageButton1.Image"), Image)
+        Guna2ImageButton1.ImageOffset = New Point(0, 0)
+        Guna2ImageButton1.ImageRotate = 0F
+        Guna2ImageButton1.Location = New Point(1038, 11)
+        Guna2ImageButton1.Name = "Guna2ImageButton1"
+        Guna2ImageButton1.PressedState.ImageSize = New Size(64, 64)
+        Guna2ImageButton1.ShadowDecoration.CustomizableEdges = CustomizableEdges10
+        Guna2ImageButton1.Size = New Size(31, 28)
+        Guna2ImageButton1.TabIndex = 13
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(1080, 662)
+        Controls.Add(Guna2ImageButton1)
+        Controls.Add(Guna2HtmlLabel3)
         Controls.Add(Guna2Button3)
         Controls.Add(Guna2CirclePictureBox3)
         Controls.Add(Guna2HtmlLabel2)
@@ -181,6 +211,7 @@ Partial Class Form2
         Controls.Add(Guna2Panel1)
         Controls.Add(Guna2vSeparator1)
         Controls.Add(Guna2Separator1)
+        FormBorderStyle = FormBorderStyle.None
         Name = "Form2"
         ShowIcon = False
         StartPosition = FormStartPosition.CenterScreen
@@ -199,4 +230,6 @@ Partial Class Form2
     Friend WithEvents Guna2HtmlLabel2 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2CirclePictureBox3 As Guna.UI2.WinForms.Guna2CirclePictureBox
     Friend WithEvents Guna2Button3 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2ImageButton1 As Guna.UI2.WinForms.Guna2ImageButton
 End Class

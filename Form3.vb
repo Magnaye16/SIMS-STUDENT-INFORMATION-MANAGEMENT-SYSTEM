@@ -14,35 +14,6 @@ Imports ZXing
 Public Class Form3
     Private ReadOnly time_start As Object
 
-    Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub Guna2ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox2.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub Guna2Button5_Click(sender As Object, e As EventArgs)
-        'generate qr
-        Dim qrstring = Guna2TextBox2.Text
-
-        ' Create a barcode writer
-        Dim barcodeWriter As New BarcodeWriter
-        barcodeWriter.Format = BarcodeFormat.CODE_128 ' < barcode
-
-        ' Set encoding properties (optional)
-        barcodeWriter.Options = New Common.EncodingOptions With {
-            .Width = 300,
-            .Height = 300
-        }
-
-        ' Generate the QR code bitmap
-        Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
-
-        ' Display the QR code bitmap in a PictureBox or save it to a file
-        Guna2PictureBox1.Image = qrCodeBitmap
-    End Sub
-
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
         Dim filename = Guna2TextBox1.Text + "_" + Guna2TextBox7.Text ' <<< UID DAPAT (TEMPORARY)
         Dim filePath = "C:\Users\John Roi\source\repos\SMS(Student Management System)\Generated QR\" + filename + ".jpg"
@@ -95,7 +66,7 @@ Public Class Form3
 
     Private Sub Autogencode()
         'generate qr
-        Dim qrstring As String = Guna2TextBox2.Text
+        Dim qrstring As String = Guna2TextBox1.Text
 
         ' Create a barcode writer
         Dim barcodeWriter As New BarcodeWriter
@@ -107,10 +78,10 @@ Public Class Form3
             .Height = 300
         }
 
-        ' Generate the QR code bitmap
+        ''generate the qr code bitmap
         'Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
 
-        ' Display the QR code bitmap in a PictureBox or save it to a file
+        ''Display the QR code bitmap in a PictureBox Or save it to a file
         'Guna2PictureBox1.Image = qrCodeBitmap
     End Sub
 

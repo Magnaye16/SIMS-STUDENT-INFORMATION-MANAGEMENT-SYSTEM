@@ -22,38 +22,41 @@ Partial Class Form4
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
         attendanceDGV = New Guna.UI2.WinForms.Guna2DataGridView()
         CType(attendanceDGV, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' attendanceDGV
         ' 
-        DataGridViewCellStyle4.BackColor = Color.White
-        attendanceDGV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        DataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
-        DataGridViewCellStyle5.Font = New Font("Segoe UI", 9.0F)
-        DataGridViewCellStyle5.ForeColor = Color.White
-        DataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = DataGridViewTriState.True
-        attendanceDGV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        attendanceDGV.AllowUserToAddRows = False
+        attendanceDGV.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = Color.White
+        attendanceDGV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9.0F)
+        DataGridViewCellStyle2.ForeColor = Color.White
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
+        attendanceDGV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         attendanceDGV.ColumnHeadersHeight = 4
         attendanceDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = Color.White
-        DataGridViewCellStyle6.Font = New Font("Segoe UI", 9.0F)
-        DataGridViewCellStyle6.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
-        DataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
-        DataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
-        DataGridViewCellStyle6.WrapMode = DataGridViewTriState.False
-        attendanceDGV.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = Color.White
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9.0F)
+        DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
+        DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
+        attendanceDGV.DefaultCellStyle = DataGridViewCellStyle3
         attendanceDGV.GridColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         attendanceDGV.Location = New Point(12, 12)
         attendanceDGV.Name = "attendanceDGV"
+        attendanceDGV.ReadOnly = True
         attendanceDGV.RowHeadersVisible = False
         attendanceDGV.Size = New Size(802, 552)
         attendanceDGV.TabIndex = 0
@@ -70,7 +73,7 @@ Partial Class Form4
         attendanceDGV.ThemeStyle.HeaderStyle.ForeColor = Color.White
         attendanceDGV.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         attendanceDGV.ThemeStyle.HeaderStyle.Height = 4
-        attendanceDGV.ThemeStyle.ReadOnly = False
+        attendanceDGV.ThemeStyle.ReadOnly = True
         attendanceDGV.ThemeStyle.RowsStyle.BackColor = Color.White
         attendanceDGV.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
         attendanceDGV.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9.0F)
