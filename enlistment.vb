@@ -67,16 +67,16 @@ Public Class enlistment
                                                 VALUES (@school_year, @year, @section, @time_start, @time_end, @student_id, @professor_id, @course_id)"
 
             Using cmd1 As New MySqlCommand(insertStudentInfo, con)
-                cmd1.Parameters.AddWithValue("@student_id", studentId)
-                cmd1.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
-                cmd1.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
-                cmd1.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
-                cmd1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
-                cmd1.Parameters.AddWithValue("@contact_number", Guna2TextBox9.Text)
-                cmd1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
-                cmd1.Parameters.AddWithValue("@student_type", Guna2ComboBox2.Text)
-                cmd1.Parameters.AddWithValue("@student_status", "E")
-                cmd1.ExecuteNonQuery()
+                'cmd1.Parameters.AddWithValue("@student_id", studentId)
+                'cmd1.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
+                'cmd1.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
+                'cmd1.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
+                'cmd1.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
+                'cmd1.Parameters.AddWithValue("@contact_number", Guna2TextBox9.Text)
+                'cmd1.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
+                'cmd1.Parameters.AddWithValue("@student_type", Guna2ComboBox2.Text)
+                'cmd1.Parameters.AddWithValue("@student_status", "E")
+                'cmd1.ExecuteNonQuery()
 
                 studentId = Convert.ToInt32(cmd1.ExecuteScalar())
             End Using
