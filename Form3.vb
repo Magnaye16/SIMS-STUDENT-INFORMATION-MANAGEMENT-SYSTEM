@@ -1,4 +1,5 @@
 ﻿Imports DocumentFormat.OpenXml.Drawing.Diagrams
+Imports DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing
 Imports DocumentFormat.OpenXml.Packaging
 Imports DocumentFormat.OpenXml.Wordprocessing
 Imports Guna.UI2.WinForms
@@ -27,34 +28,88 @@ Public Class Form3
     End Sub
 
     Private Sub Guna2Button4_Click(sender As Object, e As EventArgs) Handles Guna2Button4.Click
+        Dim studentYear As Integer
+        Dim userInput As String = Guna2TextBox9.Text.Trim()
+        Dim student_number = Guna2TextBox7.Text
+
+        If Guna2TextBox1.Text = "" Or
+           Guna2TextBox4.Text = "" Or
+           Guna2TextBox5.Text = "" Or
+           Guna2TextBox3.Text = "" Or
+           Guna2TextBox7.Text = "" Then
+            MessageBox.Show("Please fill all fields!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+
+        If Not Integer.TryParse(Guna2TextBox6.Text, studentYear) OrElse studentYear < 1 OrElse studentYear > 4 Then
+            Return
+        End If
+
+
+        If Not IsValidPhoneNumber(userInput) Then
+            MessageBox.Show("Invalid phone number. Please enter a number that starts with '09' and has exactly 11 digits.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+
+        Dim query = "SELECT COUNT(*) FROM student_info WHERE student_number = @student_number"
+        Try
+            openCon()
+            Using command As New MySqlCommand(query, con)
+                command.Parameters.AddWithValue("@student_number", student_number)
+                Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
+
+                If count > 0 Then
+                    MessageBox.Show("This student already exists.")
+                    con.Close()
+                    Return
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message)
+        Finally
+            If con IsNot Nothing AndAlso con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+
+        Dim email As String = Guna2TextBox8.Text
+        If Not IsValidEmail(email) Then
+            MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        Else
+            SendEmail(email)
+            Clear()
+        End If
+
 
         'create 
         'validation  
-        If Guna2TextBox1.Text = "" Or
-           Guna2TextBox2.Text = "" Or
-           Guna2TextBox4.Text = "" Or
-           Guna2TextBox5.Text = "" Or
-           Guna2TextBox6.Text = "" Or
-           Guna2TextBox7.Text = "" Or
-           Guna2TextBox8.Text = "" Or
-           Guna2TextBox9.Text = "" Or
-           Guna2ComboBox1.Text = "" Or
-           Guna2ComboBox2.Text = "" Then
-            MessageBox.Show("Please fill all fields!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            'Clear
-            Return
-        Else
-            ADDUSER()
-            Dim email As String = Guna2TextBox8.Text
+        'If Guna2TextBox1.Text = "" Or
+        '   Guna2TextBox2.Text = "" Or
+        '   Guna2TextBox4.Text = "" Or
+        '   Guna2TextBox5.Text = "" Or
+        '   Guna2TextBox6.Text = "" Or
+        '   Guna2TextBox7.Text = "" Or
+        '   Guna2TextBox8.Text = "" Or
+        '   Guna2TextBox9.Text = "" Or
+        '   Guna2ComboBox1.Text = "" Or
+        '   Guna2ComboBox2.Text = "" Then
+        '    MessageBox.Show("Please fill all fields!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    'Clear
+        '    Return
+        'Else
+        '    ADDUSER()
+        '    Dim email As String = Guna2TextBox8.Text
 
-            If Not IsValidEmail(email) Then
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return
-            Else
-                SendEmail(email)
-            End If
-        End If
-        checkerforadduser()
+        '    If Not IsValidEmail(email) Then
+        '        MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        Return
+        '    Else
+        '        SendEmail(email)
+        '    End If
+        'End If
+        'checkerforadduser()
 
     End Sub
 
@@ -261,6 +316,54 @@ Public Class Form3
         End Try
     End Sub
 
+    Private Sub AddStudentAccount(username As String, password As String)
+        Dim studentNumber = Guna2TextBox7.Text
+        Dim userId As Integer = 0
+
+        Dim selectedValue As Integer = Convert.ToInt32(Guna2ComboBox2.SelectedItem)
+
+        Dim insertUserInfo As String = "INSERT INTO user_info (username, password, role) VALUES (@username, @password, @role)"
+        Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status, user_id)
+                                           VALUES (@student_id, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status, @user_id)"
+
+        openCon()
+
+        Using transaction As MySqlTransaction = con.BeginTransaction()
+            Try
+
+                Using command1 As New MySqlCommand(insertUserInfo, con, transaction)
+                    command1.Parameters.AddWithValue("@username", username)
+                    command1.Parameters.AddWithValue("@password", password)
+                    command1.Parameters.AddWithValue("@role", "Student")
+                    userId = Convert.ToInt32(command1.ExecuteScalar())
+                End Using
+
+                Using command2 As New MySqlCommand(insertStudentInfo, con, transaction)
+                    command2.Parameters.AddWithValue("@student_id", Guna2TextBox7.Text)
+                    command2.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
+                    command2.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
+                    command2.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
+                    command2.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
+                    command2.Parameters.AddWithValue("@contact_number", Guna2TextBox9.Text)
+                    command2.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
+                    command2.Parameters.AddWithValue("@student_type", selectedValue)
+                    command2.Parameters.AddWithValue("@student_status", "E")
+                    command2.Parameters.AddWithValue("@user_id", userId)
+                    command2.ExecuteNonQuery()
+                End Using
+
+                transaction.Commit()
+                MessageBox.Show("Data inserted successfully into both tables.")
+
+            Catch ex As Exception
+                transaction.Rollback()
+                MessageBox.Show("Error occurred: " & ex.Message)
+            End Try
+        End Using
+
+        con.Close()
+    End Sub
+
 
     Public Sub ADDUSER()
 
@@ -388,6 +491,8 @@ Public Class Form3
             mail.Body = "You can now log in." & vbCrLf & "Username: " & usernameText & vbCrLf & "Password: " & passwordText
 
             smtpClient.Send(mail)
+            AddStudentAccount(usernameText, passwordText)
+
             MessageBox.Show("Email sent successfully to " & email, "Email Sent", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
@@ -406,5 +511,10 @@ Public Class Form3
         Next
 
         Return result.ToString()
+    End Function
+
+    Private Function IsValidPhoneNumber(input As String) As Boolean
+        Dim pattern As String = "^09\d{9}$"
+        Return System.Text.RegularExpressions.Regex.IsMatch(input, pattern)
     End Function
 End Class
