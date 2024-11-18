@@ -24,13 +24,21 @@ Partial Class enlistment
     Private Sub InitializeComponent()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        DateTimePicker2 = New DateTimePicker()
+        DateTimePicker1 = New DateTimePicker()
+        ComboBox8 = New ComboBox()
+        ComboBox7 = New ComboBox()
+        ComboBox6 = New ComboBox()
+        ComboBox5 = New ComboBox()
+        Label8 = New Label()
+        ComboBox2 = New ComboBox()
         TextBox4 = New TextBox()
         Label7 = New Label()
         TextBox3 = New TextBox()
         Label3 = New Label()
         Label2 = New Label()
         Label1 = New Label()
-        ComboBox2 = New ComboBox()
+        ComboBox1 = New ComboBox()
         Button3 = New Button()
         TextBox1 = New TextBox()
         DataGridView1 = New DataGridView()
@@ -45,6 +53,10 @@ Partial Class enlistment
         DataGridView2 = New DataGridView()
         Button1 = New Button()
         Button2 = New Button()
+        Label9 = New Label()
+        Label10 = New Label()
+        Label11 = New Label()
+        Label12 = New Label()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
@@ -64,13 +76,25 @@ Partial Class enlistment
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(Label12)
+        TabPage1.Controls.Add(Label11)
+        TabPage1.Controls.Add(Label10)
+        TabPage1.Controls.Add(Label9)
+        TabPage1.Controls.Add(DateTimePicker2)
+        TabPage1.Controls.Add(DateTimePicker1)
+        TabPage1.Controls.Add(ComboBox8)
+        TabPage1.Controls.Add(ComboBox7)
+        TabPage1.Controls.Add(ComboBox6)
+        TabPage1.Controls.Add(ComboBox5)
+        TabPage1.Controls.Add(Label8)
+        TabPage1.Controls.Add(ComboBox2)
         TabPage1.Controls.Add(TextBox4)
         TabPage1.Controls.Add(Label7)
         TabPage1.Controls.Add(TextBox3)
         TabPage1.Controls.Add(Label3)
         TabPage1.Controls.Add(Label2)
         TabPage1.Controls.Add(Label1)
-        TabPage1.Controls.Add(ComboBox2)
+        TabPage1.Controls.Add(ComboBox1)
         TabPage1.Controls.Add(Button3)
         TabPage1.Controls.Add(TextBox1)
         TabPage1.Controls.Add(DataGridView1)
@@ -81,6 +105,69 @@ Partial Class enlistment
         TabPage1.TabIndex = 0
         TabPage1.Text = "TabPage1"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' DateTimePicker2
+        ' 
+        DateTimePicker2.Location = New Point(565, 101)
+        DateTimePicker2.Name = "DateTimePicker2"
+        DateTimePicker2.Size = New Size(200, 23)
+        DateTimePicker2.TabIndex = 19
+        ' 
+        ' DateTimePicker1
+        ' 
+        DateTimePicker1.Location = New Point(565, 72)
+        DateTimePicker1.Name = "DateTimePicker1"
+        DateTimePicker1.Size = New Size(200, 23)
+        DateTimePicker1.TabIndex = 18
+        ' 
+        ' ComboBox8
+        ' 
+        ComboBox8.FormattingEnabled = True
+        ComboBox8.Location = New Point(413, 101)
+        ComboBox8.Name = "ComboBox8"
+        ComboBox8.Size = New Size(121, 23)
+        ComboBox8.TabIndex = 17
+        ' 
+        ' ComboBox7
+        ' 
+        ComboBox7.FormattingEnabled = True
+        ComboBox7.Location = New Point(281, 101)
+        ComboBox7.Name = "ComboBox7"
+        ComboBox7.Size = New Size(121, 23)
+        ComboBox7.TabIndex = 16
+        ' 
+        ' ComboBox6
+        ' 
+        ComboBox6.FormattingEnabled = True
+        ComboBox6.Location = New Point(138, 101)
+        ComboBox6.Name = "ComboBox6"
+        ComboBox6.Size = New Size(121, 23)
+        ComboBox6.TabIndex = 15
+        ' 
+        ' ComboBox5
+        ' 
+        ComboBox5.FormattingEnabled = True
+        ComboBox5.Location = New Point(11, 101)
+        ComboBox5.Name = "ComboBox5"
+        ComboBox5.Size = New Size(121, 23)
+        ComboBox5.TabIndex = 14
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Location = New Point(609, 0)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(70, 15)
+        Label8.TabIndex = 13
+        Label8.Text = "PROFESSOR"
+        ' 
+        ' ComboBox2
+        ' 
+        ComboBox2.FormattingEnabled = True
+        ComboBox2.Location = New Point(609, 18)
+        ComboBox2.Name = "ComboBox2"
+        ComboBox2.Size = New Size(121, 23)
+        ComboBox2.TabIndex = 12
         ' 
         ' TextBox4
         ' 
@@ -108,7 +195,7 @@ Partial Class enlistment
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(537, 0)
+        Label3.Location = New Point(482, 0)
         Label3.Name = "Label3"
         Label3.Size = New Size(52, 15)
         Label3.TabIndex = 8
@@ -132,13 +219,13 @@ Partial Class enlistment
         Label1.TabIndex = 6
         Label1.Text = "STUDENT ID"
         ' 
-        ' ComboBox2
+        ' ComboBox1
         ' 
-        ComboBox2.FormattingEnabled = True
-        ComboBox2.Location = New Point(537, 18)
-        ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(121, 23)
-        ComboBox2.TabIndex = 5
+        ComboBox1.FormattingEnabled = True
+        ComboBox1.Location = New Point(482, 18)
+        ComboBox1.Name = "ComboBox1"
+        ComboBox1.Size = New Size(121, 23)
+        ComboBox1.TabIndex = 5
         ' 
         ' Button3
         ' 
@@ -159,9 +246,9 @@ Partial Class enlistment
         ' DataGridView1
         ' 
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridView1.Location = New Point(6, 47)
+        DataGridView1.Location = New Point(6, 144)
         DataGridView1.Name = "DataGridView1"
-        DataGridView1.Size = New Size(788, 417)
+        DataGridView1.Size = New Size(788, 320)
         DataGridView1.TabIndex = 0
         ' 
         ' TabPage2
@@ -267,6 +354,42 @@ Partial Class enlistment
         Button2.Text = "PAGE 2"
         Button2.UseVisualStyleBackColor = True
         ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Location = New Point(90, 80)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(85, 15)
+        Label9.TabIndex = 20
+        Label9.Text = "SCHOOL YEAR"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(281, 78)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(66, 15)
+        Label10.TabIndex = 21
+        Label10.Text = "CLASS DAY"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(413, 78)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(35, 15)
+        Label11.TabIndex = 22
+        Label11.Text = "YEAR"
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(565, 54)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(33, 15)
+        Label12.TabIndex = 23
+        Label12.Text = "TIME"
+        ' 
         ' enlistment
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -300,7 +423,7 @@ Partial Class enlistment
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
@@ -312,4 +435,16 @@ Partial Class enlistment
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ComboBox6 As ComboBox
+    Friend WithEvents ComboBox5 As ComboBox
+    Friend WithEvents ComboBox8 As ComboBox
+    Friend WithEvents ComboBox7 As ComboBox
+    Friend WithEvents DateTimePicker2 As DateTimePicker
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
 End Class
