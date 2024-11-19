@@ -24,6 +24,10 @@ Partial Class enlistment
     Private Sub InitializeComponent()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        Label12 = New Label()
+        Label11 = New Label()
+        Label10 = New Label()
+        Label9 = New Label()
         DateTimePicker2 = New DateTimePicker()
         DateTimePicker1 = New DateTimePicker()
         ComboBox8 = New ComboBox()
@@ -53,10 +57,6 @@ Partial Class enlistment
         DataGridView2 = New DataGridView()
         Button1 = New Button()
         Button2 = New Button()
-        Label9 = New Label()
-        Label10 = New Label()
-        Label11 = New Label()
-        Label12 = New Label()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +106,42 @@ Partial Class enlistment
         TabPage1.Text = "TabPage1"
         TabPage1.UseVisualStyleBackColor = True
         ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(565, 54)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(33, 15)
+        Label12.TabIndex = 23
+        Label12.Text = "TIME"
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(413, 78)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(35, 15)
+        Label11.TabIndex = 22
+        Label11.Text = "YEAR"
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(281, 78)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(66, 15)
+        Label10.TabIndex = 21
+        Label10.Text = "CLASS DAY"
+        ' 
+        ' Label9
+        ' 
+        Label9.AutoSize = True
+        Label9.Location = New Point(90, 80)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(85, 15)
+        Label9.TabIndex = 20
+        Label9.Text = "SCHOOL YEAR"
+        ' 
         ' DateTimePicker2
         ' 
         DateTimePicker2.Location = New Point(565, 101)
@@ -123,6 +159,7 @@ Partial Class enlistment
         ' ComboBox8
         ' 
         ComboBox8.FormattingEnabled = True
+        ComboBox8.Items.AddRange(New Object() {"1", "2", "3", "4"})
         ComboBox8.Location = New Point(413, 101)
         ComboBox8.Name = "ComboBox8"
         ComboBox8.Size = New Size(121, 23)
@@ -353,42 +390,6 @@ Partial Class enlistment
         Button2.TabIndex = 2
         Button2.Text = "PAGE 2"
         Button2.UseVisualStyleBackColor = True
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Location = New Point(90, 80)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(85, 15)
-        Label9.TabIndex = 20
-        Label9.Text = "SCHOOL YEAR"
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Location = New Point(281, 78)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(66, 15)
-        Label10.TabIndex = 21
-        Label10.Text = "CLASS DAY"
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Location = New Point(413, 78)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(35, 15)
-        Label11.TabIndex = 22
-        Label11.Text = "YEAR"
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Location = New Point(565, 54)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(33, 15)
-        Label12.TabIndex = 23
-        Label12.Text = "TIME"
         ' 
         ' enlistment
         ' 
