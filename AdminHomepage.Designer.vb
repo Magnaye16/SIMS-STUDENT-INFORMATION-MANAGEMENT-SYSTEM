@@ -88,7 +88,7 @@ Partial Class AdminHomepage
         Guna2Button1.ShadowDecoration.CustomizableEdges = CustomizableEdges4
         Guna2Button1.Size = New Size(209, 41)
         Guna2Button1.TabIndex = 6
-        Guna2Button1.Text = "CRUD"
+        Guna2Button1.Text = "ADD STUDENT"
         Guna2Button1.TextAlign = HorizontalAlignment.Left
         ' 
         ' Guna2Button2
@@ -194,7 +194,7 @@ Partial Class AdminHomepage
         Guna2ImageButton1.Size = New Size(31, 28)
         Guna2ImageButton1.TabIndex = 13
         ' 
-        ' Form2
+        ' AdminHomepage
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -212,7 +212,7 @@ Partial Class AdminHomepage
         Controls.Add(Guna2vSeparator1)
         Controls.Add(Guna2Separator1)
         FormBorderStyle = FormBorderStyle.None
-        Name = "Form2"
+        Name = "AdminHomepage"
         ShowIcon = False
         StartPosition = FormStartPosition.CenterScreen
         Text = "Dashboard Page"
