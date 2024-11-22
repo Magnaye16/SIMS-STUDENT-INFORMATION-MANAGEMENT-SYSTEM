@@ -4,7 +4,7 @@ Imports MySql.Data.MySqlClient
 
 Public Class enlistment
 
-    Private Sub enlistment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub enlistment(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupTimePickers()
         PopulateDaysComboBox()
         LoadStudentClasses()
@@ -14,21 +14,21 @@ Public Class enlistment
     End Sub
 
     Private Sub SetupTimePickers()
-        DateTimePicker1.Format = DateTimePickerFormat.Time
-        DateTimePicker2.Format = DateTimePickerFormat.Time
+        Guna2DateTimePicker1.Format = DateTimePickerFormat.Time
+        Guna2DateTimePicker2.Format = DateTimePickerFormat.Time
 
-        DateTimePicker1.ShowUpDown = True
-        DateTimePicker2.ShowUpDown = True
+        Guna2DateTimePicker1.ShowUpDown = True
+        Guna2DateTimePicker2.ShowUpDown = True
 
-        DateTimePicker1.Value = DateTimePicker1.Value.AddMinutes(-DateTimePicker1.Value.Minute)
-        DateTimePicker2.Value = DateTimePicker2.Value.AddMinutes(-DateTimePicker2.Value.Minute)
-        DateTimePicker1.Value = DateTimePicker1.Value.AddSeconds(-DateTimePicker1.Value.Second)
-        DateTimePicker2.Value = DateTimePicker2.Value.AddSeconds(-DateTimePicker2.Value.Second)
+        Guna2DateTimePicker1.Value = Guna2DateTimePicker1.Value.AddMinutes(-Guna2DateTimePicker1.Value.Minute)
+        Guna2DateTimePicker2.Value = Guna2DateTimePicker2.Value.AddMinutes(-Guna2DateTimePicker2.Value.Minute)
+        Guna2DateTimePicker1.Value = Guna2DateTimePicker1.Value.AddSeconds(-Guna2DateTimePicker1.Value.Second)
+        Guna2DateTimePicker2.Value = Guna2DateTimePicker2.Value.AddSeconds(-Guna2DateTimePicker2.Value.Second)
     End Sub
 
     Private Sub PopulateYearComboBox()
-        ComboBox5.Items.Clear()
-        ComboBox6.Items.Clear()
+        Guna2ComboBox3.Items.Clear()
+        Guna2ComboBox4.Items.Clear()
 
         Dim startYear As Integer = DateTime.Now.Year
         Dim years As New List(Of Integer)
@@ -37,11 +37,11 @@ Public Class enlistment
             years.Add(startYear + i)
         Next
 
-        ComboBox5.DataSource = New BindingSource(years, Nothing)
-        ComboBox6.DataSource = New BindingSource(years, Nothing)
+        Guna2ComboBox3.DataSource = New BindingSource(years, Nothing)
+        Guna2ComboBox4.DataSource = New BindingSource(years, Nothing)
 
-        ComboBox5.SelectedIndex = -1
-        ComboBox6.SelectedIndex = -1
+        Guna2ComboBox3.SelectedIndex = -1
+        Guna2ComboBox4.SelectedIndex = -1
     End Sub
 
     Private Sub PopulateDaysComboBox()
@@ -56,17 +56,17 @@ Public Class enlistment
         {"Saturday", 7}
     }
 
-        ComboBox7.DataSource = New BindingSource(daysOfWeek, Nothing)
-        ComboBox7.DisplayMember = "Key"
-        ComboBox7.ValueMember = "Value"
-        ComboBox7.SelectedIndex = -1
+        Guna2ComboBox5.DataSource = New BindingSource(daysOfWeek, Nothing)
+        Guna2ComboBox5.DisplayMember = "Key"
+        Guna2ComboBox5.ValueMember = "Value"
+        Guna2ComboBox5.SelectedIndex = -1
     End Sub
 
     Private Sub SearchStudent(searchTerm As String)
         Dim query As String = "SELECT last_name, first_name, middle_name FROM student_info WHERE student_id LIKE @searchTerm"
 
         If String.IsNullOrWhiteSpace(searchTerm) Then
-            TextBox3.Clear()
+            Guna2TextBox1.Clear()
             Return
         End If
 
@@ -79,7 +79,7 @@ Public Class enlistment
                 Using reader As MySqlDataReader = command.ExecuteReader()
 
                     If reader.Read() Then
-                        TextBox3.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
+                        Guna2TextBox1.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
                     End If
 
                 End Using
@@ -117,7 +117,7 @@ Public Class enlistment
             table.Columns.Remove("first_name")
             table.Columns.Remove("middle_name")
 
-            DataGridView1.DataSource = table
+            Guna2DataGridView1.DataSource = table
         Catch ex As Exception
             MessageBox.Show($"Error: {ex.Message}")
         Finally
@@ -128,7 +128,7 @@ Public Class enlistment
     End Sub
 
     Private Sub LoadStudentBaseOnSearch()
-        Dim searchTerm As String = TextBox1.Text.Trim()
+        Dim searchTerm As String = Guna2TextBox4.Text.Trim()
 
         Dim query As String = "
         SELECT s.student_id, s.last_name, s.first_name, s.middle_name,
@@ -159,7 +159,7 @@ Public Class enlistment
             table.Columns.Remove("first_name")
             table.Columns.Remove("middle_name")
 
-            DataGridView1.DataSource = table
+            Guna2DataGridView1.DataSource = table
 
         Catch ex As Exception
             MessageBox.Show($"Error: {ex.Message}")
@@ -177,11 +177,11 @@ Public Class enlistment
             adapter.Fill(table)
 
 
-            ComboBox1.DisplayMember = "code"
-            ComboBox1.ValueMember = "course_id"
-            ComboBox1.DataSource = table
+            Guna2ComboBox1.DisplayMember = "code"
+            Guna2ComboBox1.ValueMember = "course_id"
+            Guna2ComboBox1.DataSource = table
 
-            ComboBox1.SelectedIndex = -1
+            Guna2ComboBox1.SelectedIndex = -1
         Catch ex As Exception
             MessageBox.Show($"Error: {ex.Message}")
         Finally
@@ -202,11 +202,11 @@ Public Class enlistment
             Dim table As New DataTable()
             adapter.Fill(table)
 
-            ComboBox2.DisplayMember = "name"
-            ComboBox2.ValueMember = "professor_id"
-            ComboBox2.DataSource = table
+            Guna2ComboBox2.DisplayMember = "name"
+            Guna2ComboBox2.ValueMember = "professor_id"
+            Guna2ComboBox2.DataSource = table
 
-            ComboBox2.SelectedIndex = -1
+            Guna2ComboBox2.SelectedIndex = -1
         Catch ex As Exception
             MessageBox.Show($"Error: {ex.Message}")
         Finally
@@ -217,11 +217,11 @@ Public Class enlistment
 
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox1.SelectedIndexChanged
         con.Close()
 
-        If ComboBox1.SelectedIndex <> -1 Then
-            Dim selectedCourse = Convert.ToInt32(ComboBox1.SelectedValue)
+        If Guna2ComboBox1.SelectedIndex <> -1 Then
+            Dim selectedCourse = Convert.ToInt32(Guna2ComboBox1.SelectedValue)
 
             Dim query3 = "SELECT professor_id FROM class_info WHERE course_id = @course_id"
 
@@ -234,9 +234,9 @@ Public Class enlistment
 
                 If result IsNot Nothing Then
                     Dim selectedProfessor = Convert.ToInt32(result)
-                    ComboBox2.SelectedValue = selectedProfessor
+                    Guna2ComboBox2.SelectedValue = selectedProfessor
                 Else
-                    ComboBox2.SelectedIndex = -1
+                    Guna2ComboBox2.SelectedIndex = -1
                 End If
             Catch ex As Exception
                 MessageBox.Show($"Error: {ex.Message}")
@@ -254,8 +254,8 @@ Public Class enlistment
             openCon()
 
             Dim cmd As New MySqlCommand(query, con)
-            cmd.Parameters.AddWithValue("@student_id", TextBox1.Text)
-            cmd.Parameters.AddWithValue("@course_id", Convert.ToInt32(ComboBox1.SelectedValue))
+            cmd.Parameters.AddWithValue("@student_id", Guna2TextBox4.Text)
+            cmd.Parameters.AddWithValue("@course_id", Convert.ToInt32(Guna2ComboBox1.SelectedValue))
 
             Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
@@ -271,26 +271,26 @@ Public Class enlistment
     End Function
 
     Private Sub AddClassToSTudent()
-        Dim selectedCourse As Integer = Convert.ToInt32(ComboBox1.SelectedValue)
-        Dim selectedProfessor As Integer = Convert.ToInt32(ComboBox2.SelectedValue)
-        Dim studentId As String = TextBox1.Text.Trim()
+        Dim selectedCourse As Integer = Convert.ToInt32(Guna2ComboBox1.SelectedValue)
+        Dim selectedProfessor As Integer = Convert.ToInt32(Guna2ComboBox2.SelectedValue)
+        Dim studentId As String = Guna2TextBox4.Text.Trim()
 
-        If String.IsNullOrEmpty(TextBox4.Text) OrElse
-       ComboBox1.SelectedIndex = -1 OrElse
-       ComboBox2.SelectedIndex = -1 OrElse
-       ComboBox5.SelectedIndex = -1 OrElse
-       ComboBox6.SelectedIndex = -1 OrElse
-       ComboBox7.SelectedIndex = -1 OrElse
-       ComboBox8.SelectedIndex = -1 Then
+        If String.IsNullOrEmpty(Guna2TextBox2.Text) OrElse
+       Guna2ComboBox1.SelectedIndex = -1 OrElse
+       Guna2ComboBox2.SelectedIndex = -1 OrElse
+       Guna2ComboBox3.SelectedIndex = -1 OrElse
+       Guna2ComboBox4.SelectedIndex = -1 OrElse
+       Guna2ComboBox5.SelectedIndex = -1 OrElse
+       Guna2ComboBox6.SelectedIndex = -1 Then
             MessageBox.Show("Please ensure all required fields are filled.")
             Return
         End If
 
-        Dim yearStart As String = ComboBox5.SelectedItem.ToString()
-        Dim yearEnd As String = ComboBox6.SelectedItem.ToString()
+        Dim yearStart As String = Guna2ComboBox3.SelectedItem.ToString()
+        Dim yearEnd As String = Guna2ComboBox4.SelectedItem.ToString()
         Dim schoolYear As String = $"{yearStart} - {yearEnd}"
 
-        If DateTimePicker1.Value.TimeOfDay >= DateTimePicker2.Value.TimeOfDay Then
+        If Guna2DateTimePicker1.Value.TimeOfDay >= Guna2DateTimePicker2.Value.TimeOfDay Then
             MessageBox.Show("Start time must be earlier than end time.")
             Return
         End If
@@ -309,12 +309,12 @@ Public Class enlistment
             Dim cmd As New MySqlCommand(query, con)
 
             cmd.Parameters.AddWithValue("@school_year", schoolYear)
-            cmd.Parameters.AddWithValue("@class_day", Convert.ToInt32(ComboBox7.SelectedValue))
-            cmd.Parameters.AddWithValue("@year", Convert.ToInt32(ComboBox8.SelectedItem))
-            cmd.Parameters.AddWithValue("@section", TextBox4.Text)
-            cmd.Parameters.AddWithValue("@time_start", DateTimePicker1.Value.TimeOfDay)
-            cmd.Parameters.AddWithValue("@time_end", DateTimePicker2.Value.TimeOfDay)
-            cmd.Parameters.AddWithValue("@student_id", TextBox1.Text)
+            cmd.Parameters.AddWithValue("@class_day", Convert.ToInt32(Guna2ComboBox5.SelectedValue))
+            cmd.Parameters.AddWithValue("@year", Convert.ToInt32(Guna2ComboBox6.SelectedItem))
+            cmd.Parameters.AddWithValue("@section", Guna2TextBox2.Text)
+            cmd.Parameters.AddWithValue("@time_start", Guna2DateTimePicker1.Value.TimeOfDay)
+            cmd.Parameters.AddWithValue("@time_end", Guna2DateTimePicker2.Value.TimeOfDay)
+            cmd.Parameters.AddWithValue("@student_id", Guna2TextBox4.Text)
             cmd.Parameters.AddWithValue("@professor_id", selectedProfessor)
             cmd.Parameters.AddWithValue("@course_id", selectedCourse)
 
@@ -332,18 +332,18 @@ Public Class enlistment
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-        SearchStudent(TextBox1.Text)
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
+        SearchStudent(Guna2TextBox4.Text)
         LoadStudentBaseOnSearch()
     End Sub
 
-    Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox5.SelectedIndexChanged
-        Dim selectedYear As Integer = Convert.ToInt32(ComboBox5.SelectedItem)
+    Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox3.SelectedIndexChanged
+        Dim selectedYear As Integer = Convert.ToInt32(Guna2ComboBox3.SelectedItem)
 
         Dim nextYear As Integer = selectedYear + 1
 
-        If ComboBox6.Items.Contains(nextYear) Then
-            ComboBox6.SelectedItem = nextYear
+        If Guna2ComboBox4.Items.Contains(nextYear) Then
+            Guna2ComboBox4.SelectedItem = nextYear
         End If
     End Sub
 
@@ -368,8 +368,8 @@ Public Class enlistment
         End Try
     End Function
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim studentNumber As String = TextBox1.Text.Trim()
+    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        Dim studentNumber As String = Guna2TextBox4.Text.Trim()
 
         If String.IsNullOrEmpty(studentNumber) Then
             MessageBox.Show("Please enter a valid student number.")
