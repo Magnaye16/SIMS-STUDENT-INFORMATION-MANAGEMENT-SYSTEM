@@ -1,4 +1,4 @@
-﻿Public Class Form2
+﻿Public Class AdminHomepage
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
         switchPanel(Form3)
         Guna2Button1.FillColor = Color.FromArgb(30, 71, 125)
