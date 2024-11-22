@@ -185,7 +185,7 @@ Partial Class ATTENDANCE
         Guna2Button2.FillColor = Color.White
         Guna2Button2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button2.ForeColor = Color.Black
-        Guna2Button2.Location = New Point(276, 281)
+        Guna2Button2.Location = New Point(337, 281)
         Guna2Button2.Name = "Guna2Button2"
         Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges11
         Guna2Button2.Size = New Size(119, 41)
@@ -222,12 +222,13 @@ Partial Class ATTENDANCE
         Guna2Button3.FillColor = Color.Black
         Guna2Button3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button3.ForeColor = Color.White
-        Guna2Button3.Location = New Point(401, 281)
+        Guna2Button3.Location = New Point(589, 254)
         Guna2Button3.Name = "Guna2Button3"
         Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges13
         Guna2Button3.Size = New Size(119, 41)
         Guna2Button3.TabIndex = 10
         Guna2Button3.Text = "TIME OUT"
+        Guna2Button3.Visible = False
         ' 
         ' Guna2CirclePictureBox4
         ' 

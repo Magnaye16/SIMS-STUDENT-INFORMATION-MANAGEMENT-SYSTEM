@@ -7,7 +7,7 @@ Public Class login_page
         Try
             openCon()
 
-            Using command As New MySqlCommand("SELECT * FROM userinfo WHERE username = @username  AND password = @pass", con)
+            Using command As New MySqlCommand("SELECT * FROM user_info WHERE username = @username  AND password = @pass", con)
                 command.Parameters.Add("@username", MySqlDbType.VarChar).Value = Guna2TextBox4.Text
                 command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = Guna2TextBox1.Text
 
