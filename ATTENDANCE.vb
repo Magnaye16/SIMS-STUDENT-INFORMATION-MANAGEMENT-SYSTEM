@@ -33,7 +33,7 @@ Public Class ATTENDANCE
         End If
     End Sub
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
-        STUDENT_ID = Guna2TextBox4.Text.Trim
+        'STUDENT_ID = Guna2TextBox4.Text.Trim
     End Sub
 
     Public Sub SearchonPress()
@@ -78,7 +78,8 @@ Public Class ATTENDANCE
             End Using
 
         Catch ex As Exception
-            MessageBox.Show("Error Searching data: " & ex.Message)
+            'MessageBox.Show("Error Searching data: " & ex.Message)
+
         End Try
     End Sub
 
