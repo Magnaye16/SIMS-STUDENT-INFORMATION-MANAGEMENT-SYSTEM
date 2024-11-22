@@ -24,10 +24,10 @@ Public Class studentCRUD
     End Sub
 
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-        'Clear()
+        Clear()
     End Sub
 
-    Private Sub Guna2Button4_Click(sender As Object, e As EventArgs) Handles Guna2Button4.Click
+    Private Sub CreateBTN_Click(sender As Object, e As EventArgs) Handles CreateBTN.Click
         Dim studentYear As Integer
         Dim userInput As String = Guna2TextBox9.Text.Trim()
         Dim student_number = Guna2TextBox7.Text
@@ -420,16 +420,19 @@ Public Class studentCRUD
     End Sub
 
     Public Sub Clear()
-        Guna2TextBox1.Text = ""
-        Guna2TextBox2.Text = ""
-        Guna2TextBox4.Text = ""
-        Guna2TextBox5.Text = ""
-        Guna2TextBox6.Text = ""
-        Guna2TextBox7.Text = ""
-        Guna2TextBox8.Text = ""
-        Guna2TextBox9.Text = ""
-        Guna2ComboBox1.Text = ""
-        Guna2ComboBox2.Text = ""
+        Guna2TextBox1.Clear()
+        Guna2TextBox2.Clear()
+        Guna2TextBox3.Clear()
+        Guna2TextBox4.Clear()
+        Guna2TextBox5.Clear()
+        Guna2TextBox6.Clear()
+        Guna2TextBox7.Clear()
+        Guna2TextBox8.Clear()
+        Guna2TextBox9.Clear()
+        Guna2ComboBox1.Text = Nothing
+        Guna2ComboBox2.Text = Nothing
+        Guna2PictureBox1.Image = Nothing
+
     End Sub
 
     Public Sub Sendcreatedemail()

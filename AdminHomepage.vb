@@ -1,6 +1,6 @@
 ﻿Public Class AdminHomepage
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
-        switchPanel(Form3)
+        switchPanel(studentCRUD)
         Guna2Button1.FillColor = Color.FromArgb(30, 71, 125)
         Guna2Button1.ForeColor = Color.White
         Guna2Button1.Font = New Font(Guna2Button1.Font, FontStyle.Bold)

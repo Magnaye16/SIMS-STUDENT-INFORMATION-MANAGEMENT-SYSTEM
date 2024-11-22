@@ -26,7 +26,7 @@ Public Class login_page
                     Select Case table.Rows(0)("role").ToString
                         Case "Admin"
                             con.Close()
-                            Form2.Show()
+                            AdminHomepage.Show()
                         Case "professor"
                             con.Close()
                         Case "student"
