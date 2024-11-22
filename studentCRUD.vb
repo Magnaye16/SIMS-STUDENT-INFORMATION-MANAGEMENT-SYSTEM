@@ -27,7 +27,7 @@ Public Class studentCRUD
         'Clear()
     End Sub
 
-    Private Sub Guna2Button4_Click(sender As Object, e As EventArgs) Handles Guna2Button4.Click
+    Private Sub CreateBTN_Click(sender As Object, e As EventArgs) Handles CreateBTN.Click
         Dim studentYear As Integer
         Dim userInput As String = Guna2TextBox9.Text.Trim()
         Dim student_number = Guna2TextBox7.Text
