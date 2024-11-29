@@ -25,16 +25,24 @@ Partial Class Form4
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
-        attendanceDGV = New Guna.UI2.WinForms.Guna2DataGridView()
-        CType(attendanceDGV, ComponentModel.ISupportInitialize).BeginInit()
+        Dim CustomizableEdges1 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges2 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Guna2DataGridView1 = New Guna.UI2.WinForms.Guna2DataGridView()
+        Column1 = New DataGridViewTextBoxColumn()
+        Column2 = New DataGridViewTextBoxColumn()
+        Column3 = New DataGridViewTextBoxColumn()
+        Column4 = New DataGridViewTextBoxColumn()
+        Column5 = New DataGridViewTextBoxColumn()
+        Column6 = New DataGridViewTextBoxColumn()
+        Column7 = New DataGridViewTextBoxColumn()
+        Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
+        CType(Guna2DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' attendanceDGV
+        ' Guna2DataGridView1
         ' 
-        attendanceDGV.AllowUserToAddRows = False
-        attendanceDGV.AllowUserToDeleteRows = False
         DataGridViewCellStyle1.BackColor = Color.White
-        attendanceDGV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Guna2DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
         DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
@@ -42,9 +50,10 @@ Partial Class Form4
         DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = DataGridViewTriState.True
-        attendanceDGV.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        attendanceDGV.ColumnHeadersHeight = 4
-        attendanceDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Guna2DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Guna2DataGridView1.ColumnHeadersHeight = 17
+        Guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Guna2DataGridView1.Columns.AddRange(New DataGridViewColumn() {Column1, Column2, Column3, Column4, Column5, Column6, Column7})
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.White
         DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
@@ -52,35 +61,96 @@ Partial Class Form4
         DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         DataGridViewCellStyle3.WrapMode = DataGridViewTriState.False
-        attendanceDGV.DefaultCellStyle = DataGridViewCellStyle3
-        attendanceDGV.GridColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
-        attendanceDGV.Location = New Point(12, 12)
-        attendanceDGV.Name = "attendanceDGV"
-        attendanceDGV.ReadOnly = True
-        attendanceDGV.RowHeadersVisible = False
-        attendanceDGV.Size = New Size(802, 552)
-        attendanceDGV.TabIndex = 0
-        attendanceDGV.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White
-        attendanceDGV.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        attendanceDGV.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty
-        attendanceDGV.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty
-        attendanceDGV.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty
-        attendanceDGV.ThemeStyle.BackColor = Color.White
-        attendanceDGV.ThemeStyle.GridColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
-        attendanceDGV.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
-        attendanceDGV.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None
-        attendanceDGV.ThemeStyle.HeaderStyle.Font = New Font("Segoe UI", 9F)
-        attendanceDGV.ThemeStyle.HeaderStyle.ForeColor = Color.White
-        attendanceDGV.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        attendanceDGV.ThemeStyle.HeaderStyle.Height = 4
-        attendanceDGV.ThemeStyle.ReadOnly = True
-        attendanceDGV.ThemeStyle.RowsStyle.BackColor = Color.White
-        attendanceDGV.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        attendanceDGV.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9F)
-        attendanceDGV.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
-        attendanceDGV.ThemeStyle.RowsStyle.Height = 25
-        attendanceDGV.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
-        attendanceDGV.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        Guna2DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
+        Guna2DataGridView1.GridColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
+        Guna2DataGridView1.Location = New Point(12, 81)
+        Guna2DataGridView1.Name = "Guna2DataGridView1"
+        Guna2DataGridView1.RowHeadersVisible = False
+        Guna2DataGridView1.Size = New Size(802, 483)
+        Guna2DataGridView1.TabIndex = 0
+        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White
+        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty
+        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty
+        Guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty
+        Guna2DataGridView1.ThemeStyle.BackColor = Color.White
+        Guna2DataGridView1.ThemeStyle.GridColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
+        Guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
+        Guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None
+        Guna2DataGridView1.ThemeStyle.HeaderStyle.Font = New Font("Segoe UI", 9F)
+        Guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White
+        Guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 17
+        Guna2DataGridView1.ThemeStyle.ReadOnly = False
+        Guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White
+        Guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+        Guna2DataGridView1.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9F)
+        Guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        Guna2DataGridView1.ThemeStyle.RowsStyle.Height = 25
+        Guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
+        Guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
+        ' 
+        ' Column1
+        ' 
+        Column1.HeaderText = "Student ID"
+        Column1.Name = "Column1"
+        Column1.ReadOnly = True
+        ' 
+        ' Column2
+        ' 
+        Column2.HeaderText = "Student Name"
+        Column2.Name = "Column2"
+        Column2.ReadOnly = True
+        ' 
+        ' Column3
+        ' 
+        Column3.HeaderText = "Time In"
+        Column3.Name = "Column3"
+        Column3.ReadOnly = True
+        ' 
+        ' Column4
+        ' 
+        Column4.HeaderText = "Time Out"
+        Column4.Name = "Column4"
+        Column4.ReadOnly = True
+        ' 
+        ' Column5
+        ' 
+        Column5.HeaderText = "Status"
+        Column5.Name = "Column5"
+        Column5.ReadOnly = True
+        ' 
+        ' Column6
+        ' 
+        Column6.HeaderText = "Section"
+        Column6.Name = "Column6"
+        Column6.ReadOnly = True
+        ' 
+        ' Column7
+        ' 
+        Column7.HeaderText = "School Year"
+        Column7.Name = "Column7"
+        Column7.ReadOnly = True
+        ' 
+        ' Guna2TextBox1
+        ' 
+        Guna2TextBox1.CustomizableEdges = CustomizableEdges1
+        Guna2TextBox1.DefaultText = ""
+        Guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        Guna2TextBox1.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        Guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        Guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        Guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
+        Guna2TextBox1.Font = New Font("Segoe UI", 9F)
+        Guna2TextBox1.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
+        Guna2TextBox1.Location = New Point(540, 35)
+        Guna2TextBox1.Name = "Guna2TextBox1"
+        Guna2TextBox1.PasswordChar = ChrW(0)
+        Guna2TextBox1.PlaceholderText = ""
+        Guna2TextBox1.SelectedText = ""
+        Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges2
+        Guna2TextBox1.Size = New Size(200, 36)
+        Guna2TextBox1.TabIndex = 1
         ' 
         ' Form4
         ' 
@@ -88,14 +158,23 @@ Partial Class Form4
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(826, 576)
-        Controls.Add(attendanceDGV)
+        Controls.Add(Guna2TextBox1)
+        Controls.Add(Guna2DataGridView1)
         FormBorderStyle = FormBorderStyle.None
         Name = "Form4"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form4"
-        CType(attendanceDGV, ComponentModel.ISupportInitialize).EndInit()
+        CType(Guna2DataGridView1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents attendanceDGV As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents Guna2DataGridView1 As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Guna2TextBox1 As Guna.UI2.WinForms.Guna2TextBox
 End Class

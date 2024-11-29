@@ -16,7 +16,8 @@ Public Class studentCRUD
     Private ReadOnly time_start As Object
 
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-        Dim filename = Guna2TextBox1.Text + "_" + Guna2TextBox7.Text ' <<< UID DAPAT (TEMPORARY)
+        Autogencode()
+        Dim filename = Guna2TextBox7.Text ' <<< UID DAPAT (TEMPORARY)
         Dim filePath = "C:\Users\John Roi\source\repos\SMS(Student Management System)\Generated QR\" + filename + ".jpg"
         Dim qrCodeBitmap As Bitmap = Guna2PictureBox1.Image
         qrCodeBitmap.Save(filePath, ImageFormat.Png)
@@ -122,7 +123,7 @@ Public Class studentCRUD
 
     Private Sub Autogencode()
         'generate qr
-        Dim qrstring As String = Guna2TextBox1.Text
+        Dim qrstring As String = Guna2TextBox7.Text
 
         ' Create a barcode writer
         Dim barcodeWriter As New BarcodeWriter
@@ -130,15 +131,15 @@ Public Class studentCRUD
 
         ' Set encoding properties (optional)
         barcodeWriter.Options = New Common.EncodingOptions With {
-            .Width = 300,
-            .Height = 300
+            .Width = 328,
+            .Height = 126
         }
 
-        ''generate the qr code bitmap
-        'Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
+        'generate the qr code bitmap
+        Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
 
-        ''Display the QR code bitmap in a PictureBox Or save it to a file
-        'Guna2PictureBox1.Image = qrCodeBitmap
+        'Display the QR code bitmap in a PictureBox Or save it to a file
+        Guna2PictureBox1.Image = qrCodeBitmap
     End Sub
 
     'Private Sub insertdatatodocu()
@@ -330,8 +331,8 @@ Public Class studentCRUD
         End Select
 
         Dim insertUserInfo As String = "INSERT INTO user_info (username, password, role) VALUES (@username, @password, @role)"
-        Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status, user_id)
-                                           VALUES (@student_id, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status, @user_id)"
+        Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, suffix, email, contact_number, address, student_type, student_status, user_id)
+                                           VALUES (@student_id, @last_name, @first_name, @middle_name, @suffix, @email, @contact_number, @address, @student_type, @student_status, @user_id)"
 
         openCon()
 
@@ -351,6 +352,7 @@ Public Class studentCRUD
                     command2.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
                     command2.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
                     command2.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
+                    command2.Parameters.AddWithValue("@suffix", Guna2TextBox10.Text)
                     command2.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
                     command2.Parameters.AddWithValue("@contact_number", Guna2TextBox9.Text)
                     command2.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
@@ -476,9 +478,6 @@ Public Class studentCRUD
         End Try
     End Sub
 
-    Private Sub Guna2TextBox7_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox7.TextChanged
-        Autogencode()
-    End Sub
 
     Private Function IsValidEmail(email As String) As Boolean
         Dim emailPattern As String = "^[^@\s]+@[^@\s]+\.[^@\s]+$"
@@ -528,4 +527,6 @@ Public Class studentCRUD
         Dim pattern As String = "^09\d{9}$"
         Return System.Text.RegularExpressions.Regex.IsMatch(input, pattern)
     End Function
+
+
 End Class

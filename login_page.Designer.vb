@@ -176,7 +176,7 @@ Partial Class login_page
         Guna2TextBox1.Location = New Point(276, 147)
         Guna2TextBox1.Margin = New Padding(3, 4, 3, 4)
         Guna2TextBox1.Name = "Guna2TextBox1"
-        Guna2TextBox1.PasswordChar = ChrW(0)
+        Guna2TextBox1.PasswordChar = "*"c
         Guna2TextBox1.PlaceholderText = "Enter Password"
         Guna2TextBox1.SelectedText = ""
         Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges8

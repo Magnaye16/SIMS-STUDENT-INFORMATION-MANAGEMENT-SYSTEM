@@ -24,7 +24,7 @@ Public Class login_page
                     ' MsgBox("Login successful!", MsgBoxStyle.Information, "Success")
                     Hide()
                     Select Case table.Rows(0)("role").ToString
-                        Case "Admin"
+                        Case "admin"
                             con.Close()
                             AdminHomepage.Show()
                         Case "professor"
