@@ -3,6 +3,15 @@ Imports DocumentFormat.OpenXml.ExtendedProperties
 Imports MySql.Data.MySqlClient
 
 Public Class Form4
+    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadAttendanceTable()
+    End Sub
+    Private Sub Guna2TextBox1_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox1.TextChanged
+        searchfromtable()
+    End Sub
+
+
+
     Public Sub LoadAttendanceTable()
         Dim query As String = "
     SELECT 
@@ -64,7 +73,25 @@ Public Class Form4
 
     End Sub
 
-    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadAttendanceTable()
+
+
+    Public Sub searchfromtable()
+        Dim searchTerm As String = Guna2TextBox1.Text.Trim()
+
+        For Each row As DataGridViewRow In Guna2DataGridView1.Rows
+            Dim matchFound As Boolean = False
+
+            ' Search in each cell of the row
+            For Each cell As DataGridViewCell In row.Cells
+                If cell.Value IsNot Nothing AndAlso cell.Value.ToString().ToLower().Contains(searchTerm.ToLower()) Then
+                    matchFound = True
+                    Exit For
+                End If
+            Next
+
+            ' Show or hide the row based on the match
+            row.Visible = matchFound
+        Next
+
     End Sub
 End Class

@@ -131,8 +131,8 @@ Public Class studentCRUD
 
         ' Set encoding properties (optional)
         barcodeWriter.Options = New Common.EncodingOptions With {
-            .Width = 300,
-            .Height = 300
+            .Width = 328,
+            .Height = 126
         }
 
         'generate the qr code bitmap
@@ -331,8 +331,8 @@ Public Class studentCRUD
         End Select
 
         Dim insertUserInfo As String = "INSERT INTO user_info (username, password, role) VALUES (@username, @password, @role)"
-        Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, email, contact_number, address, student_type, student_status, user_id)
-                                           VALUES (@student_id, @last_name, @first_name, @middle_name, @email, @contact_number, @address, @student_type, @student_status, @user_id)"
+        Dim insertStudentInfo As String = "INSERT INTO student_info (student_id, last_name, first_name, middle_name, suffix, email, contact_number, address, student_type, student_status, user_id)
+                                           VALUES (@student_id, @last_name, @first_name, @middle_name, @suffix, @email, @contact_number, @address, @student_type, @student_status, @user_id)"
 
         openCon()
 
@@ -352,6 +352,7 @@ Public Class studentCRUD
                     command2.Parameters.AddWithValue("@last_name", Guna2TextBox1.Text)
                     command2.Parameters.AddWithValue("@first_name", Guna2TextBox4.Text)
                     command2.Parameters.AddWithValue("@middle_name", Guna2TextBox2.Text)
+                    command2.Parameters.AddWithValue("@suffix", Guna2TextBox10.Text)
                     command2.Parameters.AddWithValue("@email", Guna2TextBox8.Text)
                     command2.Parameters.AddWithValue("@contact_number", Guna2TextBox9.Text)
                     command2.Parameters.AddWithValue("@address", Guna2TextBox3.Text)
@@ -526,4 +527,6 @@ Public Class studentCRUD
         Dim pattern As String = "^09\d{9}$"
         Return System.Text.RegularExpressions.Regex.IsMatch(input, pattern)
     End Function
+
+
 End Class

@@ -52,6 +52,8 @@ Partial Class studentCRUD
         Dim CustomizableEdges28 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges29 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges30 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges31 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges32 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Guna2TextBox4 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox2 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -79,6 +81,8 @@ Partial Class studentCRUD
         Guna2Separator3 = New Guna.UI2.WinForms.Guna2Separator()
         Guna2vSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
         Guna2TextBox7 = New Guna.UI2.WinForms.Guna2TextBox()
+        Guna2HtmlLabel9 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Guna2TextBox10 = New Guna.UI2.WinForms.Guna2TextBox()
         CType(Guna2PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -97,14 +101,14 @@ Partial Class studentCRUD
         Guna2TextBox4.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox4.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox4.Location = New Point(289, 48)
+        Guna2TextBox4.Location = New Point(255, 48)
         Guna2TextBox4.Margin = New Padding(3, 4, 3, 4)
         Guna2TextBox4.Name = "Guna2TextBox4"
         Guna2TextBox4.PasswordChar = ChrW(0)
         Guna2TextBox4.PlaceholderText = "Given Name"
         Guna2TextBox4.SelectedText = ""
         Guna2TextBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges2
-        Guna2TextBox4.Size = New Size(244, 38)
+        Guna2TextBox4.Size = New Size(210, 38)
         Guna2TextBox4.TabIndex = 4
         ' 
         ' Guna2TextBox1
@@ -129,7 +133,7 @@ Partial Class studentCRUD
         Guna2TextBox1.PlaceholderText = "Last Name"
         Guna2TextBox1.SelectedText = ""
         Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges4
-        Guna2TextBox1.Size = New Size(244, 38)
+        Guna2TextBox1.Size = New Size(210, 40)
         Guna2TextBox1.TabIndex = 5
         ' 
         ' Guna2TextBox2
@@ -147,14 +151,14 @@ Partial Class studentCRUD
         Guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox2.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox2.Location = New Point(539, 48)
+        Guna2TextBox2.Location = New Point(470, 48)
         Guna2TextBox2.Margin = New Padding(3, 4, 3, 4)
         Guna2TextBox2.Name = "Guna2TextBox2"
         Guna2TextBox2.PasswordChar = ChrW(0)
         Guna2TextBox2.PlaceholderText = "Middle Name"
         Guna2TextBox2.SelectedText = ""
         Guna2TextBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges6
-        Guna2TextBox2.Size = New Size(244, 38)
+        Guna2TextBox2.Size = New Size(210, 38)
         Guna2TextBox2.TabIndex = 6
         ' 
         ' Guna2TextBox3
@@ -283,7 +287,7 @@ Partial Class studentCRUD
         Guna2Button2.FillColor = Color.White
         Guna2Button2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button2.ForeColor = Color.Black
-        Guna2Button2.Location = New Point(664, 484)
+        Guna2Button2.Location = New Point(664, 492)
         Guna2Button2.Name = "Guna2Button2"
         Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges18
         Guna2Button2.Size = New Size(119, 41)
@@ -303,7 +307,7 @@ Partial Class studentCRUD
         Guna2Button3.FillColor = Color.Black
         Guna2Button3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button3.ForeColor = Color.White
-        Guna2Button3.Location = New Point(664, 385)
+        Guna2Button3.Location = New Point(664, 398)
         Guna2Button3.Name = "Guna2Button3"
         Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges20
         Guna2Button3.Size = New Size(119, 41)
@@ -323,7 +327,7 @@ Partial Class studentCRUD
         CreateBTN.FillColor = Color.Black
         CreateBTN.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         CreateBTN.ForeColor = Color.White
-        CreateBTN.Location = New Point(664, 437)
+        CreateBTN.Location = New Point(664, 445)
         CreateBTN.Name = "CreateBTN"
         CreateBTN.ShadowDecoration.CustomizableEdges = CustomizableEdges22
         CreateBTN.Size = New Size(119, 41)
@@ -441,7 +445,7 @@ Partial Class studentCRUD
         ' 
         Guna2HtmlLabel7.BackColor = Color.Transparent
         Guna2HtmlLabel7.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel7.Location = New Point(289, 24)
+        Guna2HtmlLabel7.Location = New Point(255, 24)
         Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
         Guna2HtmlLabel7.Size = New Size(78, 18)
         Guna2HtmlLabel7.TabIndex = 28
@@ -451,7 +455,7 @@ Partial Class studentCRUD
         ' 
         Guna2HtmlLabel8.BackColor = Color.Transparent
         Guna2HtmlLabel8.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel8.Location = New Point(539, 24)
+        Guna2HtmlLabel8.Location = New Point(470, 24)
         Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
         Guna2HtmlLabel8.Size = New Size(88, 18)
         Guna2HtmlLabel8.TabIndex = 29
@@ -533,12 +537,49 @@ Partial Class studentCRUD
         Guna2TextBox7.Size = New Size(149, 38)
         Guna2TextBox7.TabIndex = 35
         ' 
+        ' Guna2HtmlLabel9
+        ' 
+        Guna2HtmlLabel9.BackColor = Color.Transparent
+        Guna2HtmlLabel9.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2HtmlLabel9.Location = New Point(687, 24)
+        Guna2HtmlLabel9.Name = "Guna2HtmlLabel9"
+        Guna2HtmlLabel9.Size = New Size(45, 18)
+        Guna2HtmlLabel9.TabIndex = 37
+        Guna2HtmlLabel9.Text = "SUFFIX"
+        ' 
+        ' Guna2TextBox10
+        ' 
+        Guna2TextBox10.Animated = True
+        Guna2TextBox10.BackColor = Color.Transparent
+        Guna2TextBox10.BorderColor = Color.Black
+        Guna2TextBox10.BorderRadius = 2
+        Guna2TextBox10.CustomizableEdges = CustomizableEdges31
+        Guna2TextBox10.DefaultText = ""
+        Guna2TextBox10.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
+        Guna2TextBox10.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
+        Guna2TextBox10.DisabledState.ForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        Guna2TextBox10.DisabledState.PlaceholderForeColor = Color.FromArgb(CByte(138), CByte(138), CByte(138))
+        Guna2TextBox10.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
+        Guna2TextBox10.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2TextBox10.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
+        Guna2TextBox10.Location = New Point(687, 48)
+        Guna2TextBox10.Margin = New Padding(3, 4, 3, 4)
+        Guna2TextBox10.Name = "Guna2TextBox10"
+        Guna2TextBox10.PasswordChar = ChrW(0)
+        Guna2TextBox10.PlaceholderText = "Suffix"
+        Guna2TextBox10.SelectedText = ""
+        Guna2TextBox10.ShadowDecoration.CustomizableEdges = CustomizableEdges32
+        Guna2TextBox10.Size = New Size(96, 38)
+        Guna2TextBox10.TabIndex = 38
+        ' 
         ' studentCRUD
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(826, 576)
+        Controls.Add(Guna2TextBox10)
+        Controls.Add(Guna2HtmlLabel9)
         Controls.Add(Guna2TextBox7)
         Controls.Add(Guna2vSeparator1)
         Controls.Add(Guna2Separator3)
@@ -601,4 +642,6 @@ Partial Class studentCRUD
     Friend WithEvents Guna2Separator3 As Guna.UI2.WinForms.Guna2Separator
     Friend WithEvents Guna2vSeparator1 As Guna.UI2.WinForms.Guna2VSeparator
     Friend WithEvents Guna2TextBox7 As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents Guna2HtmlLabel9 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2TextBox10 As Guna.UI2.WinForms.Guna2TextBox
 End Class
