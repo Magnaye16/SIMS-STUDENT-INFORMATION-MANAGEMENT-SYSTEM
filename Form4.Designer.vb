@@ -37,7 +37,7 @@ Partial Class Form4
         attendanceDGV.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
-        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9.0F)
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
         DataGridViewCellStyle2.ForeColor = Color.White
         DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
@@ -47,7 +47,7 @@ Partial Class Form4
         attendanceDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         DataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = Color.White
-        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9.0F)
+        DataGridViewCellStyle3.Font = New Font("Segoe UI", 9F)
         DataGridViewCellStyle3.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         DataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         DataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
@@ -69,14 +69,14 @@ Partial Class Form4
         attendanceDGV.ThemeStyle.GridColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
         attendanceDGV.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(CByte(100), CByte(88), CByte(255))
         attendanceDGV.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None
-        attendanceDGV.ThemeStyle.HeaderStyle.Font = New Font("Segoe UI", 9.0F)
+        attendanceDGV.ThemeStyle.HeaderStyle.Font = New Font("Segoe UI", 9F)
         attendanceDGV.ThemeStyle.HeaderStyle.ForeColor = Color.White
         attendanceDGV.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         attendanceDGV.ThemeStyle.HeaderStyle.Height = 4
         attendanceDGV.ThemeStyle.ReadOnly = True
         attendanceDGV.ThemeStyle.RowsStyle.BackColor = Color.White
         attendanceDGV.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        attendanceDGV.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9.0F)
+        attendanceDGV.ThemeStyle.RowsStyle.Font = New Font("Segoe UI", 9F)
         attendanceDGV.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(CByte(71), CByte(69), CByte(94))
         attendanceDGV.ThemeStyle.RowsStyle.Height = 25
         attendanceDGV.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(CByte(231), CByte(229), CByte(255))
@@ -84,7 +84,7 @@ Partial Class Form4
         ' 
         ' Form4
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(826, 576)
