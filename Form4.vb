@@ -4,115 +4,67 @@ Imports MySql.Data.MySqlClient
 
 Public Class Form4
     Public Sub LoadAttendanceTable()
-        Try
-
-            openCon()
-
-            Dim query As String = "
-                    SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', s.middle_name) AS 'Full Name',
-                            a.log_date AS Date, a.time_in AS 'Time In', a.time_out AS 'Time Out', a.status,
-                            c.year AS Year, c.section AS Section, c.class_day
-                    FROM attendance_log AS a
-                    INNER JOIN student_info AS s ON a.student_id = s.student_id
-                    INNER JOIN class_info AS c ON a.class_id = c.class_id
-                    ORDER BY a.log_date DESC;
-                "
-
-            Using adapter As New MySqlDataAdapter(query, con)
-
-                Dim dataTable As New DataTable()
-                adapter.Fill(dataTable)
-
-                dataTable.Columns.Add("Day", GetType(String))
-                dataTable.Columns.Add("Remark", GetType(String))
-
-                For Each row As DataRow In dataTable.Rows
-                    Dim dayNumber As Integer = Convert.ToInt32(row("class_day"))
-                    row("Day") = GetDayName(dayNumber)
-
-                    Dim statusChar As Char = Convert.ToChar(row("status"))
-                    row("Remark") = CharToWord(statusChar)
-                Next
-
-                attendanceDGV.DataSource = dataTable
-                attendanceDGV.Columns("status").Visible = False
-                attendanceDGV.Columns("class_day").Visible = False
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("An error occurred: " & ex.Message)
-        Finally
-            con.Close()
-        End Try
-    End Sub
-
-    Private Function GetDayName(dayNumber As Integer) As String
-        Select Case dayNumber
-            Case 1 : Return "Sunday"
-            Case 2 : Return "Monday"
-            Case 3 : Return "Tuesday"
-            Case 4 : Return "Wednesday"
-            Case 5 : Return "Thursday"
-            Case 6 : Return "Friday"
-            Case 7 : Return "Saturday"
-            Case Else : Return "Unknown"
-        End Select
-    End Function
-
-    Function CharToWord(ByVal character As Char) As String
-        Select Case character
-            Case "A"c : Return "Absent"
-            Case "P"c : Return "Present"
-            Case "L"c : Return "Late"
-            Case Else
-                Return "Unknown"
-        End Select
-    End Function
-    Private Sub LoadResidentInformation(searchTerm As String)
-
         Dim query As String = "
-                    SELECT CONCAT(s.last_name, ', ', s.first_name, ' ', s.middle_name) AS 'Full Name',
-                            a.log_date AS Date, a.time_in AS 'Time In', a.time_out AS 'Time Out', a.status,
-                            c.year AS Year, c.section AS Section, c.class_day
-                    FROM attendance_log AS a
-                    INNER JOIN student_info AS s ON a.student_id = s.student_id
-                    INNER JOIN class_info AS c ON a.class_id = c.class_id
-                    ORDER BY a.log_date DESC;
-                "
+    SELECT 
+        CONCAT(s.last_name, ', ', s.first_name, ' ', s.middle_name) AS `Full Name`,
+        a.log_date AS `Date`, 
+        a.time_in AS `Time In`, 
+        a.time_out AS `Time Out`, 
+        CASE 
+            WHEN a.status = 'P' THEN 'Present'
+            WHEN a.status = 'A' THEN 'Absent'
+            WHEN a.status = 'L' THEN 'Late'
+            ELSE 'Unknown' 
+        END AS `Status`,
+        c.school_year AS `School Year`, 
+        c.section AS `Section`
+    FROM attendance_log AS a
+    INNER JOIN student_info AS s ON a.student_id = s.student_id
+    INNER JOIN class_info AS c ON a.class_id = c.class_id
+    ORDER BY a.log_date DESC;
+"
 
         Try
-            openCon()
+            openCon() ' Ensure this function properly opens the database connection.
 
             Using command As New MySqlCommand(query, con)
-
-                command.Parameters.AddWithValue("@searchTerm", "%" & searchTerm & "%")
+                ' Use parameterized query to prevent SQL injection
+                'command.Parameters.AddWithValue("@searchTerm", "%" & searchTerm & "%")
 
                 Using reader As MySqlDataReader = command.ExecuteReader()
-                    attendanceDGV.Rows.Clear()
-                    '
-                    If reader.Read() Then
-                        Dim fullname As String
-                        fullname = reader("last_name") + "," + reader("first_name") + " " + reader("middle_name")
+                    Guna2DataGridView1.Rows.Clear() ' Clear existing rows in the DataGridView
 
-                        'insert to table
+                    ' Check if there are results
+                    If reader.HasRows Then
                         While reader.Read()
-                            ' Add a new row to the DataGridView
-                            attendanceDGV.Rows.Add(reader(fullname), reader(""), reader("given_Name"), reader("middle_Name"), reader("address"))
+                            ' Add data to the DataGridView
+                            Guna2DataGridView1.Rows.Add(
+                        reader("Full Name"),
+                        reader("Date"),
+                        reader("Time In"),
+                        reader("Time Out"),
+                        reader("Status"),
+                        reader("School Year"),
+                        reader("Section")
+                    )
                         End While
                     Else
-
-                        'loadform()
+                        MessageBox.Show("No records found.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 End Using
             End Using
 
         Catch ex As Exception
-            ' Handle any errors that may have occurred
-            'MessageBox.Show("An error occurred: " & ex.Message)
+            ' Display the error message
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
         Finally
-            con.Close()
+            con.Close() ' Ensure the connection is closed even if an error occurs
         End Try
 
     End Sub
 
-
+    Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadAttendanceTable()
+    End Sub
 End Class

@@ -16,7 +16,8 @@ Public Class studentCRUD
     Private ReadOnly time_start As Object
 
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-        Dim filename = Guna2TextBox1.Text + "_" + Guna2TextBox7.Text ' <<< UID DAPAT (TEMPORARY)
+        Autogencode()
+        Dim filename = Guna2TextBox7.Text ' <<< UID DAPAT (TEMPORARY)
         Dim filePath = "C:\Users\John Roi\source\repos\SMS(Student Management System)\Generated QR\" + filename + ".jpg"
         Dim qrCodeBitmap As Bitmap = Guna2PictureBox1.Image
         qrCodeBitmap.Save(filePath, ImageFormat.Png)
@@ -122,7 +123,7 @@ Public Class studentCRUD
 
     Private Sub Autogencode()
         'generate qr
-        Dim qrstring As String = Guna2TextBox1.Text
+        Dim qrstring As String = Guna2TextBox7.Text
 
         ' Create a barcode writer
         Dim barcodeWriter As New BarcodeWriter
@@ -134,11 +135,11 @@ Public Class studentCRUD
             .Height = 300
         }
 
-        ''generate the qr code bitmap
-        'Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
+        'generate the qr code bitmap
+        Dim qrCodeBitmap = barcodeWriter.Write(qrstring)
 
-        ''Display the QR code bitmap in a PictureBox Or save it to a file
-        'Guna2PictureBox1.Image = qrCodeBitmap
+        'Display the QR code bitmap in a PictureBox Or save it to a file
+        Guna2PictureBox1.Image = qrCodeBitmap
     End Sub
 
     'Private Sub insertdatatodocu()
@@ -476,9 +477,6 @@ Public Class studentCRUD
         End Try
     End Sub
 
-    Private Sub Guna2TextBox7_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox7.TextChanged
-        Autogencode()
-    End Sub
 
     Private Function IsValidEmail(email As String) As Boolean
         Dim emailPattern As String = "^[^@\s]+@[^@\s]+\.[^@\s]+$"
