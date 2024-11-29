@@ -8,20 +8,20 @@ Public Class ATTENDANCE
     Dim timenow As String = currentDate.ToString("HH:mm:ss") ' 24-hour format
     Dim datenow As String = currentDate.ToString("yyyy-MM-dd")
 
-    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-        'timeout
-        Timeout()
-    End Sub
+    'Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+    '    'timeout
+    '    'Timeout()
+    'End Sub
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
         Guna2TextBox1.Text = ""
         Guna2TextBox2.Text = ""
         Guna2TextBox3.Text = ""
         Guna2TextBox4.Clear()
     End Sub
-    Private Sub Guna2TextBox4_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox4.KeyDown
+    Private Sub Guna2TextBox4_KeyDown(sender As Object, e As KeyEventArgs) Handles Guna2TextBox4.KeyDown, Guna2TextBox5.KeyDown
         'search then autofill
         If e.KeyCode = Keys.Enter Then
-            SearchonPress()
+            SearchonPress
             'checkandtimein()
             'TimeIn()
         ElseIf Guna2TextBox4.Text = "" Then
@@ -29,10 +29,10 @@ Public Class ATTENDANCE
             Guna2TextBox1.Text = ""
             Guna2TextBox2.Text = ""
             Guna2TextBox3.Text = ""
-            Guna2TextBox4.Clear()
+            Guna2TextBox4.Clear
         End If
     End Sub
-    Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
+    Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged, Guna2TextBox5.TextChanged
         STUDENT_ID = Guna2TextBox4.Text.Trim
     End Sub
 
