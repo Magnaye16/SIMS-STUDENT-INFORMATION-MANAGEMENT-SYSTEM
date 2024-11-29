@@ -93,11 +93,25 @@ Public Class enlistment
 
     Private Sub LoadStudentClasses()
         Dim query As String = "
-            SELECT s.student_id, s.last_name,  s.first_name, s.middle_name,
-                   c.section AS Section, ci.code AS Classcode
-            FROM class_info c
-            INNER JOIN student_info s ON s.student_id = c.student_id
-            INNER JOIN course_info ci ON ci.course_id = c.course_id"
+        SELECT 
+            s.student_id, 
+            s.last_name, 
+            s.first_name, 
+            s.middle_name,
+            c.section AS Section, 
+            ci.code AS Classcode
+        FROM 
+            class_members cm
+        INNER JOIN 
+            student_info s ON s.student_id = cm.student_id
+        INNER JOIN 
+            class_info c ON cm.class_id = c.class_id
+        INNER JOIN 
+            course_info ci ON c.course_id = ci.course_id;
+
+
+"
+
         Try
             openCon()
 
@@ -131,12 +145,65 @@ Public Class enlistment
         Dim searchTerm As String = Guna2TextBox4.Text.Trim()
 
         Dim query As String = "
-        SELECT s.student_id, s.last_name, s.first_name, s.middle_name,
+        SELECT 
+            s.student_id, 
+            s.last_name, 
+            s.first_name, 
+            s.middle_name,
+            c.section AS Section, 
+            ci.code AS Classcode
+        FROM 
+            class_members cm
+        INNER JOIN 
+            student_info s ON s.student_id = cm.student_id
+        INNER JOIN 
+            class_info c ON cm.class_id = c.class_id
+        INNER JOIN 
+            course_info ci ON c.course_id = ci.course_id
+        WHERE 
+            s.student_id LIKE @searchTerm;
+"
+
+        Try
+            openCon()
+
+            Dim adapter As New MySqlDataAdapter(query, con)
+            adapter.SelectCommand.Parameters.AddWithValue("@searchTerm", "%" & searchTerm & "%")
+
+            Dim table As New DataTable()
+            adapter.Fill(table)
+
+            table.Columns.Add("Full Name", GetType(String))
+
+            For Each row As DataRow In table.Rows
+                row("Full Name") = $"{row("last_name")}, {row("first_name")} {row("middle_name")}"
+            Next
+
+            table.Columns("Full Name").SetOrdinal(1)
+
+            table.Columns.Remove("last_name")
+            table.Columns.Remove("first_name")
+            table.Columns.Remove("middle_name")
+
+            Guna2DataGridView1.DataSource = table
+
+        Catch ex As Exception
+            MessageBox.Show($"Error: {ex.Message}")
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+    Private Sub LoadProfBaseOnSearch()
+        Dim searchTerm As String = Guna2TextBox3.Text.Trim()
+
+        Dim query As String = "
+        SELECT s.professor_id, s.last_name, s.first_name, s.middle_name,
                c.section AS Section, ci.code AS Classcode
         FROM class_info c
-        INNER JOIN student_info s ON s.student_id = c.student_id
+        INNER JOIN professor_info s ON s.professor_id = c.professor_id
         INNER JOIN course_info ci ON ci.course_id = c.course_id
-        WHERE s.student_id LIKE @searchTerm"
+        WHERE s.professor_id LIKE @searchTerm"
 
         Try
             openCon()
@@ -332,7 +399,7 @@ Public Class enlistment
 
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
+    Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
         SearchStudent(Guna2TextBox4.Text)
         LoadStudentBaseOnSearch()
     End Sub
@@ -369,7 +436,7 @@ Public Class enlistment
     End Function
 
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-        Dim studentNumber As String = Guna2TextBox4.Text.Trim()
+        Dim studentNumber = Guna2TextBox4.Text.Trim
 
         If String.IsNullOrEmpty(studentNumber) Then
             MessageBox.Show("Please enter a valid student number.")
@@ -381,5 +448,9 @@ Public Class enlistment
         Else
             MessageBox.Show("Student does not exist.")
         End If
+    End Sub
+
+    Private Sub Guna2TextBox3_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox3.TextChanged
+        LoadProfBaseOnSearch()
     End Sub
 End Class
