@@ -3,6 +3,14 @@ Imports MySql.Data.MySqlClient
 
 Public Class ATTENDANCE
 
+    Dim classId As Integer
+    Dim classStartTime As TimeSpan
+    Dim studentStatus As String
+    Dim studentStatusDisplay As String
+    Dim gracePeriodMinutes As Integer = 15 ' Grace period for lateness
+    Dim timeInNow As TimeSpan = currentDate.TimeOfDay
+    Dim attendanceType As Char
+
     Private STUDENT_ID As String
     Dim currentDate As DateTime = DateTime.Now
     Dim timenow As String = currentDate.ToString("HH:mm:ss") ' 24-hour format
@@ -84,13 +92,6 @@ Public Class ATTENDANCE
     End Sub
 
     Private Sub TimeIn()
-        Dim classId As Integer
-        Dim classStartTime As TimeSpan
-        Dim studentStatus As String
-        Dim studentStatusDisplay As String
-        Dim gracePeriodMinutes As Integer = 15 ' Grace period for lateness
-        Dim timeInNow As TimeSpan = currentDate.TimeOfDay
-        Dim attendanceType As Char
 
         Try
             openCon()
