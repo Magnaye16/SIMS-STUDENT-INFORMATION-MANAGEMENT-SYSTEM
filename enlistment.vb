@@ -4,7 +4,7 @@ Imports MySql.Data.MySqlClient
 
 Public Class enlistment
 
-    Private Sub enlistment(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Enlistment(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupTimePickers()
         PopulateDaysComboBox()
         LoadStudentClasses()
@@ -343,12 +343,8 @@ Public Class enlistment
         Dim studentId As String = Guna2TextBox4.Text.Trim()
 
         If String.IsNullOrEmpty(Guna2TextBox2.Text) OrElse
-       Guna2ComboBox1.SelectedIndex = -1 OrElse
-       Guna2ComboBox2.SelectedIndex = -1 OrElse
-       Guna2ComboBox3.SelectedIndex = -1 OrElse
-       Guna2ComboBox4.SelectedIndex = -1 OrElse
-       Guna2ComboBox5.SelectedIndex = -1 OrElse
-       Guna2ComboBox6.SelectedIndex = -1 Then
+            Guna2ComboBox1.SelectedIndex = -1 OrElse
+            Guna2ComboBox2.SelectedIndex = -1 Then
             MessageBox.Show("Please ensure all required fields are filled.")
             Return
         End If

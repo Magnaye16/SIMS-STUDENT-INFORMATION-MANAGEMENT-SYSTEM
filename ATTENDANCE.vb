@@ -30,7 +30,7 @@ Public Class ATTENDANCE
         'search then autofill
         If e.KeyCode = Keys.Enter Then
             SearchonPress()
-            'checkandtimein()
+            'Checkandtimein()
             'TimeIn()
         ElseIf Guna2TextBox4.Text = "" Then
             'clear
@@ -224,7 +224,7 @@ Public Class ATTENDANCE
 
     End Sub
 
-    Private Sub checkandtimein()
+    Private Sub Checkandtimein()
         Try
             ' Open the database connection
             openCon()

@@ -7,7 +7,7 @@ Public Class Form4
         LoadAttendanceTable()
     End Sub
     Private Sub Guna2TextBox1_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox1.TextChanged
-        searchfromtable()
+        Searchfromtable()
     End Sub
 
 
@@ -75,7 +75,7 @@ Public Class Form4
 
 
 
-    Public Sub searchfromtable()
+    Public Sub Searchfromtable()
         Dim searchTerm As String = Guna2TextBox1.Text.Trim()
 
         For Each row As DataGridViewRow In Guna2DataGridView1.Rows
@@ -83,7 +83,7 @@ Public Class Form4
 
             ' Search in each cell of the row
             For Each cell As DataGridViewCell In row.Cells
-                If cell.Value IsNot Nothing AndAlso cell.Value.ToString().ToLower().Contains(searchTerm.ToLower()) Then
+                If cell.Value IsNot Nothing AndAlso cell.Value.ToString().Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase) Then
                     matchFound = True
                     Exit For
                 End If
