@@ -30,22 +30,22 @@ Partial Class enlistment
         Dim CustomizableEdges6 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges7 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges8 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges9 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges10 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim CustomizableEdges9 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges10 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges11 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges12 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges13 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges14 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges15 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges16 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges17 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges18 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim CustomizableEdges17 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges18 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges19 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges20 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges21 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
@@ -68,12 +68,8 @@ Partial Class enlistment
         Dim CustomizableEdges38 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges39 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges40 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges41 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges42 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
-        Guna2ComboBox2 = New Guna.UI2.WinForms.Guna2ComboBox()
-        Guna2HtmlLabel10 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2HtmlLabel9 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -126,8 +122,6 @@ Partial Class enlistment
         ' TabPage1
         ' 
         TabPage1.BackColor = Color.White
-        TabPage1.Controls.Add(Guna2ComboBox2)
-        TabPage1.Controls.Add(Guna2HtmlLabel10)
         TabPage1.Controls.Add(Guna2HtmlLabel9)
         TabPage1.Controls.Add(Guna2HtmlLabel8)
         TabPage1.Controls.Add(Guna2HtmlLabel7)
@@ -147,35 +141,6 @@ Partial Class enlistment
         TabPage1.Size = New Size(819, 507)
         TabPage1.TabIndex = 0
         TabPage1.Text = "TabPage1"
-        ' 
-        ' Guna2ComboBox2
-        ' 
-        Guna2ComboBox2.BackColor = Color.Transparent
-        Guna2ComboBox2.BorderColor = Color.Black
-        Guna2ComboBox2.BorderRadius = 2
-        Guna2ComboBox2.CustomizableEdges = CustomizableEdges1
-        Guna2ComboBox2.DrawMode = DrawMode.OwnerDrawFixed
-        Guna2ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList
-        Guna2ComboBox2.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2ComboBox2.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2ComboBox2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2ComboBox2.ForeColor = Color.FromArgb(CByte(68), CByte(88), CByte(112))
-        Guna2ComboBox2.ItemHeight = 30
-        Guna2ComboBox2.Location = New Point(598, 43)
-        Guna2ComboBox2.Name = "Guna2ComboBox2"
-        Guna2ComboBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges2
-        Guna2ComboBox2.Size = New Size(201, 36)
-        Guna2ComboBox2.TabIndex = 56
-        ' 
-        ' Guna2HtmlLabel10
-        ' 
-        Guna2HtmlLabel10.BackColor = Color.Transparent
-        Guna2HtmlLabel10.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel10.Location = New Point(598, 17)
-        Guna2HtmlLabel10.Name = "Guna2HtmlLabel10"
-        Guna2HtmlLabel10.Size = New Size(74, 18)
-        Guna2HtmlLabel10.TabIndex = 55
-        Guna2HtmlLabel10.Text = "PROFESSOR"
         ' 
         ' Guna2HtmlLabel9
         ' 
@@ -212,7 +177,7 @@ Partial Class enlistment
         Guna2Button5.Animated = True
         Guna2Button5.BackColor = Color.Transparent
         Guna2Button5.BorderRadius = 6
-        Guna2Button5.CustomizableEdges = CustomizableEdges3
+        Guna2Button5.CustomizableEdges = CustomizableEdges1
         Guna2Button5.DisabledState.BorderColor = Color.DarkGray
         Guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button5.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -222,7 +187,7 @@ Partial Class enlistment
         Guna2Button5.ForeColor = Color.White
         Guna2Button5.Location = New Point(711, 85)
         Guna2Button5.Name = "Guna2Button5"
-        Guna2Button5.ShadowDecoration.CustomizableEdges = CustomizableEdges4
+        Guna2Button5.ShadowDecoration.CustomizableEdges = CustomizableEdges2
         Guna2Button5.Size = New Size(88, 36)
         Guna2Button5.TabIndex = 50
         Guna2Button5.Text = "DELETE"
@@ -232,7 +197,7 @@ Partial Class enlistment
         Guna2Button4.Animated = True
         Guna2Button4.BackColor = Color.Transparent
         Guna2Button4.BorderRadius = 6
-        Guna2Button4.CustomizableEdges = CustomizableEdges5
+        Guna2Button4.CustomizableEdges = CustomizableEdges3
         Guna2Button4.DisabledState.BorderColor = Color.DarkGray
         Guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button4.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -242,7 +207,7 @@ Partial Class enlistment
         Guna2Button4.ForeColor = Color.White
         Guna2Button4.Location = New Point(113, 85)
         Guna2Button4.Name = "Guna2Button4"
-        Guna2Button4.ShadowDecoration.CustomizableEdges = CustomizableEdges6
+        Guna2Button4.ShadowDecoration.CustomizableEdges = CustomizableEdges4
         Guna2Button4.Size = New Size(88, 36)
         Guna2Button4.TabIndex = 49
         Guna2Button4.Text = "UPDATE"
@@ -252,7 +217,7 @@ Partial Class enlistment
         Guna2Button2.Animated = True
         Guna2Button2.BackColor = Color.Transparent
         Guna2Button2.BorderRadius = 6
-        Guna2Button2.CustomizableEdges = CustomizableEdges7
+        Guna2Button2.CustomizableEdges = CustomizableEdges5
         Guna2Button2.DisabledState.BorderColor = Color.DarkGray
         Guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button2.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -262,7 +227,7 @@ Partial Class enlistment
         Guna2Button2.ForeColor = Color.White
         Guna2Button2.Location = New Point(617, 85)
         Guna2Button2.Name = "Guna2Button2"
-        Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges8
+        Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges6
         Guna2Button2.Size = New Size(88, 36)
         Guna2Button2.TabIndex = 48
         Guna2Button2.Text = "CLEAR"
@@ -282,7 +247,7 @@ Partial Class enlistment
         Guna2ComboBox1.BackColor = Color.Transparent
         Guna2ComboBox1.BorderColor = Color.Black
         Guna2ComboBox1.BorderRadius = 2
-        Guna2ComboBox1.CustomizableEdges = CustomizableEdges9
+        Guna2ComboBox1.CustomizableEdges = CustomizableEdges7
         Guna2ComboBox1.DrawMode = DrawMode.OwnerDrawFixed
         Guna2ComboBox1.DropDownStyle = ComboBoxStyle.DropDownList
         Guna2ComboBox1.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
@@ -292,7 +257,7 @@ Partial Class enlistment
         Guna2ComboBox1.ItemHeight = 30
         Guna2ComboBox1.Location = New Point(471, 41)
         Guna2ComboBox1.Name = "Guna2ComboBox1"
-        Guna2ComboBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges10
+        Guna2ComboBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges8
         Guna2ComboBox1.Size = New Size(121, 36)
         Guna2ComboBox1.TabIndex = 27
         ' 
@@ -352,7 +317,7 @@ Partial Class enlistment
         Guna2Button3.Animated = True
         Guna2Button3.BackColor = Color.Transparent
         Guna2Button3.BorderRadius = 6
-        Guna2Button3.CustomizableEdges = CustomizableEdges11
+        Guna2Button3.CustomizableEdges = CustomizableEdges9
         Guna2Button3.DisabledState.BorderColor = Color.DarkGray
         Guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button3.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -362,7 +327,7 @@ Partial Class enlistment
         Guna2Button3.ForeColor = Color.White
         Guna2Button3.Location = New Point(19, 85)
         Guna2Button3.Name = "Guna2Button3"
-        Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges12
+        Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges10
         Guna2Button3.Size = New Size(88, 36)
         Guna2Button3.TabIndex = 42
         Guna2Button3.Text = "ADD"
@@ -373,7 +338,7 @@ Partial Class enlistment
         Guna2TextBox2.BackColor = Color.Transparent
         Guna2TextBox2.BorderColor = Color.Black
         Guna2TextBox2.BorderRadius = 2
-        Guna2TextBox2.CustomizableEdges = CustomizableEdges13
+        Guna2TextBox2.CustomizableEdges = CustomizableEdges11
         Guna2TextBox2.DefaultText = ""
         Guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
         Guna2TextBox2.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
@@ -388,7 +353,7 @@ Partial Class enlistment
         Guna2TextBox2.PasswordChar = ChrW(0)
         Guna2TextBox2.PlaceholderText = ""
         Guna2TextBox2.SelectedText = ""
-        Guna2TextBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges14
+        Guna2TextBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges12
         Guna2TextBox2.Size = New Size(121, 36)
         Guna2TextBox2.TabIndex = 26
         ' 
@@ -398,7 +363,7 @@ Partial Class enlistment
         Guna2TextBox1.BackColor = Color.Transparent
         Guna2TextBox1.BorderColor = Color.Black
         Guna2TextBox1.BorderRadius = 2
-        Guna2TextBox1.CustomizableEdges = CustomizableEdges15
+        Guna2TextBox1.CustomizableEdges = CustomizableEdges13
         Guna2TextBox1.DefaultText = ""
         Guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
         Guna2TextBox1.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
@@ -413,7 +378,7 @@ Partial Class enlistment
         Guna2TextBox1.PasswordChar = ChrW(0)
         Guna2TextBox1.PlaceholderText = ""
         Guna2TextBox1.SelectedText = ""
-        Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges16
+        Guna2TextBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges14
         Guna2TextBox1.Size = New Size(213, 36)
         Guna2TextBox1.TabIndex = 25
         ' 
@@ -423,7 +388,7 @@ Partial Class enlistment
         Guna2TextBox4.BackColor = Color.Transparent
         Guna2TextBox4.BorderColor = Color.Black
         Guna2TextBox4.BorderRadius = 2
-        Guna2TextBox4.CustomizableEdges = CustomizableEdges17
+        Guna2TextBox4.CustomizableEdges = CustomizableEdges15
         Guna2TextBox4.DefaultText = ""
         Guna2TextBox4.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
         Guna2TextBox4.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
@@ -438,7 +403,7 @@ Partial Class enlistment
         Guna2TextBox4.PasswordChar = ChrW(0)
         Guna2TextBox4.PlaceholderText = "SEARCH ID"
         Guna2TextBox4.SelectedText = ""
-        Guna2TextBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges18
+        Guna2TextBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges16
         Guna2TextBox4.Size = New Size(100, 36)
         Guna2TextBox4.TabIndex = 24
         ' 
@@ -527,7 +492,7 @@ Partial Class enlistment
         Guna2TextBox3.BackColor = Color.Transparent
         Guna2TextBox3.BorderColor = Color.Black
         Guna2TextBox3.BorderRadius = 2
-        Guna2TextBox3.CustomizableEdges = CustomizableEdges19
+        Guna2TextBox3.CustomizableEdges = CustomizableEdges17
         Guna2TextBox3.DefaultText = ""
         Guna2TextBox3.DisabledState.BorderColor = Color.FromArgb(CByte(208), CByte(208), CByte(208))
         Guna2TextBox3.DisabledState.FillColor = Color.FromArgb(CByte(226), CByte(226), CByte(226))
@@ -542,7 +507,7 @@ Partial Class enlistment
         Guna2TextBox3.PasswordChar = ChrW(0)
         Guna2TextBox3.PlaceholderText = "SEARCH PROFESSOR"
         Guna2TextBox3.SelectedText = ""
-        Guna2TextBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges20
+        Guna2TextBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges18
         Guna2TextBox3.Size = New Size(185, 36)
         Guna2TextBox3.TabIndex = 26
         ' 
@@ -551,7 +516,7 @@ Partial Class enlistment
         Guna2Button6.Animated = True
         Guna2Button6.BackColor = Color.Transparent
         Guna2Button6.BorderRadius = 6
-        Guna2Button6.CustomizableEdges = CustomizableEdges21
+        Guna2Button6.CustomizableEdges = CustomizableEdges19
         Guna2Button6.DisabledState.BorderColor = Color.DarkGray
         Guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button6.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -561,7 +526,7 @@ Partial Class enlistment
         Guna2Button6.ForeColor = Color.White
         Guna2Button6.Location = New Point(711, 101)
         Guna2Button6.Name = "Guna2Button6"
-        Guna2Button6.ShadowDecoration.CustomizableEdges = CustomizableEdges22
+        Guna2Button6.ShadowDecoration.CustomizableEdges = CustomizableEdges20
         Guna2Button6.Size = New Size(88, 36)
         Guna2Button6.TabIndex = 53
         Guna2Button6.Text = "DELETE"
@@ -571,7 +536,7 @@ Partial Class enlistment
         Guna2Button1.Animated = True
         Guna2Button1.BackColor = Color.Transparent
         Guna2Button1.BorderRadius = 6
-        Guna2Button1.CustomizableEdges = CustomizableEdges23
+        Guna2Button1.CustomizableEdges = CustomizableEdges21
         Guna2Button1.DisabledState.BorderColor = Color.DarkGray
         Guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button1.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -581,7 +546,7 @@ Partial Class enlistment
         Guna2Button1.ForeColor = Color.White
         Guna2Button1.Location = New Point(617, 31)
         Guna2Button1.Name = "Guna2Button1"
-        Guna2Button1.ShadowDecoration.CustomizableEdges = CustomizableEdges24
+        Guna2Button1.ShadowDecoration.CustomizableEdges = CustomizableEdges22
         Guna2Button1.Size = New Size(88, 36)
         Guna2Button1.TabIndex = 43
         Guna2Button1.Text = "ADD"
@@ -591,7 +556,7 @@ Partial Class enlistment
         Guna2Button7.Animated = True
         Guna2Button7.BackColor = Color.Transparent
         Guna2Button7.BorderRadius = 6
-        Guna2Button7.CustomizableEdges = CustomizableEdges25
+        Guna2Button7.CustomizableEdges = CustomizableEdges23
         Guna2Button7.DisabledState.BorderColor = Color.DarkGray
         Guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button7.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -601,7 +566,7 @@ Partial Class enlistment
         Guna2Button7.ForeColor = Color.White
         Guna2Button7.Location = New Point(711, 31)
         Guna2Button7.Name = "Guna2Button7"
-        Guna2Button7.ShadowDecoration.CustomizableEdges = CustomizableEdges26
+        Guna2Button7.ShadowDecoration.CustomizableEdges = CustomizableEdges24
         Guna2Button7.Size = New Size(88, 36)
         Guna2Button7.TabIndex = 52
         Guna2Button7.Text = "UPDATE"
@@ -611,7 +576,7 @@ Partial Class enlistment
         Guna2Button8.Animated = True
         Guna2Button8.BackColor = Color.Transparent
         Guna2Button8.BorderRadius = 6
-        Guna2Button8.CustomizableEdges = CustomizableEdges27
+        Guna2Button8.CustomizableEdges = CustomizableEdges25
         Guna2Button8.DisabledState.BorderColor = Color.DarkGray
         Guna2Button8.DisabledState.CustomBorderColor = Color.DarkGray
         Guna2Button8.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
@@ -621,7 +586,7 @@ Partial Class enlistment
         Guna2Button8.ForeColor = Color.White
         Guna2Button8.Location = New Point(617, 101)
         Guna2Button8.Name = "Guna2Button8"
-        Guna2Button8.ShadowDecoration.CustomizableEdges = CustomizableEdges28
+        Guna2Button8.ShadowDecoration.CustomizableEdges = CustomizableEdges26
         Guna2Button8.Size = New Size(88, 36)
         Guna2Button8.TabIndex = 51
         Guna2Button8.Text = "CLEAR"
@@ -642,7 +607,7 @@ Partial Class enlistment
         Guna2DateTimePicker2.BorderRadius = 2
         Guna2DateTimePicker2.BorderThickness = 1
         Guna2DateTimePicker2.Checked = True
-        Guna2DateTimePicker2.CustomizableEdges = CustomizableEdges29
+        Guna2DateTimePicker2.CustomizableEdges = CustomizableEdges27
         Guna2DateTimePicker2.FillColor = Color.White
         Guna2DateTimePicker2.Font = New Font("Bahnschrift SemiBold", 8F, FontStyle.Bold)
         Guna2DateTimePicker2.Format = DateTimePickerFormat.Time
@@ -650,7 +615,7 @@ Partial Class enlistment
         Guna2DateTimePicker2.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Guna2DateTimePicker2.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Guna2DateTimePicker2.Name = "Guna2DateTimePicker2"
-        Guna2DateTimePicker2.ShadowDecoration.CustomizableEdges = CustomizableEdges30
+        Guna2DateTimePicker2.ShadowDecoration.CustomizableEdges = CustomizableEdges28
         Guna2DateTimePicker2.Size = New Size(121, 36)
         Guna2DateTimePicker2.TabIndex = 45
         Guna2DateTimePicker2.Value = New Date(2024, 11, 22, 0, 0, 0, 0)
@@ -661,7 +626,7 @@ Partial Class enlistment
         Guna2DateTimePicker1.BorderRadius = 2
         Guna2DateTimePicker1.BorderThickness = 1
         Guna2DateTimePicker1.Checked = True
-        Guna2DateTimePicker1.CustomizableEdges = CustomizableEdges31
+        Guna2DateTimePicker1.CustomizableEdges = CustomizableEdges29
         Guna2DateTimePicker1.FillColor = Color.White
         Guna2DateTimePicker1.Font = New Font("Bahnschrift SemiBold", 8F, FontStyle.Bold)
         Guna2DateTimePicker1.Format = DateTimePickerFormat.Time
@@ -669,7 +634,7 @@ Partial Class enlistment
         Guna2DateTimePicker1.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Guna2DateTimePicker1.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Guna2DateTimePicker1.Name = "Guna2DateTimePicker1"
-        Guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = CustomizableEdges32
+        Guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = CustomizableEdges30
         Guna2DateTimePicker1.Size = New Size(121, 36)
         Guna2DateTimePicker1.TabIndex = 44
         Guna2DateTimePicker1.Value = New Date(2024, 11, 22, 0, 0, 0, 0)
@@ -699,7 +664,7 @@ Partial Class enlistment
         Guna2ComboBox6.BackColor = Color.Transparent
         Guna2ComboBox6.BorderColor = Color.Black
         Guna2ComboBox6.BorderRadius = 2
-        Guna2ComboBox6.CustomizableEdges = CustomizableEdges33
+        Guna2ComboBox6.CustomizableEdges = CustomizableEdges31
         Guna2ComboBox6.DrawMode = DrawMode.OwnerDrawFixed
         Guna2ComboBox6.DropDownStyle = ComboBoxStyle.DropDownList
         Guna2ComboBox6.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
@@ -709,7 +674,7 @@ Partial Class enlistment
         Guna2ComboBox6.ItemHeight = 30
         Guna2ComboBox6.Location = New Point(156, 101)
         Guna2ComboBox6.Name = "Guna2ComboBox6"
-        Guna2ComboBox6.ShadowDecoration.CustomizableEdges = CustomizableEdges34
+        Guna2ComboBox6.ShadowDecoration.CustomizableEdges = CustomizableEdges32
         Guna2ComboBox6.Size = New Size(121, 36)
         Guna2ComboBox6.TabIndex = 41
         ' 
@@ -718,7 +683,7 @@ Partial Class enlistment
         Guna2ComboBox7.BackColor = Color.Transparent
         Guna2ComboBox7.BorderColor = Color.Black
         Guna2ComboBox7.BorderRadius = 2
-        Guna2ComboBox7.CustomizableEdges = CustomizableEdges35
+        Guna2ComboBox7.CustomizableEdges = CustomizableEdges33
         Guna2ComboBox7.DrawMode = DrawMode.OwnerDrawFixed
         Guna2ComboBox7.DropDownStyle = ComboBoxStyle.DropDownList
         Guna2ComboBox7.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
@@ -728,7 +693,7 @@ Partial Class enlistment
         Guna2ComboBox7.ItemHeight = 30
         Guna2ComboBox7.Location = New Point(210, 31)
         Guna2ComboBox7.Name = "Guna2ComboBox7"
-        Guna2ComboBox7.ShadowDecoration.CustomizableEdges = CustomizableEdges36
+        Guna2ComboBox7.ShadowDecoration.CustomizableEdges = CustomizableEdges34
         Guna2ComboBox7.Size = New Size(121, 36)
         Guna2ComboBox7.TabIndex = 42
         ' 
@@ -737,7 +702,7 @@ Partial Class enlistment
         Guna2ComboBox5.BackColor = Color.Transparent
         Guna2ComboBox5.BorderColor = Color.Black
         Guna2ComboBox5.BorderRadius = 2
-        Guna2ComboBox5.CustomizableEdges = CustomizableEdges37
+        Guna2ComboBox5.CustomizableEdges = CustomizableEdges35
         Guna2ComboBox5.DrawMode = DrawMode.OwnerDrawFixed
         Guna2ComboBox5.DropDownStyle = ComboBoxStyle.DropDownList
         Guna2ComboBox5.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
@@ -747,7 +712,7 @@ Partial Class enlistment
         Guna2ComboBox5.ItemHeight = 30
         Guna2ComboBox5.Location = New Point(19, 101)
         Guna2ComboBox5.Name = "Guna2ComboBox5"
-        Guna2ComboBox5.ShadowDecoration.CustomizableEdges = CustomizableEdges38
+        Guna2ComboBox5.ShadowDecoration.CustomizableEdges = CustomizableEdges36
         Guna2ComboBox5.Size = New Size(121, 36)
         Guna2ComboBox5.TabIndex = 40
         ' 
@@ -756,7 +721,7 @@ Partial Class enlistment
         Guna2ComboBox4.BackColor = Color.Transparent
         Guna2ComboBox4.BorderColor = Color.Black
         Guna2ComboBox4.BorderRadius = 2
-        Guna2ComboBox4.CustomizableEdges = CustomizableEdges39
+        Guna2ComboBox4.CustomizableEdges = CustomizableEdges37
         Guna2ComboBox4.DrawMode = DrawMode.OwnerDrawFixed
         Guna2ComboBox4.DropDownStyle = ComboBoxStyle.DropDownList
         Guna2ComboBox4.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
@@ -766,7 +731,7 @@ Partial Class enlistment
         Guna2ComboBox4.ItemHeight = 30
         Guna2ComboBox4.Location = New Point(443, 31)
         Guna2ComboBox4.Name = "Guna2ComboBox4"
-        Guna2ComboBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges40
+        Guna2ComboBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges38
         Guna2ComboBox4.Size = New Size(100, 36)
         Guna2ComboBox4.TabIndex = 37
         ' 
@@ -785,7 +750,7 @@ Partial Class enlistment
         Guna2ComboBox3.BackColor = Color.Transparent
         Guna2ComboBox3.BorderColor = Color.Black
         Guna2ComboBox3.BorderRadius = 2
-        Guna2ComboBox3.CustomizableEdges = CustomizableEdges41
+        Guna2ComboBox3.CustomizableEdges = CustomizableEdges39
         Guna2ComboBox3.DrawMode = DrawMode.OwnerDrawFixed
         Guna2ComboBox3.DropDownStyle = ComboBoxStyle.DropDownList
         Guna2ComboBox3.FocusedColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
@@ -795,7 +760,7 @@ Partial Class enlistment
         Guna2ComboBox3.ItemHeight = 30
         Guna2ComboBox3.Location = New Point(337, 31)
         Guna2ComboBox3.Name = "Guna2ComboBox3"
-        Guna2ComboBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges42
+        Guna2ComboBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges40
         Guna2ComboBox3.Size = New Size(100, 36)
         Guna2ComboBox3.TabIndex = 35
         ' 
@@ -868,6 +833,4 @@ Partial Class enlistment
     Friend WithEvents Guna2HtmlLabel7 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2HtmlLabel9 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2HtmlLabel8 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Guna2HtmlLabel10 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Guna2ComboBox2 As Guna.UI2.WinForms.Guna2ComboBox
 End Class

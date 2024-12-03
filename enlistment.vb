@@ -1,4 +1,5 @@
-﻿Imports DocumentFormat.OpenXml.Bibliography
+﻿Imports System.Security.Authentication.ExtendedProtection
+Imports DocumentFormat.OpenXml.Bibliography
 Imports Guna.UI2.WinForms
 Imports MySql.Data.MySqlClient
 
@@ -9,7 +10,7 @@ Public Class enlistment
         PopulateDaysComboBox()
         LoadStudentClasses()
         LoadCourses()
-        LoadProfessor()
+        'LoadProfessor()
         PopulateYearComboBox()
     End Sub
 
@@ -258,142 +259,148 @@ Public Class enlistment
         End Try
     End Sub
 
-    Private Sub LoadProfessor()
-        Dim query As String = "SELECT professor_id, CONCAT(last_name, ', ', first_name) AS name FROM professor_info"
+    'Private Sub LoadProfessor()
+    '    Dim query As String = "SELECT professor_id, CONCAT(last_name, ', ', first_name) AS name FROM professor_info"
 
+    '    Try
+    '        openCon()
+    '        Dim cmd As New MySqlCommand(query, con)
+
+    '        Dim adapter As New MySqlDataAdapter(cmd)
+    '        Dim table As New DataTable()
+    '        adapter.Fill(table)
+
+    '        Guna2ComboBox2.DisplayMember = "name"
+    '        Guna2ComboBox2.ValueMember = "professor_id"
+    '        Guna2ComboBox2.DataSource = table
+
+    '        Guna2ComboBox2.SelectedIndex = -1
+    '    Catch ex As Exception
+    '        MessageBox.Show($"Error: {ex.Message}")
+    '    Finally
+    '        If con.State = ConnectionState.Open Then
+    '            con.Close()
+    '        End If
+    '    End Try
+
+    'End Sub
+
+    'Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox1.SelectedIndexChanged
+    '    'con.Close()
+
+    '    '    If Guna2ComboBox1.SelectedIndex <> -1 Then
+    '    '        Dim selectedCourse = Convert.ToInt32(Guna2ComboBox1.SelectedValue)
+
+    '    '        Dim query3 = "SELECT professor_id FROM class_info WHERE course_id = @course_id"
+
+    '    '        Try
+    '    '            openCon()
+    '    '            Dim cmd3 As New MySqlCommand(query3, con)
+    '    '            cmd3.Parameters.AddWithValue("@course_id", selectedCourse)
+
+    '    '            Dim result = cmd3.ExecuteScalar
+
+    '    '            If result IsNot Nothing Then
+    '    '                Dim selectedProfessor = Convert.ToInt32(result)
+    '    '                Guna2ComboBox2.SelectedValue = selectedProfessor
+    '    '            Else
+    '    '                Guna2ComboBox2.SelectedIndex = -1
+    '    '            End If
+    '    '        Catch ex As Exception
+    '    '            MessageBox.Show($"Error: {ex.Message}")
+    '    '        Finally
+    '    '            If con.State = ConnectionState.Open Then
+    '    '                con.Close()
+    '    '            End If
+    '    '        End Try
+    '    '    End If
+    'End Sub
+
+    Private Sub AddClassToStudent()
         Try
-            openCon()
-            Dim cmd As New MySqlCommand(query, con)
+            ' Ensure the connection is open
+            con.Open()
 
-            Dim adapter As New MySqlDataAdapter(cmd)
-            Dim table As New DataTable()
-            adapter.Fill(table)
-
-            Guna2ComboBox2.DisplayMember = "name"
-            Guna2ComboBox2.ValueMember = "professor_id"
-            Guna2ComboBox2.DataSource = table
-
-            Guna2ComboBox2.SelectedIndex = -1
-        Catch ex As Exception
-            MessageBox.Show($"Error: {ex.Message}")
-        Finally
-            If con.State = ConnectionState.Open Then
-                con.Close()
+            ' Validate required fields
+            If String.IsNullOrEmpty(Guna2TextBox2.Text) OrElse Guna2ComboBox1.SelectedIndex = -1 Then
+                MessageBox.Show("Please ensure all required fields are filled.")
+                Return
             End If
-        End Try
 
-    End Sub
+            Dim courseCode As String = Guna2ComboBox1.Text
+            Dim section As String = Guna2TextBox2.Text
+            Dim studentId As String = Guna2TextBox4.Text.Trim()
+            Dim courseId As Integer
+            Dim classId As Integer
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox1.SelectedIndexChanged
-        con.Close()
-
-        If Guna2ComboBox1.SelectedIndex <> -1 Then
-            Dim selectedCourse = Convert.ToInt32(Guna2ComboBox1.SelectedValue)
-
-            Dim query3 = "SELECT professor_id FROM class_info WHERE course_id = @course_id"
-
-            Try
-                openCon()
-                Dim cmd3 As New MySqlCommand(query3, con)
-                cmd3.Parameters.AddWithValue("@course_id", selectedCourse)
-
-                Dim result = cmd3.ExecuteScalar
-
+            ' Step 1: Get course_id from the course_info table
+            Dim courseQuery As String = "SELECT course_id FROM course_info WHERE code = @code"
+            Using cmd As New MySqlCommand(courseQuery, con)
+                cmd.Parameters.AddWithValue("@code", courseCode)
+                Dim result As Object = cmd.ExecuteScalar()
                 If result IsNot Nothing Then
-                    Dim selectedProfessor = Convert.ToInt32(result)
-                    Guna2ComboBox2.SelectedValue = selectedProfessor
+                    courseId = CInt(result)
                 Else
-                    Guna2ComboBox2.SelectedIndex = -1
+                    Throw New Exception("Course not found")
                 End If
-            Catch ex As Exception
-                MessageBox.Show($"Error: {ex.Message}")
-            Finally
-                If con.State = ConnectionState.Open Then
-                    con.Close()
+            End Using
+
+            ' Step 2: Check if the combination of course_id and section exists in class_info
+            Dim checkClassQuery As String = "SELECT class_id FROM class_info WHERE course_id = @course_id AND section = @section"
+            Using cmd As New MySqlCommand(checkClassQuery, con)
+                cmd.Parameters.AddWithValue("@course_id", courseId)
+                cmd.Parameters.AddWithValue("@section", section)
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing Then
+                    classId = CInt(result)
+                Else
+                    ' If class does not exist, insert a new entry into class_info
+                    Dim insertClassQuery As String = "INSERT INTO class_info (course_id, section) VALUES (@course_id, @section)"
+                    Using cm As New MySqlCommand(insertClassQuery, con)
+                        cm.Parameters.AddWithValue("@course_id", courseId)
+                        cm.Parameters.AddWithValue("@section", section)
+                        cm.ExecuteNonQuery()
+                        ' Get the last inserted class_id
+                        classId = CInt(New MySqlCommand("SELECT LAST_INSERT_ID()", con).ExecuteScalar())
+                    End Using
                 End If
-            End Try
-        End If
-    End Sub
+            End Using
 
-    Private Function IsStudentAlreadyInClass(studentId As String, selectedCourse As Integer) As Boolean
-        Dim query As String = "SELECT COUNT(*) FROM class_info WHERE student_id = @student_id AND course_id = @course_id"
-        Try
-            openCon()
+            ' Step 3: Check if the student is already enrolled in the class
+            Dim checkEnrollmentQuery As String = "SELECT COUNT(*) FROM class_members WHERE student_id = @student_id AND class_id = @class_id"
+            Using cmd As New MySqlCommand(checkEnrollmentQuery, con)
+                cmd.Parameters.AddWithValue("@student_id", studentId)
+                cmd.Parameters.AddWithValue("@class_id", classId)
+                Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                If count > 0 Then
+                    MessageBox.Show("Student is already enrolled in this class.")
+                    Return ' Exit if student is already enrolled
+                End If
+            End Using
 
-            Dim cmd As New MySqlCommand(query, con)
-            cmd.Parameters.AddWithValue("@student_id", Guna2TextBox4.Text)
-            cmd.Parameters.AddWithValue("@course_id", Convert.ToInt32(Guna2ComboBox1.SelectedValue))
+            ' Step 4: Insert student_id and class_id into class_members if not already enrolled
+            Dim insertMemberQuery As String = "INSERT INTO class_members (student_id, class_id) VALUES (@student_id, @class_id)"
+            Using cmd As New MySqlCommand(insertMemberQuery, con)
+                cmd.Parameters.AddWithValue("@student_id", studentId)
+                cmd.Parameters.AddWithValue("@class_id", classId)
+                cmd.ExecuteNonQuery()
+            End Using
 
-            Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+            MessageBox.Show("Student added to the class successfully.")
 
-            Return count > 0
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            MessageBox.Show($"Error: {ex.Message}")
-            Return False
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
+            ' Close connection if open
             If con.State = ConnectionState.Open Then
                 con.Close()
             End If
         End Try
-    End Function
-
-    Private Sub AddClassToSTudent()
-        Dim selectedCourse As Integer = Convert.ToInt32(Guna2ComboBox1.SelectedValue)
-        Dim selectedProfessor As Integer = Convert.ToInt32(Guna2ComboBox2.SelectedValue)
-        Dim studentId As String = Guna2TextBox4.Text.Trim()
-
-        If String.IsNullOrEmpty(Guna2TextBox2.Text) OrElse
-            Guna2ComboBox1.SelectedIndex = -1 OrElse
-            Guna2ComboBox2.SelectedIndex = -1 Then
-            MessageBox.Show("Please ensure all required fields are filled.")
-            Return
-        End If
-
-        Dim yearStart As String = Guna2ComboBox3.SelectedItem.ToString()
-        Dim yearEnd As String = Guna2ComboBox4.SelectedItem.ToString()
-        Dim schoolYear As String = $"{yearStart} - {yearEnd}"
-
-        If Guna2DateTimePicker1.Value.TimeOfDay >= Guna2DateTimePicker2.Value.TimeOfDay Then
-            MessageBox.Show("Start time must be earlier than end time.")
-            Return
-        End If
-
-        If IsStudentAlreadyInClass(studentId, selectedCourse) Then
-            MessageBox.Show("Student is already in this class.")
-            Return
-        End If
-
-        Dim query As String = "INSERT INTO class_info (school_year, class_day, year, section, time_start, time_end, student_id, professor_id, course_id)
-                               VALUES (@school_year, @class_day, @year, @section, @time_start, @time_end, @student_id, @professor_id, @course_id)"
-
-        Try
-            openCon()
-
-            Dim cmd As New MySqlCommand(query, con)
-
-            cmd.Parameters.AddWithValue("@school_year", schoolYear)
-            cmd.Parameters.AddWithValue("@class_day", Convert.ToInt32(Guna2ComboBox5.SelectedValue))
-            cmd.Parameters.AddWithValue("@year", Convert.ToInt32(Guna2ComboBox6.SelectedItem))
-            cmd.Parameters.AddWithValue("@section", Guna2TextBox2.Text)
-            cmd.Parameters.AddWithValue("@time_start", Guna2DateTimePicker1.Value.TimeOfDay)
-            cmd.Parameters.AddWithValue("@time_end", Guna2DateTimePicker2.Value.TimeOfDay)
-            cmd.Parameters.AddWithValue("@student_id", Guna2TextBox4.Text)
-            cmd.Parameters.AddWithValue("@professor_id", selectedProfessor)
-            cmd.Parameters.AddWithValue("@course_id", selectedCourse)
-
-            cmd.ExecuteNonQuery()
-
-            MessageBox.Show("Success.")
-
-        Catch ex As Exception
-            MessageBox.Show($"Error: {ex.Message}")
-        Finally
-            If con.State = ConnectionState.Open Then
-                con.Close()
-            End If
-        End Try
-
     End Sub
+
+
 
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
         SearchStudent(Guna2TextBox4.Text)
