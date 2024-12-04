@@ -1,7 +1,15 @@
 ﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports AForge.Video
+Imports AForge.Video.DirectShow
 Imports MySql.Data.MySqlClient
+Imports System.Drawing.Imaging
+Imports System.Drawing.Printing
+Imports System.IO
 
 Public Class ATTENDANCE
+
+    Dim CAMERA As VideoCaptureDevice
+    Dim bmp As Bitmap
 
     Dim classId As Integer
     Dim classStartTime As TimeSpan
@@ -271,4 +279,43 @@ Public Class ATTENDANCE
         End Try
 
     End Sub
+
+    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+
+    End Sub
+
+    Private Sub ATTENDANCE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Camstart() 'load camera
+
+    End Sub
+    Private Sub Camstart()
+        Dim cameras As VideoCaptureDeviceForm = New VideoCaptureDeviceForm
+        If cameras.ShowDialog = DialogResult.OK Then
+            CAMERA = cameras.VideoDevice
+            AddHandler CAMERA.NewFrame, New NewFrameEventHandler(AddressOf Captured)
+            CAMERA.Start()
+        ElseIf cameras.ShowDialog = DialogResult.Cancel Then
+            Me.Close()
+        End If
+    End Sub
+    Private Sub Captured(sender As Object, eventsArgs As NewFrameEventArgs)
+        bmp = DirectCast(eventsArgs.Frame.Clone(), Bitmap)
+        Guna2PictureBox1.Image = DirectCast(eventsArgs.Frame.Clone(), Bitmap)
+    End Sub
+    Private Sub Savepic()
+        Dim filename, filepath As String
+        filename = generatefilename()
+        filepath = "C:\Users\Ericka Louise\source\repos\SIMS-STUDENT-INFORMATION-MANAGEMENT-SYSTEM\pics\" + filename + ".jpg"
+
+        If Guna2PictureBox1.Image IsNot Nothing Then
+            Dim newBitmap As Bitmap = Guna2PictureBox1.Image
+            newBitmap.Save(filepath, ImageFormat.Png)
+            'Label5.Text = filepath
+        End If
+        CAMERA.SignalToStop()
+        'MsgBox("picture saved")
+    End Sub
+    Private Function generatefilename() As String
+        Return System.DateTime.Now.ToString("yyyyMMdd") + "_" + Guna2TextBox1.Text
+    End Function
 End Class
