@@ -33,6 +33,8 @@ Partial Class AdminHomepage
         Dim CustomizableEdges8 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges9 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges10 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges11 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges12 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Guna2vSeparator1 = New Guna.UI2.WinForms.Guna2VSeparator()
         Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
@@ -44,6 +46,7 @@ Partial Class AdminHomepage
         Guna2Button3 = New Guna.UI2.WinForms.Guna2Button()
         Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2ImageButton1 = New Guna.UI2.WinForms.Guna2ImageButton()
+        Guna2Button4 = New Guna.UI2.WinForms.Guna2Button()
         CType(Guna2CirclePictureBox3, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -104,7 +107,7 @@ Partial Class AdminHomepage
         Guna2Button2.FillColor = Color.Black
         Guna2Button2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button2.ForeColor = Color.White
-        Guna2Button2.Location = New Point(12, 199)
+        Guna2Button2.Location = New Point(12, 246)
         Guna2Button2.Name = "Guna2Button2"
         Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges6
         Guna2Button2.Size = New Size(209, 41)
@@ -161,7 +164,7 @@ Partial Class AdminHomepage
         Guna2Button3.FillColor = Color.Black
         Guna2Button3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2Button3.ForeColor = Color.White
-        Guna2Button3.Location = New Point(12, 152)
+        Guna2Button3.Location = New Point(12, 199)
         Guna2Button3.Name = "Guna2Button3"
         Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges9
         Guna2Button3.Size = New Size(209, 41)
@@ -194,12 +197,34 @@ Partial Class AdminHomepage
         Guna2ImageButton1.Size = New Size(31, 28)
         Guna2ImageButton1.TabIndex = 13
         ' 
+        ' Guna2Button4
+        ' 
+        Guna2Button4.Animated = True
+        Guna2Button4.BackColor = Color.Transparent
+        Guna2Button4.BorderRadius = 6
+        Guna2Button4.CustomizableEdges = CustomizableEdges11
+        Guna2Button4.DisabledState.BorderColor = Color.DarkGray
+        Guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray
+        Guna2Button4.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        Guna2Button4.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        Guna2Button4.FillColor = Color.Black
+        Guna2Button4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2Button4.ForeColor = Color.White
+        Guna2Button4.Location = New Point(12, 152)
+        Guna2Button4.Name = "Guna2Button4"
+        Guna2Button4.ShadowDecoration.CustomizableEdges = CustomizableEdges12
+        Guna2Button4.Size = New Size(209, 41)
+        Guna2Button4.TabIndex = 14
+        Guna2Button4.Text = "ADD PROFESSOR"
+        Guna2Button4.TextAlign = HorizontalAlignment.Left
+        ' 
         ' AdminHomepage
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(1080, 662)
+        Controls.Add(Guna2Button4)
         Controls.Add(Guna2ImageButton1)
         Controls.Add(Guna2HtmlLabel3)
         Controls.Add(Guna2Button3)
@@ -232,4 +257,5 @@ Partial Class AdminHomepage
     Friend WithEvents Guna2Button3 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2ImageButton1 As Guna.UI2.WinForms.Guna2ImageButton
+    Friend WithEvents Guna2Button4 As Guna.UI2.WinForms.Guna2Button
 End Class

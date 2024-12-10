@@ -10,7 +10,7 @@ Public Class enlistment
         PopulateDaysComboBox()
         LoadStudentClasses()
         LoadCourses()
-        'LoadProfessor()
+        LoadCourseCodesIntoComboBox()
         PopulateYearComboBox()
     End Sub
 
@@ -141,6 +141,113 @@ Public Class enlistment
             End If
         End Try
     End Sub
+    Private Sub LoadCourseCodesIntoComboBox()
+        Dim query As String = "SELECT code FROM course_info"
+        Try
+            openCon()
+            Dim adapter As New MySqlDataAdapter(query, con)
+            Dim table As New DataTable()
+            adapter.Fill(table)
+
+            Guna2ComboBox7.DisplayMember = "code"
+            Guna2ComboBox7.ValueMember = "code"
+            Guna2ComboBox7.DataSource = table
+
+            Guna2ComboBox7.SelectedIndex = -1
+        Catch ex As Exception
+            MessageBox.Show($"Error: {ex.Message}")
+        Finally
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
+    Private Sub AddClassToClassInfo()
+        Try
+            ' Ensure the connection is open
+            con.Open()
+
+            ' Validate required fields
+            If String.IsNullOrEmpty(Guna2TextBox2.Text) OrElse Guna2ComboBox7.SelectedIndex = -1 Then
+                MessageBox.Show("Please ensure all required fields are filled.")
+                Return
+            End If
+
+            Dim schoolYear As Integer = Convert.ToInt32(Guna2ComboBox3.SelectedItem)
+            Dim section As String = Guna2TextBox2.Text
+            Dim professorId As String = Guna2TextBox3.Text ' From the professor text box
+            Dim courseCode As String = Guna2ComboBox7.SelectedItem.ToString()
+            Dim timeStart As String = Guna2DateTimePicker1.Value.ToString("HH:mm:ss")
+            Dim timeEnd As String = Guna2DateTimePicker2.Value.ToString("HH:mm:ss")
+            Dim courseId As Integer
+
+            ' Get course_id from the selected course code
+            Dim courseQuery As String = "SELECT course_id FROM course_info WHERE code = @code"
+            Using cmd As New MySqlCommand(courseQuery, con)
+                cmd.Parameters.AddWithValue("@code", courseCode)
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing Then
+                    courseId = CInt(result)
+                Else
+                    Throw New Exception("Course not found.")
+                End If
+            End Using
+
+            ' Insert new class into class_info
+            Dim insertClassQuery As String = "INSERT INTO class_info (school_year, section, time_start, time_end, professor_id, course_id) 
+                                          VALUES (@school_year, @section, @time_start, @time_end, @professor_id, @course_id)"
+            Using cmd As New MySqlCommand(insertClassQuery, con)
+                cmd.Parameters.AddWithValue("@school_year", schoolYear)
+                cmd.Parameters.AddWithValue("@section", section)
+                cmd.Parameters.AddWithValue("@time_start", timeStart)
+                cmd.Parameters.AddWithValue("@time_end", timeEnd)
+                cmd.Parameters.AddWithValue("@professor_id", professorId)
+                cmd.Parameters.AddWithValue("@course_id", courseId)
+                cmd.ExecuteNonQuery()
+            End Using
+
+            MessageBox.Show("Class added successfully.")
+
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
+
+    Private Sub SearchProfessorById(professorId As String)
+        Dim query As String = "SELECT last_name, first_name, middle_name FROM professor_info WHERE professor_id = @professorId"
+
+        If String.IsNullOrWhiteSpace(professorId) Then
+            Guna2TextBox3.Clear()
+            Return
+        End If
+
+        Try
+            openCon()
+            Using command As New MySqlCommand(query, con)
+                command.Parameters.AddWithValue("@professorId", professorId)
+
+                Using reader As MySqlDataReader = command.ExecuteReader()
+                    If reader.Read() Then
+                        Guna2TextBox3.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("An error occurred: " & ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+
+
 
     Private Sub LoadStudentBaseOnSearch()
         Dim searchTerm As String = Guna2TextBox4.Text.Trim()
@@ -259,62 +366,6 @@ Public Class enlistment
         End Try
     End Sub
 
-    'Private Sub LoadProfessor()
-    '    Dim query As String = "SELECT professor_id, CONCAT(last_name, ', ', first_name) AS name FROM professor_info"
-
-    '    Try
-    '        openCon()
-    '        Dim cmd As New MySqlCommand(query, con)
-
-    '        Dim adapter As New MySqlDataAdapter(cmd)
-    '        Dim table As New DataTable()
-    '        adapter.Fill(table)
-
-    '        Guna2ComboBox2.DisplayMember = "name"
-    '        Guna2ComboBox2.ValueMember = "professor_id"
-    '        Guna2ComboBox2.DataSource = table
-
-    '        Guna2ComboBox2.SelectedIndex = -1
-    '    Catch ex As Exception
-    '        MessageBox.Show($"Error: {ex.Message}")
-    '    Finally
-    '        If con.State = ConnectionState.Open Then
-    '            con.Close()
-    '        End If
-    '    End Try
-
-    'End Sub
-
-    'Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox1.SelectedIndexChanged
-    '    'con.Close()
-
-    '    '    If Guna2ComboBox1.SelectedIndex <> -1 Then
-    '    '        Dim selectedCourse = Convert.ToInt32(Guna2ComboBox1.SelectedValue)
-
-    '    '        Dim query3 = "SELECT professor_id FROM class_info WHERE course_id = @course_id"
-
-    '    '        Try
-    '    '            openCon()
-    '    '            Dim cmd3 As New MySqlCommand(query3, con)
-    '    '            cmd3.Parameters.AddWithValue("@course_id", selectedCourse)
-
-    '    '            Dim result = cmd3.ExecuteScalar
-
-    '    '            If result IsNot Nothing Then
-    '    '                Dim selectedProfessor = Convert.ToInt32(result)
-    '    '                Guna2ComboBox2.SelectedValue = selectedProfessor
-    '    '            Else
-    '    '                Guna2ComboBox2.SelectedIndex = -1
-    '    '            End If
-    '    '        Catch ex As Exception
-    '    '            MessageBox.Show($"Error: {ex.Message}")
-    '    '        Finally
-    '    '            If con.State = ConnectionState.Open Then
-    '    '                con.Close()
-    '    '            End If
-    '    '        End Try
-    '    '    End If
-    'End Sub
 
     Private Sub AddClassToStudent()
         Try
@@ -404,7 +455,7 @@ Public Class enlistment
 
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
         SearchStudent(Guna2TextBox4.Text)
-        LoadStudentBaseOnSearch()
+        LoadStudentBaseOnSearch
     End Sub
 
     Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox3.SelectedIndexChanged
@@ -453,7 +504,7 @@ Public Class enlistment
         End If
     End Sub
 
-    Private Sub Guna2TextBox3_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox3.TextChanged
-        LoadProfBaseOnSearch()
+    Private Sub Guna2TextBox5_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox5.TextChanged
+        SearchProfessorById(Guna2TextBox3.Text)
     End Sub
 End Class

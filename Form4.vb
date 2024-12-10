@@ -18,7 +18,6 @@ Public Class Form4
         CONCAT(s.last_name, ', ', s.first_name, ' ', s.middle_name) AS `Full Name`,
         a.log_date AS `Date`, 
         a.time_in AS `Time In`, 
-        a.time_out AS `Time Out`, 
         CASE 
             WHEN a.status = 'P' THEN 'Present'
             WHEN a.status = 'A' THEN 'Absent'
@@ -51,7 +50,6 @@ Public Class Form4
                         reader("Full Name"),
                         reader("Date"),
                         reader("Time In"),
-                        reader("Time Out"),
                         reader("Status"),
                         reader("School Year"),
                         reader("Section")
