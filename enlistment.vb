@@ -795,4 +795,13 @@ Public Class enlistment
     Private Sub Guna2Button4_Click(sender As Object, e As EventArgs) Handles Guna2Button4.Click
         UpdateProfessorId()
     End Sub
+
+    Private Sub Guna2Button7_Click(sender As Object, e As EventArgs) Handles Guna2Button7.Click
+        TabControl1.SelectedTab = TabPage2
+    End Sub
+
+    Private Sub Guna2Button9_Click(sender As Object, e As EventArgs) Handles Guna2Button8.Click
+        TabControl1.SelectedTab = TabPage1
+    End Sub
+
 End Class

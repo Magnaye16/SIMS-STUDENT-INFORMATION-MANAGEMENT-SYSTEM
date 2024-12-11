@@ -39,6 +39,8 @@ Partial Class enlistment
         Dim CustomizableEdges12 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges13 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges14 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges15 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges16 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges17 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges18 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim DataGridViewCellStyle4 As DataGridViewCellStyle = New DataGridViewCellStyle()
@@ -66,8 +68,10 @@ Partial Class enlistment
         Dim CustomizableEdges38 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges39 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         Dim CustomizableEdges40 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges15 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
-        Dim CustomizableEdges16 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges41 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges42 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges43 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
+        Dim CustomizableEdges44 As Guna.UI2.WinForms.Suite.CustomizableEdges = New Guna.UI2.WinForms.Suite.CustomizableEdges()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
         Guna2HtmlLabel9 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -83,6 +87,7 @@ Partial Class enlistment
         Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox4 = New Guna.UI2.WinForms.Guna2TextBox()
         TabPage2 = New TabPage()
+        Guna2Button4 = New Guna.UI2.WinForms.Guna2Button()
         Guna2HtmlLabel10 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2TextBox5 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2DataGridView2 = New Guna.UI2.WinForms.Guna2DataGridView()
@@ -102,7 +107,8 @@ Partial Class enlistment
         Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2ComboBox3 = New Guna.UI2.WinForms.Guna2ComboBox()
         Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Guna2Button4 = New Guna.UI2.WinForms.Guna2Button()
+        Guna2Button7 = New Guna.UI2.WinForms.Guna2Button()
+        Guna2Button9 = New Guna.UI2.WinForms.Guna2Button()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         CType(Guna2DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
@@ -112,13 +118,15 @@ Partial Class enlistment
         ' 
         ' TabControl1
         ' 
+        TabControl1.Alignment = TabAlignment.Bottom
         TabControl1.Controls.Add(TabPage1)
         TabControl1.Controls.Add(TabPage2)
-        TabControl1.Location = New Point(0, 40)
+        TabControl1.Location = New Point(0, 65)
         TabControl1.Name = "TabControl1"
         TabControl1.SelectedIndex = 0
         TabControl1.Size = New Size(827, 535)
         TabControl1.TabIndex = 0
+        TabControl1.Visible = False
         ' 
         ' TabPage1
         ' 
@@ -135,12 +143,11 @@ Partial Class enlistment
         TabPage1.Controls.Add(Guna2TextBox2)
         TabPage1.Controls.Add(Guna2TextBox1)
         TabPage1.Controls.Add(Guna2TextBox4)
-        TabPage1.Location = New Point(4, 24)
+        TabPage1.Location = New Point(4, 4)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
         TabPage1.Size = New Size(819, 507)
         TabPage1.TabIndex = 0
-        TabPage1.Text = "TabPage1"
         ' 
         ' Guna2HtmlLabel9
         ' 
@@ -389,6 +396,7 @@ Partial Class enlistment
         ' 
         ' TabPage2
         ' 
+        TabPage2.BackColor = Color.White
         TabPage2.Controls.Add(Guna2Button4)
         TabPage2.Controls.Add(Guna2HtmlLabel10)
         TabPage2.Controls.Add(Guna2TextBox5)
@@ -409,19 +417,37 @@ Partial Class enlistment
         TabPage2.Controls.Add(Guna2HtmlLabel2)
         TabPage2.Controls.Add(Guna2ComboBox3)
         TabPage2.Controls.Add(Guna2HtmlLabel1)
-        TabPage2.Location = New Point(4, 24)
+        TabPage2.Location = New Point(4, 4)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
         TabPage2.Size = New Size(819, 507)
         TabPage2.TabIndex = 1
-        TabPage2.Text = "TabPage2"
-        TabPage2.UseVisualStyleBackColor = True
+        ' 
+        ' Guna2Button4
+        ' 
+        Guna2Button4.Animated = True
+        Guna2Button4.BackColor = Color.Transparent
+        Guna2Button4.BorderRadius = 6
+        Guna2Button4.CustomizableEdges = CustomizableEdges15
+        Guna2Button4.DisabledState.BorderColor = Color.DarkGray
+        Guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray
+        Guna2Button4.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        Guna2Button4.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        Guna2Button4.FillColor = Color.Black
+        Guna2Button4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2Button4.ForeColor = Color.White
+        Guna2Button4.Location = New Point(711, 42)
+        Guna2Button4.Name = "Guna2Button4"
+        Guna2Button4.ShadowDecoration.CustomizableEdges = CustomizableEdges16
+        Guna2Button4.Size = New Size(88, 36)
+        Guna2Button4.TabIndex = 56
+        Guna2Button4.Text = "UPDATE"
         ' 
         ' Guna2HtmlLabel10
         ' 
         Guna2HtmlLabel10.BackColor = Color.Transparent
         Guna2HtmlLabel10.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel10.Location = New Point(19, 10)
+        Guna2HtmlLabel10.Location = New Point(19, 17)
         Guna2HtmlLabel10.Name = "Guna2HtmlLabel10"
         Guna2HtmlLabel10.Size = New Size(90, 18)
         Guna2HtmlLabel10.TabIndex = 55
@@ -442,7 +468,7 @@ Partial Class enlistment
         Guna2TextBox5.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox5.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox5.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox5.Location = New Point(19, 34)
+        Guna2TextBox5.Location = New Point(19, 41)
         Guna2TextBox5.Margin = New Padding(3, 4, 3, 4)
         Guna2TextBox5.Name = "Guna2TextBox5"
         Guna2TextBox5.PasswordChar = ChrW(0)
@@ -518,7 +544,7 @@ Partial Class enlistment
         Guna2TextBox3.FocusedState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2TextBox3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2TextBox3.HoverState.BorderColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
-        Guna2TextBox3.Location = New Point(125, 34)
+        Guna2TextBox3.Location = New Point(125, 41)
         Guna2TextBox3.Margin = New Padding(3, 4, 3, 4)
         Guna2TextBox3.Name = "Guna2TextBox3"
         Guna2TextBox3.PasswordChar = ChrW(0)
@@ -592,7 +618,7 @@ Partial Class enlistment
         ' 
         Guna2HtmlLabel5.BackColor = Color.Transparent
         Guna2HtmlLabel5.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel5.Location = New Point(469, 77)
+        Guna2HtmlLabel5.Location = New Point(475, 88)
         Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
         Guna2HtmlLabel5.Size = New Size(100, 18)
         Guna2HtmlLabel5.TabIndex = 51
@@ -608,7 +634,7 @@ Partial Class enlistment
         Guna2DateTimePicker2.FillColor = Color.White
         Guna2DateTimePicker2.Font = New Font("Bahnschrift SemiBold", 8F, FontStyle.Bold)
         Guna2DateTimePicker2.Format = DateTimePickerFormat.Time
-        Guna2DateTimePicker2.Location = New Point(528, 101)
+        Guna2DateTimePicker2.Location = New Point(528, 112)
         Guna2DateTimePicker2.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Guna2DateTimePicker2.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Guna2DateTimePicker2.Name = "Guna2DateTimePicker2"
@@ -627,7 +653,7 @@ Partial Class enlistment
         Guna2DateTimePicker1.FillColor = Color.White
         Guna2DateTimePicker1.Font = New Font("Bahnschrift SemiBold", 8F, FontStyle.Bold)
         Guna2DateTimePicker1.Format = DateTimePickerFormat.Time
-        Guna2DateTimePicker1.Location = New Point(401, 101)
+        Guna2DateTimePicker1.Location = New Point(401, 112)
         Guna2DateTimePicker1.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
         Guna2DateTimePicker1.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         Guna2DateTimePicker1.Name = "Guna2DateTimePicker1"
@@ -640,7 +666,7 @@ Partial Class enlistment
         ' 
         Guna2HtmlLabel6.BackColor = Color.Transparent
         Guna2HtmlLabel6.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel6.Location = New Point(316, 10)
+        Guna2HtmlLabel6.Location = New Point(316, 16)
         Guna2HtmlLabel6.Name = "Guna2HtmlLabel6"
         Guna2HtmlLabel6.Size = New Size(52, 18)
         Guna2HtmlLabel6.TabIndex = 52
@@ -650,7 +676,7 @@ Partial Class enlistment
         ' 
         Guna2HtmlLabel4.BackColor = Color.Transparent
         Guna2HtmlLabel4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel4.Location = New Point(19, 76)
+        Guna2HtmlLabel4.Location = New Point(19, 88)
         Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
         Guna2HtmlLabel4.Size = New Size(27, 18)
         Guna2HtmlLabel4.TabIndex = 50
@@ -669,7 +695,7 @@ Partial Class enlistment
         Guna2ComboBox6.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2ComboBox6.ForeColor = Color.FromArgb(CByte(68), CByte(88), CByte(112))
         Guna2ComboBox6.ItemHeight = 30
-        Guna2ComboBox6.Location = New Point(225, 101)
+        Guna2ComboBox6.Location = New Point(229, 112)
         Guna2ComboBox6.Name = "Guna2ComboBox6"
         Guna2ComboBox6.ShadowDecoration.CustomizableEdges = CustomizableEdges32
         Guna2ComboBox6.Size = New Size(121, 36)
@@ -688,7 +714,7 @@ Partial Class enlistment
         Guna2ComboBox7.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2ComboBox7.ForeColor = Color.FromArgb(CByte(68), CByte(88), CByte(112))
         Guna2ComboBox7.ItemHeight = 30
-        Guna2ComboBox7.Location = New Point(316, 34)
+        Guna2ComboBox7.Location = New Point(316, 41)
         Guna2ComboBox7.Name = "Guna2ComboBox7"
         Guna2ComboBox7.ShadowDecoration.CustomizableEdges = CustomizableEdges34
         Guna2ComboBox7.Size = New Size(121, 36)
@@ -707,7 +733,7 @@ Partial Class enlistment
         Guna2ComboBox5.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2ComboBox5.ForeColor = Color.FromArgb(CByte(68), CByte(88), CByte(112))
         Guna2ComboBox5.ItemHeight = 30
-        Guna2ComboBox5.Location = New Point(19, 101)
+        Guna2ComboBox5.Location = New Point(19, 112)
         Guna2ComboBox5.Name = "Guna2ComboBox5"
         Guna2ComboBox5.ShadowDecoration.CustomizableEdges = CustomizableEdges36
         Guna2ComboBox5.Size = New Size(121, 36)
@@ -726,7 +752,7 @@ Partial Class enlistment
         Guna2ComboBox4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2ComboBox4.ForeColor = Color.FromArgb(CByte(68), CByte(88), CByte(112))
         Guna2ComboBox4.ItemHeight = 30
-        Guna2ComboBox4.Location = New Point(549, 34)
+        Guna2ComboBox4.Location = New Point(549, 41)
         Guna2ComboBox4.Name = "Guna2ComboBox4"
         Guna2ComboBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges38
         Guna2ComboBox4.Size = New Size(100, 36)
@@ -736,7 +762,7 @@ Partial Class enlistment
         ' 
         Guna2HtmlLabel2.BackColor = Color.Transparent
         Guna2HtmlLabel2.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel2.Location = New Point(501, 10)
+        Guna2HtmlLabel2.Location = New Point(504, 17)
         Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
         Guna2HtmlLabel2.Size = New Size(85, 18)
         Guna2HtmlLabel2.TabIndex = 49
@@ -755,7 +781,7 @@ Partial Class enlistment
         Guna2ComboBox3.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
         Guna2ComboBox3.ForeColor = Color.FromArgb(CByte(68), CByte(88), CByte(112))
         Guna2ComboBox3.ItemHeight = 30
-        Guna2ComboBox3.Location = New Point(443, 34)
+        Guna2ComboBox3.Location = New Point(443, 41)
         Guna2ComboBox3.Name = "Guna2ComboBox3"
         Guna2ComboBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges40
         Guna2ComboBox3.Size = New Size(100, 36)
@@ -765,31 +791,53 @@ Partial Class enlistment
         ' 
         Guna2HtmlLabel1.BackColor = Color.Transparent
         Guna2HtmlLabel1.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2HtmlLabel1.Location = New Point(125, 10)
+        Guna2HtmlLabel1.Location = New Point(125, 16)
         Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
         Guna2HtmlLabel1.Size = New Size(74, 18)
         Guna2HtmlLabel1.TabIndex = 48
         Guna2HtmlLabel1.Text = "PROFESSOR"
         ' 
-        ' Guna2Button4
+        ' Guna2Button7
         ' 
-        Guna2Button4.Animated = True
-        Guna2Button4.BackColor = Color.Transparent
-        Guna2Button4.BorderRadius = 6
-        Guna2Button4.CustomizableEdges = CustomizableEdges15
-        Guna2Button4.DisabledState.BorderColor = Color.DarkGray
-        Guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray
-        Guna2Button4.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
-        Guna2Button4.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
-        Guna2Button4.FillColor = Color.Black
-        Guna2Button4.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
-        Guna2Button4.ForeColor = Color.White
-        Guna2Button4.Location = New Point(711, 42)
-        Guna2Button4.Name = "Guna2Button4"
-        Guna2Button4.ShadowDecoration.CustomizableEdges = CustomizableEdges16
-        Guna2Button4.Size = New Size(88, 36)
-        Guna2Button4.TabIndex = 56
-        Guna2Button4.Text = "UPDATE"
+        Guna2Button7.Animated = True
+        Guna2Button7.BackColor = Color.Transparent
+        Guna2Button7.BorderRadius = 6
+        Guna2Button7.BorderThickness = 1
+        Guna2Button7.CustomizableEdges = CustomizableEdges41
+        Guna2Button7.DisabledState.BorderColor = Color.DarkGray
+        Guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray
+        Guna2Button7.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        Guna2Button7.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        Guna2Button7.FillColor = Color.White
+        Guna2Button7.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2Button7.ForeColor = Color.Black
+        Guna2Button7.Location = New Point(23, 12)
+        Guna2Button7.Name = "Guna2Button7"
+        Guna2Button7.ShadowDecoration.CustomizableEdges = CustomizableEdges42
+        Guna2Button7.Size = New Size(128, 36)
+        Guna2Button7.TabIndex = 49
+        Guna2Button7.Text = "STUDENT"
+        ' 
+        ' Guna2Button9
+        ' 
+        Guna2Button9.Animated = True
+        Guna2Button9.BackColor = Color.Transparent
+        Guna2Button9.BorderRadius = 6
+        Guna2Button9.BorderThickness = 1
+        Guna2Button9.CustomizableEdges = CustomizableEdges43
+        Guna2Button9.DisabledState.BorderColor = Color.DarkGray
+        Guna2Button9.DisabledState.CustomBorderColor = Color.DarkGray
+        Guna2Button9.DisabledState.FillColor = Color.FromArgb(CByte(169), CByte(169), CByte(169))
+        Guna2Button9.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
+        Guna2Button9.FillColor = Color.White
+        Guna2Button9.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2Button9.ForeColor = Color.Black
+        Guna2Button9.Location = New Point(157, 12)
+        Guna2Button9.Name = "Guna2Button9"
+        Guna2Button9.ShadowDecoration.CustomizableEdges = CustomizableEdges44
+        Guna2Button9.Size = New Size(128, 36)
+        Guna2Button9.TabIndex = 50
+        Guna2Button9.Text = "PROFESSOR"
         ' 
         ' enlistment
         ' 
@@ -797,6 +845,8 @@ Partial Class enlistment
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         ClientSize = New Size(826, 576)
+        Controls.Add(Guna2Button9)
+        Controls.Add(Guna2Button7)
         Controls.Add(TabControl1)
         FormBorderStyle = FormBorderStyle.None
         Name = "enlistment"
@@ -849,4 +899,6 @@ Partial Class enlistment
     Friend WithEvents Guna2TextBox5 As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents Guna2Button5 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button4 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2Button7 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2Button9 As Guna.UI2.WinForms.Guna2Button
 End Class
