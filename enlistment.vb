@@ -5,6 +5,109 @@ Imports MySql.Data.MySqlClient
 
 Public Class enlistment
 
+    Private Sub LoadClassInfo()
+        Dim query As String = "
+    SELECT 
+        ci.class_id, 
+        ci.school_year, 
+        ci.section, 
+        ci.time_start, 
+        ci.time_end, 
+        co.code AS CourseCode, 
+        CONCAT(pi.last_name, ', ', pi.first_name, ' ', pi.middle_name) AS ProfessorName
+    FROM 
+        class_info ci
+    INNER JOIN 
+        course_info co ON ci.course_id = co.course_id
+    INNER JOIN 
+        professor_info pi ON ci.professor_id = pi.professor_id"
+
+        Try
+            ' Open the connection
+            openCon()
+
+            ' Execute the query and fill the DataTable
+            Dim adapter As New MySqlDataAdapter(query, con)
+            Dim table As New DataTable()
+
+            adapter.Fill(table)
+
+            ' Set the DataGridView data source to the table
+            Guna2DataGridView2.DataSource = table
+
+        Catch ex As Exception
+            ' Handle any errors that occur
+            MessageBox.Show($"Error: {ex.Message}")
+        Finally
+            ' Ensure the connection is closed
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
+
+
+    Private Sub CapitalizeFirstLetter(sender As Object, e As EventArgs) Handles _
+    Guna2TextBox1.TextChanged, Guna2TextBox2.TextChanged, Guna2TextBox3.TextChanged
+
+
+        Dim textBox As Guna.UI2.WinForms.Guna2TextBox = CType(sender, Guna.UI2.WinForms.Guna2TextBox)
+
+        ' Capitalize the first letter of each word in the text
+        textBox.Text = CapitalizeWords(textBox.Text)
+
+        ' Move the cursor to the end of the text after capitalization
+        textBox.SelectionStart = textBox.Text.Length
+    End Sub
+
+    ' Function to capitalize the first letter of each word in a string
+    Private Function CapitalizeWords(input As String) As String
+        ' Split the input string into words
+        Dim words As String() = input.Split(" "c)
+
+        ' Capitalize each word
+        For i As Integer = 0 To words.Length - 1
+            If words(i).Length > 0 Then
+                words(i) = Char.ToUpper(words(i)(0)) & words(i).Substring(1).ToLower()
+            End If
+        Next
+
+        ' Join the words back into a single string and return it
+        Return String.Join(" ", words)
+    End Function
+    Private Sub Guna2TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox4.KeyPress
+        ' Allow digits (0-9), hyphen (-), and control keys (like Backspace)
+        If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "-"c AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True ' Cancel the key press if it's not a number, hyphen, or control key
+        End If
+
+        ' Ensure that only one hyphen can be typed (if required)
+        ' Optionally, ensure the hyphen can only be typed at the beginning of the input
+        If e.KeyChar = "-"c Then
+            ' If there is already a hyphen or the hyphen is not at the start, cancel the input
+            If Guna2TextBox4.Text.Contains("-") OrElse Guna2TextBox4.SelectionStart > 0 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+    Private Sub Guna2TextBox5_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox5.KeyPress
+        ' Allow digits (0-9), hyphen (-), and control keys (like Backspace)
+        If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "-"c AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True ' Cancel the key press if it's not a number, hyphen, or control key
+        End If
+
+        ' Ensure that only one hyphen can be typed (if required)
+        ' Optionally, ensure the hyphen can only be typed at the beginning of the input
+        If e.KeyChar = "-"c Then
+            ' If there is already a hyphen or the hyphen is not at the start, cancel the input
+            If Guna2TextBox5.Text.Contains("-") OrElse Guna2TextBox5.SelectionStart > 0 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
     Private Sub Enlistment(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupTimePickers()
         PopulateDaysComboBox()
@@ -12,6 +115,8 @@ Public Class enlistment
         LoadCourses()
         LoadCourseCodesIntoComboBox()
         PopulateYearComboBox()
+        LoadClassInfo()
+        LoadSectionsToComboBox()
     End Sub
 
     Private Sub SetupTimePickers()
@@ -26,6 +131,7 @@ Public Class enlistment
         Guna2DateTimePicker1.Value = Guna2DateTimePicker1.Value.AddSeconds(-Guna2DateTimePicker1.Value.Second)
         Guna2DateTimePicker2.Value = Guna2DateTimePicker2.Value.AddSeconds(-Guna2DateTimePicker2.Value.Second)
     End Sub
+
 
     Private Sub PopulateYearComboBox()
         Guna2ComboBox3.Items.Clear()
@@ -174,7 +280,7 @@ Public Class enlistment
                 Return
             End If
 
-            Dim schoolYear As Integer = Convert.ToInt32(Guna2ComboBox3.SelectedItem)
+            Dim schoolYear As String = Guna2ComboBox3.SelectedItem?.ToString() & "-" & Guna2ComboBox4.SelectedItem?.ToString() ' School year selected from ComboBox
             Dim section As String = Guna2TextBox2.Text
             Dim professorId As String = Guna2TextBox3.Text ' From the professor text box
             Dim courseCode As String = Guna2ComboBox7.SelectedItem.ToString()
@@ -218,6 +324,16 @@ Public Class enlistment
                 con.Close()
             End If
         End Try
+    End Sub
+
+    Private Sub ClearForm()
+        ' Clear all ComboBoxes
+        Guna2ComboBox7.SelectedIndex = -1  ' Clears the selected item in ComboBox7 (course)
+        Guna2ComboBox5.SelectedIndex = -1  ' Clears the selected item in ComboBox5 (day)
+        Guna2ComboBox6.SelectedIndex = -1  ' Clears the selected item in ComboBox6 (section)
+
+        ' Clear the TextBox
+        Guna2TextBox5.Clear()  ' Clears the text in TextBox5 (professor ID)
     End Sub
 
 
@@ -455,7 +571,7 @@ Public Class enlistment
 
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
         SearchStudent(Guna2TextBox4.Text)
-        LoadStudentBaseOnSearch
+        LoadStudentBaseOnSearch()
     End Sub
 
     Private Sub ComboBox5_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox3.SelectedIndexChanged
@@ -498,13 +614,185 @@ Public Class enlistment
         End If
 
         If IsStudentExisting(studentNumber) Then
-            AddClassToSTudent()
+            AddClassToStudent()
         Else
             MessageBox.Show("Student does not exist.")
         End If
     End Sub
 
+    Private Sub AddClassInfo()
+        ' Gather input values from the controls
+        Dim courseCode As String = Guna2ComboBox7.SelectedItem.ToString() ' Course code selected from ComboBox
+        Dim schoolYear As String = Guna2ComboBox3.SelectedItem?.ToString() & "-" & Guna2ComboBox4.SelectedItem?.ToString() ' School year selected from ComboBox
+        Dim day As String = Guna2ComboBox5.SelectedItem.ToString() ' Day selected from ComboBox
+        Dim section As String = Guna2ComboBox6.SelectedItem.ToString() ' Section selected from ComboBox
+        Dim professorId As String = Guna2TextBox5.Text ' Professor ID from TextBox
+
+        ' Check if all fields are filled
+        If String.IsNullOrEmpty(courseCode) Or String.IsNullOrEmpty(schoolYear) Or
+       String.IsNullOrEmpty(day) Or String.IsNullOrEmpty(section) Or
+       String.IsNullOrEmpty(professorId) Then
+            MessageBox.Show("Please fill all the fields.")
+            Return
+        End If
+
+        ' SQL query to insert new class info into the class_info table
+        Dim query As String = "INSERT INTO class_info (course_id, school_year, day, section, professor_id) " &
+                          "VALUES ((SELECT course_id FROM course_info WHERE code = @courseCode), " &
+                          "@schoolYear, @day, @section, @professorId)"
+
+        Try
+            ' Open database connection
+            openCon()
+
+            ' Set up the command to execute the query
+            Using cmd As New MySqlCommand(query, con)
+                ' Add parameters to the command
+                cmd.Parameters.AddWithValue("@courseCode", courseCode)
+                cmd.Parameters.AddWithValue("@schoolYear", schoolYear)
+                cmd.Parameters.AddWithValue("@day", day)
+                cmd.Parameters.AddWithValue("@section", section)
+                cmd.Parameters.AddWithValue("@professorId", professorId)
+
+                ' Execute the query
+                cmd.ExecuteNonQuery()
+            End Using
+
+            ' Notify user of success
+            MessageBox.Show("Class information added successfully!")
+
+        Catch ex As Exception
+            ' Show error message in case of failure
+            MessageBox.Show($"Error: {ex.Message}")
+        Finally
+            ' Close the database connection
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
+    Private Sub UpdateProfessorId()
+        ' Gather input values from the controls
+        Dim courseCode As String = Guna2ComboBox7.SelectedItem?.ToString() ' Course code from ComboBox
+        Dim schoolYear As String = Guna2ComboBox3.SelectedItem?.ToString() & "-" & Guna2ComboBox4.SelectedItem?.ToString() ' School year selected from ComboBox
+        Dim day As String = Guna2ComboBox5.SelectedItem?.ToString() ' Day from ComboBox
+        Dim section As String = Guna2ComboBox6.SelectedItem?.ToString() ' Section from ComboBox
+        Dim professorId As String = Guna2TextBox5.Text ' Professor ID from TextBox
+
+        ' Check if all fields are filled
+        If String.IsNullOrEmpty(courseCode) Or String.IsNullOrEmpty(schoolYear) Or
+       String.IsNullOrEmpty(day) Or String.IsNullOrEmpty(section) Or
+       String.IsNullOrEmpty(professorId) Then
+            MessageBox.Show("Please fill all the fields.")
+            Return
+        End If
+
+        ' SQL query to select the class_id based on the selected values
+        Dim query As String = "SELECT class_id FROM class_info " &
+                          "WHERE course_id = (SELECT course_id FROM course_info WHERE code = @courseCode) " &
+                          "AND school_year = @schoolYear AND day = @day AND section = @section"
+
+        Dim classId As String = String.Empty
+
+        Try
+            ' Open database connection
+            openCon()
+
+            ' Set up the command to execute the query to get the class_id
+            Using cmd As New MySqlCommand(query, con)
+                ' Add parameters to the command
+                cmd.Parameters.AddWithValue("@courseCode", courseCode)
+                cmd.Parameters.AddWithValue("@schoolYear", schoolYear)
+                cmd.Parameters.AddWithValue("@day", day)
+                cmd.Parameters.AddWithValue("@section", section)
+
+                ' Execute the query and get the class_id
+                Dim result As Object = cmd.ExecuteScalar()
+
+                If result IsNot Nothing Then
+                    classId = result.ToString()
+                Else
+                    MessageBox.Show("No matching class found.")
+                    Return
+                End If
+            End Using
+
+            ' SQL query to update the professor_id for the found class_id
+            Dim updateQuery As String = "UPDATE class_info SET professor_id = @professorId WHERE class_id = @classId"
+
+            ' Update the professor_id for the found class_id
+            Using cmd As New MySqlCommand(updateQuery, con)
+                ' Add parameters to the update command
+                cmd.Parameters.AddWithValue("@classId", classId)
+                cmd.Parameters.AddWithValue("@professorId", professorId)
+
+                ' Execute the update query
+                cmd.ExecuteNonQuery()
+            End Using
+
+            ' Notify user of success
+            MessageBox.Show("Professor ID updated successfully!")
+
+        Catch ex As Exception
+            ' Show error message in case of failure
+            MessageBox.Show($"Error: {ex.Message}")
+        Finally
+            ' Close the database connection
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+    Private Sub LoadSectionsToComboBox()
+        Dim query As String = "SELECT DISTINCT section FROM class_info"
+
+        Try
+            ' Open the connection
+            openCon()
+
+            ' Execute the query and fill the DataTable
+            Dim adapter As New MySqlDataAdapter(query, con)
+            Dim table As New DataTable()
+
+            adapter.Fill(table)
+
+            ' Clear existing items in the ComboBox
+            Guna2ComboBox6.Items.Clear()
+
+            ' Add each distinct section to the ComboBox
+            For Each row As DataRow In table.Rows
+                Guna2ComboBox6.Items.Add(row("section").ToString())
+            Next
+
+            ' Optionally, reset the ComboBox selection to none
+            Guna2ComboBox6.SelectedIndex = -1
+
+        Catch ex As Exception
+            ' Handle any errors that occur
+            MessageBox.Show($"Error: {ex.Message}")
+        Finally
+            ' Ensure the connection is closed
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
+        End Try
+    End Sub
+
+
     Private Sub Guna2TextBox5_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox5.TextChanged
-        SearchProfessorById(Guna2TextBox3.Text)
+        SearchProfessorById(Guna2TextBox5.Text)
+    End Sub
+
+    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
+        AddClassInfo()
+    End Sub
+
+    Private Sub Guna2Button8_Click(sender As Object, e As EventArgs) Handles Guna2Button8.Click
+        ClearForm()
+    End Sub
+
+    Private Sub Guna2Button4_Click(sender As Object, e As EventArgs) Handles Guna2Button4.Click
+        UpdateProfessorId()
     End Sub
 End Class

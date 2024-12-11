@@ -13,6 +13,53 @@ Imports System.Transactions
 Imports ZXing
 
 Public Class studentCRUD
+
+    Private Sub CapitalizeFirstLetter(sender As Object, e As EventArgs) Handles _
+    Guna2TextBox1.TextChanged, Guna2TextBox2.TextChanged, Guna2TextBox3.TextChanged,
+    Guna2TextBox4.TextChanged, Guna2TextBox5.TextChanged, Guna2TextBox6.TextChanged,
+    Guna2TextBox10.TextChanged, Guna2TextBox8.TextChanged, Guna2TextBox9.TextChanged
+
+        Dim textBox As Guna.UI2.WinForms.Guna2TextBox = CType(sender, Guna.UI2.WinForms.Guna2TextBox)
+
+        ' Capitalize the first letter of each word in the text
+        textBox.Text = CapitalizeWords(textBox.Text)
+
+        ' Move the cursor to the end of the text after capitalization
+        textBox.SelectionStart = textBox.Text.Length
+    End Sub
+
+    ' Function to capitalize the first letter of each word in a string
+    Private Function CapitalizeWords(input As String) As String
+        ' Split the input string into words
+        Dim words As String() = input.Split(" "c)
+
+        ' Capitalize each word
+        For i As Integer = 0 To words.Length - 1
+            If words(i).Length > 0 Then
+                words(i) = Char.ToUpper(words(i)(0)) & words(i).Substring(1).ToLower()
+            End If
+        Next
+
+        ' Join the words back into a single string and return it
+        Return String.Join(" ", words)
+    End Function
+    Private Sub Guna2TextBox7_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox7.KeyPress
+        ' Allow digits (0-9), hyphen (-), and control keys (like Backspace)
+        If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "-"c AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True ' Cancel the key press if it's not a number, hyphen, or control key
+        End If
+
+        ' Ensure that only one hyphen can be typed (if required)
+        ' Optionally, ensure the hyphen can only be typed at the beginning of the input
+        If e.KeyChar = "-"c Then
+            ' If there is already a hyphen or the hyphen is not at the start, cancel the input
+            If Guna2TextBox7.Text.Contains("-") OrElse Guna2TextBox7.SelectionStart > 0 Then
+                e.Handled = True
+            End If
+        End If
+    End Sub
+
+
     Private ReadOnly time_start As Object
 
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
