@@ -84,10 +84,19 @@ Public Class ATTENDANCE
             Guna2TextBox4.Clear()
         End If
     End Sub
+    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        Savepic()
+        checkforpics()
+    End Sub
+
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
         STUDENT_ID = Guna2TextBox4.Text.Trim
     End Sub
 
+
+
+
+    'funtionssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
     Public Sub SearchonPress()
 
         If String.IsNullOrEmpty(STUDENT_ID) Then
@@ -316,8 +325,8 @@ Public Class ATTENDANCE
 
     End Sub
 
-    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-        Savepic()
+
+    Public Sub checkforpics()
         If Guna2PictureBox2.Image IsNot Nothing Then
             ' Transfer the image from Guna2PictureBox2 to Guna2PictureBox3
             If Guna2PictureBox3.Image IsNot Nothing Then
@@ -350,8 +359,6 @@ Public Class ATTENDANCE
         'filename = generatefilename()
         'filepath = "C:\Users\Ericka Louise\source\repos\SIMS-STUDENT-INFORMATION-MANAGEMENT-SYSTEM\pics\" + filename + ".jpg"
 
-
-
         If Guna2PictureBox1.Image IsNot Nothing Then
             Dim newBitmap As Bitmap = Guna2PictureBox1.Image
             'newBitmap.Save(filepath, ImageFormat.Png)
@@ -361,7 +368,6 @@ Public Class ATTENDANCE
         End If
         'CAMERA.SignalToStop()
         'MsgBox("picture saved")
-
     End Sub
     Private Function generatefilename() As String
         Return System.DateTime.Now.ToString("yyyyMMdd") + "_" + Guna2TextBox1.Text
