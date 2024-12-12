@@ -408,6 +408,7 @@ Partial Class Form1
         Controls.Add(Guna2TextBox2)
         Controls.Add(Guna2TextBox1)
         Controls.Add(Guna2TextBox4)
+        FormBorderStyle = FormBorderStyle.None
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Form1"

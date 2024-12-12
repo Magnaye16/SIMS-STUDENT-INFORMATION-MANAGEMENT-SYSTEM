@@ -98,8 +98,6 @@ Public Class enlistment
             e.Handled = True ' Cancel the key press if it's not a number, hyphen, or control key
         End If
 
-        ' Ensure that only one hyphen can be typed (if required)
-        ' Optionally, ensure the hyphen can only be typed at the beginning of the input
         If e.KeyChar = "-"c Then
             ' If there is already a hyphen or the hyphen is not at the start, cancel the input
             If Guna2TextBox5.Text.Contains("-") OrElse Guna2TextBox5.SelectionStart > 0 Then
@@ -108,7 +106,12 @@ Public Class enlistment
         End If
     End Sub
 
+    Private Sub Guna2Button9_Click(sender As Object, e As EventArgs) Handles Guna2Button8.Click
+        TabControl1.SelectedTab = TabPage1
+    End Sub
     Private Sub Enlistment(sender As Object, e As EventArgs) Handles MyBase.Load
+        TabControl1.SelectedTab = TabPage1
+
         SetupTimePickers()
         PopulateDaysComboBox()
         LoadStudentClasses()
@@ -797,11 +800,10 @@ Public Class enlistment
     End Sub
 
     Private Sub Guna2Button7_Click(sender As Object, e As EventArgs) Handles Guna2Button7.Click
-        TabControl1.SelectedTab = TabPage2
-    End Sub
-
-    Private Sub Guna2Button9_Click(sender As Object, e As EventArgs) Handles Guna2Button8.Click
         TabControl1.SelectedTab = TabPage1
     End Sub
 
+    Private Sub Guna2Button9_Click_1(sender As Object, e As EventArgs) Handles Guna2Button9.Click
+        TabControl1.SelectedTab = TabPage2
+    End Sub
 End Class

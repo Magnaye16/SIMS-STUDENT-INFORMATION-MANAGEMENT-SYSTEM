@@ -87,6 +87,7 @@ Partial Class enlistment
         Guna2TextBox1 = New Guna.UI2.WinForms.Guna2TextBox()
         Guna2TextBox4 = New Guna.UI2.WinForms.Guna2TextBox()
         TabPage2 = New TabPage()
+        Guna2HtmlLabel11 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2Button4 = New Guna.UI2.WinForms.Guna2Button()
         Guna2HtmlLabel10 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Guna2TextBox5 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -126,7 +127,6 @@ Partial Class enlistment
         TabControl1.SelectedIndex = 0
         TabControl1.Size = New Size(827, 535)
         TabControl1.TabIndex = 0
-        TabControl1.Visible = False
         ' 
         ' TabPage1
         ' 
@@ -397,6 +397,7 @@ Partial Class enlistment
         ' TabPage2
         ' 
         TabPage2.BackColor = Color.White
+        TabPage2.Controls.Add(Guna2HtmlLabel11)
         TabPage2.Controls.Add(Guna2Button4)
         TabPage2.Controls.Add(Guna2HtmlLabel10)
         TabPage2.Controls.Add(Guna2TextBox5)
@@ -422,6 +423,16 @@ Partial Class enlistment
         TabPage2.Padding = New Padding(3)
         TabPage2.Size = New Size(819, 507)
         TabPage2.TabIndex = 1
+        ' 
+        ' Guna2HtmlLabel11
+        ' 
+        Guna2HtmlLabel11.BackColor = Color.Transparent
+        Guna2HtmlLabel11.Font = New Font("Bahnschrift SemiBold", 9.75F, FontStyle.Bold)
+        Guna2HtmlLabel11.Location = New Point(229, 88)
+        Guna2HtmlLabel11.Name = "Guna2HtmlLabel11"
+        Guna2HtmlLabel11.Size = New Size(54, 18)
+        Guna2HtmlLabel11.TabIndex = 57
+        Guna2HtmlLabel11.Text = "SECTION"
         ' 
         ' Guna2Button4
         ' 
@@ -901,4 +912,5 @@ Partial Class enlistment
     Friend WithEvents Guna2Button4 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button7 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button9 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2HtmlLabel11 As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class
