@@ -330,13 +330,11 @@ Public Class enlistment
     End Sub
 
     Private Sub ClearForm()
-        ' Clear all ComboBoxes
         Guna2ComboBox7.SelectedIndex = -1  ' Clears the selected item in ComboBox7 (course)
         Guna2ComboBox5.SelectedIndex = -1  ' Clears the selected item in ComboBox5 (day)
         Guna2ComboBox6.SelectedIndex = -1  ' Clears the selected item in ComboBox6 (section)
 
-        ' Clear the TextBox
-        Guna2TextBox5.Clear()  ' Clears the text in TextBox5 (professor ID)
+        Guna2TextBox5.Clear()
     End Sub
 
 
@@ -625,24 +623,25 @@ Public Class enlistment
 
     Private Sub AddClassInfo()
         ' Gather input values from the controls
-        Dim courseCode As String = Guna2ComboBox7.SelectedItem.ToString() ' Course code selected from ComboBox
-        Dim schoolYear As String = Guna2ComboBox3.SelectedItem?.ToString() & "-" & Guna2ComboBox4.SelectedItem?.ToString() ' School year selected from ComboBox
-        Dim day As String = Guna2ComboBox5.SelectedItem.ToString() ' Day selected from ComboBox
-        Dim section As String = Guna2ComboBox6.SelectedItem.ToString() ' Section selected from ComboBox
+        Dim courseCode As String = If(Guna2ComboBox7.SelectedItem IsNot Nothing, Guna2ComboBox7.SelectedItem.ToString(), String.Empty) ' Course code selected from ComboBox
+        Dim schoolYear As String = If(Guna2ComboBox3.SelectedItem IsNot Nothing AndAlso Guna2ComboBox4.SelectedItem IsNot Nothing,
+                                  Guna2ComboBox3.SelectedItem.ToString() & "-" & Guna2ComboBox4.SelectedItem.ToString(), String.Empty) ' School year selected from ComboBox
+        Dim day As String = If(Guna2ComboBox5.SelectedItem IsNot Nothing, Guna2ComboBox5.SelectedItem.ToString(), String.Empty) ' Day selected from ComboBox
+        Dim section As String = If(Guna2ComboBox6.SelectedItem IsNot Nothing, Guna2ComboBox6.SelectedItem.ToString(), String.Empty) ' Section selected from ComboBox
         Dim professorId As String = Guna2TextBox5.Text ' Professor ID from TextBox
+        Dim time_s As String = Guna2DateTimePicker1.Value.ToString("HH:mm:ss") ' Start time from DateTimePicker
+        Dim time_e As String = Guna2DateTimePicker2.Value.ToString("HH:mm:ss") ' End time from DateTimePicker
 
         ' Check if all fields are filled
-        If String.IsNullOrEmpty(courseCode) Or String.IsNullOrEmpty(schoolYear) Or
-       String.IsNullOrEmpty(day) Or String.IsNullOrEmpty(section) Or
-       String.IsNullOrEmpty(professorId) Then
+        If String.IsNullOrEmpty(courseCode) Or String.IsNullOrEmpty(schoolYear) Or String.IsNullOrEmpty(day) Or
+       String.IsNullOrEmpty(section) Or String.IsNullOrEmpty(professorId) Then
             MessageBox.Show("Please fill all the fields.")
             Return
         End If
 
         ' SQL query to insert new class info into the class_info table
-        Dim query As String = "INSERT INTO class_info (course_id, school_year, day, section, professor_id) " &
-                          "VALUES ((SELECT course_id FROM course_info WHERE code = @courseCode), " &
-                          "@schoolYear, @day, @section, @professorId)"
+        Dim query As String = "INSERT INTO class_info (course_id, school_year, day, section, professor_id, time_start, time_end) " &
+                          "VALUES ((SELECT course_id FROM course_info WHERE code = @courseCode), @schoolYear, @day, @section, @professorId, @time_start, @time_end)"
 
         Try
             ' Open database connection
@@ -656,6 +655,8 @@ Public Class enlistment
                 cmd.Parameters.AddWithValue("@day", day)
                 cmd.Parameters.AddWithValue("@section", section)
                 cmd.Parameters.AddWithValue("@professorId", professorId)
+                cmd.Parameters.AddWithValue("@time_start", time_s)
+                cmd.Parameters.AddWithValue("@time_end", time_e)
 
                 ' Execute the query
                 cmd.ExecuteNonQuery()
@@ -674,6 +675,7 @@ Public Class enlistment
             End If
         End Try
     End Sub
+
 
     Private Sub UpdateProfessorId()
         ' Gather input values from the controls
@@ -702,7 +704,7 @@ Public Class enlistment
             ' Open database connection
             openCon()
 
-            ' Set up the command to execute the query to get the class_id
+            'Set up the command to execute the query to get the class_id
             Using cmd As New MySqlCommand(query, con)
                 ' Add parameters to the command
                 cmd.Parameters.AddWithValue("@courseCode", courseCode)
@@ -729,13 +731,18 @@ Public Class enlistment
                 ' Add parameters to the update command
                 cmd.Parameters.AddWithValue("@classId", classId)
                 cmd.Parameters.AddWithValue("@professorId", professorId)
-
+                cmd.Parameters.AddWithValue("@courseCode", courseCode)
+                cmd.Parameters.AddWithValue("@schoolYear", schoolYear)
+                cmd.Parameters.AddWithValue("@day", day)
+                cmd.Parameters.AddWithValue("@section", section)
                 ' Execute the update query
                 cmd.ExecuteNonQuery()
             End Using
 
             ' Notify user of success
-            MessageBox.Show("Professor ID updated successfully!")
+            'MessageBox.Show("Professor ID updated successfully!", professorId, CType(courseCode, MessageBoxButtons), schoolYear, day, section)
+            MessageBox.Show("Professor ID updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
 
         Catch ex As Exception
             ' Show error message in case of failure
@@ -795,7 +802,7 @@ Public Class enlistment
         ClearForm()
     End Sub
 
-    Private Sub Guna2Button4_Click(sender As Object, e As EventArgs) Handles Guna2Button4.Click
+    Private Sub Guna2Button4_Click(sender As Object, e As EventArgs)
         UpdateProfessorId()
     End Sub
 

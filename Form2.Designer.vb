@@ -221,10 +221,10 @@ Partial Class Form2
         Guna2GroupBox1.CustomizableEdges = CustomizableEdges9
         Guna2GroupBox1.Font = New Font("Segoe UI", 9F)
         Guna2GroupBox1.ForeColor = Color.FromArgb(CByte(125), CByte(137), CByte(149))
-        Guna2GroupBox1.Location = New Point(12, 37)
+        Guna2GroupBox1.Location = New Point(12, 46)
         Guna2GroupBox1.Name = "Guna2GroupBox1"
         Guna2GroupBox1.ShadowDecoration.CustomizableEdges = CustomizableEdges10
-        Guna2GroupBox1.Size = New Size(251, 187)
+        Guna2GroupBox1.Size = New Size(256, 187)
         Guna2GroupBox1.TabIndex = 12
         Guna2GroupBox1.Text = "ADD PROGRAM"
         ' 
@@ -242,7 +242,7 @@ Partial Class Form2
         Guna2GroupBox2.Location = New Point(12, 264)
         Guna2GroupBox2.Name = "Guna2GroupBox2"
         Guna2GroupBox2.ShadowDecoration.CustomizableEdges = CustomizableEdges14
-        Guna2GroupBox2.Size = New Size(251, 266)
+        Guna2GroupBox2.Size = New Size(256, 266)
         Guna2GroupBox2.TabIndex = 13
         Guna2GroupBox2.Text = "ADD COURSE"
         ' 
@@ -295,10 +295,10 @@ Partial Class Form2
         Guna2GroupBox3.CustomizableEdges = CustomizableEdges15
         Guna2GroupBox3.Font = New Font("Segoe UI", 9F)
         Guna2GroupBox3.ForeColor = Color.FromArgb(CByte(125), CByte(137), CByte(149))
-        Guna2GroupBox3.Location = New Point(269, 37)
+        Guna2GroupBox3.Location = New Point(269, 46)
         Guna2GroupBox3.Name = "Guna2GroupBox3"
         Guna2GroupBox3.ShadowDecoration.CustomizableEdges = CustomizableEdges16
-        Guna2GroupBox3.Size = New Size(251, 187)
+        Guna2GroupBox3.Size = New Size(256, 187)
         Guna2GroupBox3.TabIndex = 14
         Guna2GroupBox3.Text = "ADD SECTION"
         ' 
@@ -330,10 +330,10 @@ Partial Class Form2
         Guna2Button1.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
         Guna2Button1.Font = New Font("Segoe UI", 9F)
         Guna2Button1.ForeColor = Color.White
-        Guna2Button1.Location = New Point(574, 198)
+        Guna2Button1.Location = New Point(562, 198)
         Guna2Button1.Name = "Guna2Button1"
         Guna2Button1.ShadowDecoration.CustomizableEdges = CustomizableEdges18
-        Guna2Button1.Size = New Size(87, 35)
+        Guna2Button1.Size = New Size(92, 35)
         Guna2Button1.TabIndex = 15
         Guna2Button1.Text = "ADD"
         ' 
@@ -346,10 +346,10 @@ Partial Class Form2
         Guna2Button2.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
         Guna2Button2.Font = New Font("Segoe UI", 9F)
         Guna2Button2.ForeColor = Color.White
-        Guna2Button2.Location = New Point(681, 198)
+        Guna2Button2.Location = New Point(669, 198)
         Guna2Button2.Name = "Guna2Button2"
         Guna2Button2.ShadowDecoration.CustomizableEdges = CustomizableEdges20
-        Guna2Button2.Size = New Size(87, 35)
+        Guna2Button2.Size = New Size(92, 35)
         Guna2Button2.TabIndex = 16
         Guna2Button2.Text = "UPDATE"
         ' 
@@ -362,10 +362,10 @@ Partial Class Form2
         Guna2Button3.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
         Guna2Button3.Font = New Font("Segoe UI", 9F)
         Guna2Button3.ForeColor = Color.White
-        Guna2Button3.Location = New Point(574, 264)
+        Guna2Button3.Location = New Point(562, 264)
         Guna2Button3.Name = "Guna2Button3"
         Guna2Button3.ShadowDecoration.CustomizableEdges = CustomizableEdges22
-        Guna2Button3.Size = New Size(87, 35)
+        Guna2Button3.Size = New Size(92, 35)
         Guna2Button3.TabIndex = 17
         Guna2Button3.Text = "CLEAR"
         ' 
@@ -378,10 +378,10 @@ Partial Class Form2
         Guna2Button4.DisabledState.ForeColor = Color.FromArgb(CByte(141), CByte(141), CByte(141))
         Guna2Button4.Font = New Font("Segoe UI", 9F)
         Guna2Button4.ForeColor = Color.White
-        Guna2Button4.Location = New Point(681, 264)
+        Guna2Button4.Location = New Point(669, 264)
         Guna2Button4.Name = "Guna2Button4"
         Guna2Button4.ShadowDecoration.CustomizableEdges = CustomizableEdges24
-        Guna2Button4.Size = New Size(87, 35)
+        Guna2Button4.Size = New Size(92, 35)
         Guna2Button4.TabIndex = 18
         Guna2Button4.Text = "DELETE"
         ' 
@@ -393,7 +393,7 @@ Partial Class Form2
         Guna2RadioButton1.CheckedState.FillColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2RadioButton1.CheckedState.InnerColor = Color.White
         Guna2RadioButton1.CheckedState.InnerOffset = -4
-        Guna2RadioButton1.Location = New Point(39, 11)
+        Guna2RadioButton1.Location = New Point(12, 21)
         Guna2RadioButton1.Name = "Guna2RadioButton1"
         Guna2RadioButton1.Size = New Size(109, 19)
         Guna2RadioButton1.TabIndex = 19
@@ -411,7 +411,7 @@ Partial Class Form2
         Guna2RadioButton2.CheckedState.FillColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2RadioButton2.CheckedState.InnerColor = Color.White
         Guna2RadioButton2.CheckedState.InnerOffset = -4
-        Guna2RadioButton2.Location = New Point(300, 11)
+        Guna2RadioButton2.Location = New Point(269, 21)
         Guna2RadioButton2.Name = "Guna2RadioButton2"
         Guna2RadioButton2.Size = New Size(100, 19)
         Guna2RadioButton2.TabIndex = 20
@@ -429,7 +429,7 @@ Partial Class Form2
         Guna2RadioButton3.CheckedState.FillColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2RadioButton3.CheckedState.InnerColor = Color.White
         Guna2RadioButton3.CheckedState.InnerOffset = -4
-        Guna2RadioButton3.Location = New Point(39, 239)
+        Guna2RadioButton3.Location = New Point(12, 239)
         Guna2RadioButton3.Name = "Guna2RadioButton3"
         Guna2RadioButton3.Size = New Size(96, 19)
         Guna2RadioButton3.TabIndex = 21
@@ -453,7 +453,7 @@ Partial Class Form2
         Guna2GroupBox4.Location = New Point(269, 264)
         Guna2GroupBox4.Name = "Guna2GroupBox4"
         Guna2GroupBox4.ShadowDecoration.CustomizableEdges = CustomizableEdges28
-        Guna2GroupBox4.Size = New Size(251, 266)
+        Guna2GroupBox4.Size = New Size(256, 266)
         Guna2GroupBox4.TabIndex = 14
         Guna2GroupBox4.Text = "ADD CLASS"
         ' 
@@ -531,7 +531,7 @@ Partial Class Form2
         Guna2RadioButton4.CheckedState.FillColor = Color.FromArgb(CByte(94), CByte(148), CByte(255))
         Guna2RadioButton4.CheckedState.InnerColor = Color.White
         Guna2RadioButton4.CheckedState.InnerOffset = -4
-        Guna2RadioButton4.Location = New Point(300, 239)
+        Guna2RadioButton4.Location = New Point(269, 239)
         Guna2RadioButton4.Name = "Guna2RadioButton4"
         Guna2RadioButton4.Size = New Size(86, 19)
         Guna2RadioButton4.TabIndex = 22
@@ -545,7 +545,7 @@ Partial Class Form2
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(788, 568)
+        ClientSize = New Size(793, 568)
         Controls.Add(Guna2RadioButton4)
         Controls.Add(Guna2GroupBox4)
         Controls.Add(Guna2RadioButton3)

@@ -63,7 +63,7 @@ Public Class Form4
 
         Catch ex As Exception
             ' Display the error message
-            MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         Finally
             con.Close() ' Ensure the connection is closed even if an error occurs
