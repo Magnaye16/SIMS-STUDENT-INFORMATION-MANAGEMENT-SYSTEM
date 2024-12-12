@@ -5,6 +5,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Drawing.Imaging
 Imports System.Drawing.Printing
 Imports System.IO
+Imports Guna.UI2.WinForms
 
 Public Class ATTENDANCE
 
@@ -28,6 +29,41 @@ Public Class ATTENDANCE
     '    'timeout
     '    'Timeout()
     'End Sub
+    Private Sub ATTENDANCE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Camstart() 'load camera
+        'Camstart1()
+    End Sub
+    Private Sub ATTENDANCE_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
+            CAMERA.SignalToStop()
+            CAMERA.WaitForStop()
+            CAMERA = Nothing
+        End If
+
+        ' Exit the application
+        Application.Exit()
+    End Sub
+    Private Sub ATTENDANCE_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
+            CAMERA.SignalToStop()
+            CAMERA.WaitForStop()
+            CAMERA = Nothing
+        End If
+
+        ' Exit the application
+        Application.Exit()
+    End Sub
+    Private Sub Guna2ImageButton1_Click(sender As Object, e As EventArgs) Handles Guna2ImageButton1.Click
+        'If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
+        '    CAMERA.SignalToStop()
+        '    CAMERA.WaitForStop()
+        '    CAMERA = Nothing
+        'End If
+
+        ' Exit the application
+        Application.Exit()
+    End Sub
+
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
         Guna2TextBox1.Text = ""
         Guna2TextBox2.Text = ""
@@ -281,41 +317,83 @@ Public Class ATTENDANCE
     End Sub
 
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        Savepic()
+        If Guna2PictureBox2.Image IsNot Nothing Then
+            ' Transfer the image from Guna2PictureBox2 to Guna2PictureBox3
+            If Guna2PictureBox3.Image IsNot Nothing Then
+                ' Dispose of the image in Guna2PictureBox3
+                Guna2PictureBox3.Image.Dispose()
+                Guna2PictureBox3.Image = Nothing
+            End If
 
-    End Sub
-
-    Private Sub ATTENDANCE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Camstart() 'load camera
-
-    End Sub
-    Private Sub Camstart()
-        Dim cameras As VideoCaptureDeviceForm = New VideoCaptureDeviceForm
-        If cameras.ShowDialog = DialogResult.OK Then
-            CAMERA = cameras.VideoDevice
-            AddHandler CAMERA.NewFrame, New NewFrameEventHandler(AddressOf Captured)
-            CAMERA.Start()
-        ElseIf cameras.ShowDialog = DialogResult.Cancel Then
-            Me.Close()
+            ' Clone the image from Guna2PictureBox2 to Guna2PictureBox3
+            Guna2PictureBox3.Image = CType(Guna2PictureBox2.Image.Clone(), Image)
         End If
+        If Guna2PictureBox1.Image IsNot Nothing Then
+            If Guna2PictureBox2.Image IsNot Nothing Then
+                ' Dispose of the current image in Guna2PictureBox2
+                Guna2PictureBox2.Image.Dispose()
+            End If
+
+            ' Clone the image from Guna2PictureBox1 to Guna2PictureBox2
+            Guna2PictureBox2.Image = CType(Guna2PictureBox1.Image.Clone(), Image)
+        End If
+        Guna2PictureBox1.Image = Guna2PictureBox4.Image
     End Sub
+
     Private Sub Captured(sender As Object, eventsArgs As NewFrameEventArgs)
         bmp = DirectCast(eventsArgs.Frame.Clone(), Bitmap)
-        Guna2PictureBox1.Image = DirectCast(eventsArgs.Frame.Clone(), Bitmap)
+        Guna2PictureBox4.Image = DirectCast(eventsArgs.Frame.Clone(), Bitmap)
     End Sub
     Private Sub Savepic()
-        Dim filename, filepath As String
-        filename = generatefilename()
-        filepath = "C:\Users\Ericka Louise\source\repos\SIMS-STUDENT-INFORMATION-MANAGEMENT-SYSTEM\pics\" + filename + ".jpg"
+        'Dim filename, filepath As String
+        'filename = generatefilename()
+        'filepath = "C:\Users\Ericka Louise\source\repos\SIMS-STUDENT-INFORMATION-MANAGEMENT-SYSTEM\pics\" + filename + ".jpg"
+
+
 
         If Guna2PictureBox1.Image IsNot Nothing Then
             Dim newBitmap As Bitmap = Guna2PictureBox1.Image
-            newBitmap.Save(filepath, ImageFormat.Png)
+            'newBitmap.Save(filepath, ImageFormat.Png)
             'Label5.Text = filepath
+            Guna2PictureBox1.Image = Guna2PictureBox1.Image
+
         End If
-        CAMERA.SignalToStop()
+        'CAMERA.SignalToStop()
         'MsgBox("picture saved")
+
     End Sub
     Private Function generatefilename() As String
         Return System.DateTime.Now.ToString("yyyyMMdd") + "_" + Guna2TextBox1.Text
     End Function
+    Private Sub Camstart()
+        ' Create a collection of video capture devices
+        Dim videoDevices As New FilterInfoCollection(FilterCategory.VideoInputDevice)
+
+        ' Check if there are any video capture devices
+        If videoDevices.Count = 0 Then
+            MessageBox.Show("No camera found.")
+            Exit Sub
+        End If
+
+        ' Select the first available camera
+        Dim CAMERA As New VideoCaptureDevice(videoDevices(1).MonikerString)
+
+        ' Attach the event handler to process new frames
+        AddHandler CAMERA.NewFrame, New NewFrameEventHandler(AddressOf Captured)
+
+        ' Start the camera
+        CAMERA.Start()
+    End Sub
+
+    'Private Sub Camstart1()
+    '    Dim cameras As VideoCaptureDeviceForm = New VideoCaptureDeviceForm
+    '    If cameras.ShowDialog = DialogResult.OK Then
+    '        CAMERA = cameras.VideoDevice
+    '        AddHandler CAMERA.NewFrame, New NewFrameEventHandler(AddressOf Captured)
+    '        CAMERA.Start()
+    '    ElseIf cameras.ShowDialog = DialogResult.Cancel Then
+    '        Me.Close()
+    '    End If
+    'End Sub
 End Class
