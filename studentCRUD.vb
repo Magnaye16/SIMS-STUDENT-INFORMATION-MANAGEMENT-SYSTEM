@@ -82,9 +82,12 @@ Public Class studentCRUD
 
         If Guna2TextBox1.Text = "" Or
            Guna2TextBox4.Text = "" Or
+           Guna2TextBox6.Text = "" Or
            Guna2TextBox5.Text = "" Or
            Guna2TextBox3.Text = "" Or
            Guna2TextBox7.Text = "" Or
+           Guna2TextBox8.Text = "" Or
+           Guna2TextBox9.Text = "" Or
            Guna2ComboBox2.SelectedIndex = -1 Then
             MessageBox.Show("Please fill all fields!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
