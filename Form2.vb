@@ -305,16 +305,16 @@ Public Class Form2
 
         Dim query As String = "SELECT name FROM course_info"
 
-        ComboBox2.Items.Clear()
-        ComboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend
-        ComboBox2.AutoCompleteSource = AutoCompleteSource.ListItems
+        ComboBox4.Items.Clear()
+        ComboBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+        ComboBox4.AutoCompleteSource = AutoCompleteSource.ListItems
 
         Using command As New MySqlCommand(query, con)
             Try
                 openCon()
                 Using reader As MySqlDataReader = command.ExecuteReader()
                     While reader.Read()
-                        ComboBox2.Items.Add(reader("name").ToString())
+                        ComboBox4.Items.Add(reader("name").ToString())
                     End While
                 End Using
 
@@ -382,9 +382,28 @@ Public Class Form2
         End Using
     End Sub
 
+    Private Sub Clear()
+        ' Clear the ComboBoxes
+        ComboBox1.SelectedIndex = -1
+        ComboBox2.SelectedIndex = -1
+        ComboBox3.SelectedIndex = -1
+        ComboBox4.SelectedIndex = -1
+        ComboBox5.SelectedIndex = -1
+        ComboBox6.SelectedIndex = -1
+
+        ' Clear the TextBoxes
+        Guna2TextBox1.Clear()
+        Guna2TextBox2.Clear()
+        Guna2TextBox3.Clear()
+        Guna2TextBox4.Clear()
+        Guna2TextBox5.Clear()
+        Guna2TextBox7.Clear()
+    End Sub
+
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PopulateComboBox1()
+        PopulateComboBox4()
         PopulateComboBox5()
         PopulateComboBox6()
         DisableGroupBoxes()
@@ -463,7 +482,7 @@ Public Class Form2
     End Sub
 
 
-    Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-
+    Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        Clear()
     End Sub
 End Class
