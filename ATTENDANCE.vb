@@ -25,45 +25,33 @@ Public Class ATTENDANCE
     Dim timenow As String = currentDate.ToString("HH:mm:ss") ' 24-hour format
     Dim datenow As String = currentDate.ToString("yyyy-MM-dd")
 
-    'Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
-    '    'timeout
-    '    'Timeout()
-    'End Sub
     Private Sub ATTENDANCE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Camstart() 'load camera
         'Camstart1()
     End Sub
-    Private Sub ATTENDANCE_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
-            CAMERA.SignalToStop()
-            CAMERA.WaitForStop()
-            CAMERA = Nothing
-        End If
 
-        ' Exit the application
-        Application.Exit()
-    End Sub
-    Private Sub ATTENDANCE_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
-            CAMERA.SignalToStop()
-            CAMERA.WaitForStop()
-            CAMERA = Nothing
-        End If
-
-        ' Exit the application
-        Application.Exit()
-    End Sub
     Private Sub Guna2ImageButton1_Click(sender As Object, e As EventArgs) Handles Guna2ImageButton1.Click
-        'If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
-        '    CAMERA.SignalToStop()
-        '    CAMERA.WaitForStop()
-        '    CAMERA = Nothing
-        'End If
+        Try
+            ' Display confirmation dialog
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-        ' Exit the application
-        Application.Exit()
+            ' Check the user's response
+            If result = DialogResult.Yes Then
+                ' Stop and release the camera properly
+                If CAMERA IsNot Nothing AndAlso CAMERA.IsRunning Then
+                    CAMERA.SignalToStop()
+                    CAMERA.WaitForStop() ' Ensures the camera stops completely
+                    CAMERA.Stop()        ' Explicitly stop the camera
+                    CAMERA = Nothing     ' Release the camera object
+                End If
+
+                ' Exit the application
+                Application.Exit()
+            End If
+        Catch ex As Exception
+            MessageBox.Show($"An error occurred while stopping the camera: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
-
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
         Guna2TextBox1.Text = ""
         Guna2TextBox2.Text = ""
@@ -85,8 +73,24 @@ Public Class ATTENDANCE
         End If
     End Sub
     Private Sub Guna2Button3_Click(sender As Object, e As EventArgs) Handles Guna2Button3.Click
+        ' Validate if any required textbox is empty
+        If String.IsNullOrWhiteSpace(Guna2TextBox1.Text) OrElse
+       String.IsNullOrWhiteSpace(Guna2TextBox2.Text) OrElse
+       String.IsNullOrWhiteSpace(Guna2TextBox3.Text) OrElse
+       String.IsNullOrWhiteSpace(Guna2TextBox4.Text) Then
+
+            MessageBox.Show("All fields are required. Please fill out all the information.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Guna2TextBox1.Text = ""
+            Guna2TextBox2.Text = ""
+            Guna2TextBox3.Text = ""
+            Guna2TextBox4.Clear()
+            Return ' Exit the method if validation fails
+        End If
+
+        ' Proceed if all textboxes are filled
         Savepic()
         checkforpics()
+        TimeIn()
     End Sub
 
     Private Sub Guna2TextBox4_TextChanged(sender As Object, e As EventArgs) Handles Guna2TextBox4.TextChanged
@@ -132,6 +136,8 @@ Public Class ATTENDANCE
                         Guna2TextBox3.Text = reader("year").ToString()
                         con.Close()
                         TimeIn()
+                        Savepic()
+                        checkforpics()
                     Else
                         MessageBox.Show("No records found.")
                     End If
@@ -383,7 +389,8 @@ Public Class ATTENDANCE
         End If
 
         ' Select the first available camera
-        Dim CAMERA As New VideoCaptureDevice(videoDevices(1).MonikerString)
+        'Dim CAMERA As New VideoCaptureDevice(videoDevices(1).MonikerString)
+        CAMERA = New VideoCaptureDevice(videoDevices(1).MonikerString)
 
         ' Attach the event handler to process new frames
         AddHandler CAMERA.NewFrame, New NewFrameEventHandler(AddressOf Captured)
