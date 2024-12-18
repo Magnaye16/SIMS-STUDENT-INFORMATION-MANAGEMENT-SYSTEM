@@ -84,12 +84,12 @@ Public Class enlistment
 
         ' Ensure that only one hyphen can be typed (if required)
         ' Optionally, ensure the hyphen can only be typed at the beginning of the input
-        If e.KeyChar = "-"c Then
-            ' If there is already a hyphen or the hyphen is not at the start, cancel the input
-            If Guna2TextBox4.Text.Contains("-") OrElse Guna2TextBox4.SelectionStart > 0 Then
-                e.Handled = True
-            End If
-        End If
+        'If e.KeyChar = "-"c Then
+        '    ' If there is already a hyphen or the hyphen is not at the start, cancel the input
+        '    If Guna2TextBox4.Text.Contains("-") OrElse Guna2TextBox4.SelectionStart > 0 Then
+        '        e.Handled = True
+        '    End If
+        'End If
     End Sub
 
     Private Sub Guna2TextBox5_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Guna2TextBox5.KeyPress
