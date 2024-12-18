@@ -468,7 +468,7 @@ Public Class Form2
                 AddSectionInfo()
 
             Case Guna2RadioButton3.Checked
-                AddProgramInfo()
+                AddCourseInfo()
 
             Case Guna2RadioButton4.Checked
                 AddProgramInfo()
