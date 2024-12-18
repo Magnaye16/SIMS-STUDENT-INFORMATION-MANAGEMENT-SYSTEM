@@ -122,9 +122,15 @@ Public Class ATTENDANCE
                 End If
             End Using
 
-            Dim query As String = "SELECT s.last_name, s.first_name, s.middle_name, c.section, c.year " &
-                          "FROM student_info s JOIN class_info c ON s.student_id = c.student_id " &
-                          "WHERE s.student_id = @studentId"
+            'Dim query As String = "SELECT s.last_name, s.first_name, s.middle_name, c.section, c.school_year " &
+            '              "FROM student_info s JOIN class_info c JOIN class_members m ON s.student_id = m.student_id  " &
+            '              "WHERE s.student_id = @studentId"
+
+            Dim query As String = "SELECT s.last_name, s.first_name, s.middle_name, c.section, c.school_year " &
+                      "FROM student_info s " &
+                      "JOIN class_members m ON s.student_id = m.student_id " &
+                      "JOIN class_info c ON m.class_id = c.class_id " &
+                      "WHERE s.student_id = @studentId"
 
             Using command As New MySqlCommand(query, con)
                 command.Parameters.AddWithValue("@studentId", STUDENT_ID)
@@ -133,11 +139,11 @@ Public Class ATTENDANCE
                     If reader.Read() Then
                         Guna2TextBox1.Text = $"{reader("last_name")}, {reader("first_name")} {reader("middle_name")}"
                         Guna2TextBox2.Text = reader("section").ToString()
-                        Guna2TextBox3.Text = reader("year").ToString()
+                        Guna2TextBox3.Text = reader("school_year").ToString()
                         con.Close()
-                        TimeIn()
-                        Savepic()
-                        checkforpics()
+                        'TimeIn()
+                        'Savepic()
+                        'checkforpics()
                     Else
                         MessageBox.Show("No records found.")
                     End If
@@ -153,46 +159,86 @@ Public Class ATTENDANCE
     Private Sub TimeIn()
 
         Try
-            openCon()
+            'openCon()
 
-            Dim selectQuery As String = "SELECT s.student_id, c.class_id AS CID, c.time_start, c.class_day
-                                 FROM student_info s 
-                                 JOIN class_info c ON s.student_id = c.student_id 
-                                 WHERE s.student_id = @student_id"
+            'Dim selectQuery As String = "SELECT s.student_id, c.class_id AS CID, c.time_start, c.class_day
+            '                     FROM student_info s 
+            '                     JOIN class_info c ON s.student_id = c.student_id 
+            '                     WHERE s.student_id = @student_id"
+
+            'Using selectCommand As New MySqlCommand(selectQuery, con)
+            '    selectCommand.Parameters.AddWithValue("@student_id", STUDENT_ID)
+
+            '    Using reader As MySqlDataReader = selectCommand.ExecuteReader()
+            '        If reader.Read() Then
+
+            '            classId = Convert.ToInt32(reader("CID"))
+
+            '            Dim classDay As Integer = Convert.ToInt32(reader("class_day"))
+            '            Dim currentDay As Integer = CInt(DateTime.Now.DayOfWeek) + 1
+
+            '            If classDay = currentDay Then
+            '                classId = Convert.ToInt32(reader("CID"))
+            '                classStartTime = TimeSpan.Parse(reader("time_start").ToString())
+            '                attendanceType = "C"
+
+            '                If timeInNow <= classStartTime Then
+            '                    studentStatus = "P" ' Present
+            '                    studentStatusDisplay = "Present"
+            '                ElseIf timeInNow <= classStartTime.Add(TimeSpan.FromMinutes(gracePeriodMinutes)) Then
+            '                    studentStatus = "L" ' Late
+            '                    studentStatusDisplay = "Late"
+            '                Else
+            '                    studentStatus = "A" ' Absent
+            '                    studentStatusDisplay = "Absent"
+            '                End If
+
+            '            Else
+            '                studentStatus = "P"
+            '                studentStatusDisplay = "Recorded"
+            '                classId = 0
+            '                attendanceType = "N"
+            '            End If
+            '        End If
+            '    End Using
+            'End Using
+
+            openCon()  ' Ensure that the connection is properly opened
+
+            Dim selectQuery As String = "SELECT s.student_id, c.class_id AS CID, c.time_start " &
+                                     "FROM student_info s " &
+                                     "JOIN class_members m ON s.student_id = m.student_id " &
+                                     "JOIN class_info c ON m.class_id = c.class_id " &
+                                     "WHERE s.student_id = @studentId"
 
             Using selectCommand As New MySqlCommand(selectQuery, con)
-                selectCommand.Parameters.AddWithValue("@student_id", STUDENT_ID)
+                ' Use the correct parameter name here
+                selectCommand.Parameters.AddWithValue("@studentId", STUDENT_ID)
 
                 Using reader As MySqlDataReader = selectCommand.ExecuteReader()
                     If reader.Read() Then
-
+                        ' Retrieve class information
                         classId = Convert.ToInt32(reader("CID"))
+                        classStartTime = TimeSpan.Parse(reader("time_start").ToString())
+                        attendanceType = "C"
 
-                        Dim classDay As Integer = Convert.ToInt32(reader("class_day"))
-                        Dim currentDay As Integer = CInt(DateTime.Now.DayOfWeek) + 1
-
-                        If classDay = currentDay Then
-                            classId = Convert.ToInt32(reader("CID"))
-                            classStartTime = TimeSpan.Parse(reader("time_start").ToString())
-                            attendanceType = "C"
-
-                            If timeInNow <= classStartTime Then
-                                studentStatus = "P" ' Present
-                                studentStatusDisplay = "Present"
-                            ElseIf timeInNow <= classStartTime.Add(TimeSpan.FromMinutes(gracePeriodMinutes)) Then
-                                studentStatus = "L" ' Late
-                                studentStatusDisplay = "Late"
-                            Else
-                                studentStatus = "A" ' Absent
-                                studentStatusDisplay = "Absent"
-                            End If
-
+                        ' Adjust the logic for time comparison without class_day
+                        If timeInNow <= classStartTime Then
+                            studentStatus = "P" ' Present
+                            studentStatusDisplay = "Present"
+                        ElseIf timeInNow <= classStartTime.Add(TimeSpan.FromMinutes(gracePeriodMinutes)) Then
+                            studentStatus = "L" ' Late
+                            studentStatusDisplay = "Late"
                         Else
-                            studentStatus = "P"
-                            studentStatusDisplay = "Recorded"
-                            classId = 0
-                            attendanceType = "N"
+                            studentStatus = "A" ' Absent
+                            studentStatusDisplay = "Absent"
                         End If
+                    Else
+                        ' Handle case where no data is found for the student
+                        studentStatus = "N" ' Not Recorded
+                        studentStatusDisplay = "Not Recorded"
+                        classId = 0
+                        attendanceType = "N"
                     End If
                 End Using
             End Using
